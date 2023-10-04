@@ -27,12 +27,12 @@ public class UIManager : MonoBehaviour
 
     }
 
-    void UpdateHP(int hp)
+    public void UpdateHP(int hp)
     {
         hpText.SetText(SCORE_NAMES[hp]);
     }
 
-    void UpdateScore(int score)
+    public void UpdateScore(int score)
     {
         scoreText.SetText(score.ToString("D10"));
     }
