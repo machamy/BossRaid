@@ -46,14 +46,6 @@ namespace Script.Game
         }
         
         /// <summary>
-        /// 횡이동. fixedupdate 안에서 실행 될 때 사용.
-        /// </summary>
-        /// <param name="delta">속도 배수</param>
-        public void FixedHorizontalMove(float delta)
-        {
-            HorizontalMove(delta * Time.deltaTime);
-        }
-        /// <summary>
         /// 횡이동. 1회 실행 등의 단순한 이동.
         /// </summary>
         /// <param name="delta">속도 배수</param>

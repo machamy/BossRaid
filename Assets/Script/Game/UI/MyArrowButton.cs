@@ -3,7 +3,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
 namespace Script.Game
-{
+{   
+    /// <summary>
+    /// 터치 방향키 클래스
+    /// 꾹 눌러서 전환 가능
+    /// </summary>
     public class MyArrowButton : MyButton, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
         private Vector2 _positionPointer;
@@ -35,6 +39,7 @@ namespace Script.Game
         protected override void FixedUpdate()
         {
             if(!IsPressing) return;
+            
             if (_positionPointer.x < transform.position.x-midRange)
             {
                 onLeft.Invoke();

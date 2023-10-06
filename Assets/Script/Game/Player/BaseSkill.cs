@@ -2,6 +2,7 @@
 {
     public abstract class BaseSkill
     {
+        private int cooldown;
         
     }
 }

@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.Game.Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = System.Random;
 
 public class UIManager : MonoBehaviour
@@ -19,12 +21,15 @@ public class UIManager : MonoBehaviour
     {
         scoreText = UIObject.transform.Find("TxtScore").GetComponent<TextMeshProUGUI>();
         hpText = UIObject.transform.Find("TxtHP").GetComponent<TextMeshProUGUI>();
+        Player p = GameObject.Find("Player").GetComponent<Player>();
+        p.OnHPUpdate.AddListener((i) => UpdateHP(i));
+        p.OnScoreUpdate.AddListener((i) => UpdateScore(i));
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void UpdateHP(int hp)
@@ -34,6 +39,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScore(int score)
     {
-        scoreText.SetText(score.ToString("D10"));
+        scoreText.SetText(score.ToString("D"+ZERO_NUM));
     }
 }

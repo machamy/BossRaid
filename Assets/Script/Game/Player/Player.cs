@@ -2,40 +2,98 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script.Game.Player;
+using Script.Game.Projectile;
 using UnityEngine;
 using UnityEngine.Events;
+using Type = System.Type;
 
-public class Player : MonoBehaviour
+namespace Script.Game.Player
 {
-    public int DEAFAULT_HP;
-    private int hp;
-
-    public UnityEvent<int> OnHPUpdate { get; } = new UnityEvent<int>();
-    public BaseSkill[] skills;
-
-    public int HP
+    public class Player : MonoBehaviour
     {
-        get => hp;
+        public int DEAFAULT_HP;
+        private int hp;
+        private int score;
+        public UnityEvent<int> OnHPUpdate { get; } = new UnityEvent<int>();
+        public UnityEvent<int> OnScoreUpdate { get; } = new UnityEvent<int>();
+        public SkillHolder SkillHolder;
         
-        set
+        public ParryingArea parryingArea;
+
+        public int HP
         {
-            hp = value;
-            OnHPUpdate.Invoke(value);
+            get => hp;
+            set
+            {
+                if (value < 0)
+                    return;
+                hp = value;
+                OnHPUpdate.Invoke(value);
+                if (value == 0)
+                {
+                    OnDeath();
+                }
+            }
         }
-        
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        hp = DEAFAULT_HP;
-        skills = new BaseSkill[3];
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public int Score
+        {
+            get => score;
+            set
+            {
+                score = value;
+                OnScoreUpdate.Invoke(score);
+            }
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            hp = DEAFAULT_HP;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        public void ForceParry()
+        {
+            Parry();
+        }
+
+        public bool Parry()
+        {
+            if (!parryingArea.Parryable) return false;
+            Projectile.Projectile prjt = parryingArea.GetFirst();
+            prjt.OnParring(this);
+            Debug.Log("success");
+            return true;
+        }
+
+
+
+
+
+        private void OnDeath()
+        {
+           gameObject.SetActive(false);
+        }
+
+        /*
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            Debug.Log("??");
+            Debug.Log((other.transform.tag));
+            if (other.transform.tag == "Projectile")
+            {
+
+                Debug.Log("??");
+                Projectile prj = other.transform.GetComponent<Projectile>();
+                prj.OnHit(this);
+            }
+        }
+        */
     }
-    
 }
