@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Script.Game.Enemy;
 using Script.Game.Projectile;
 using UnityEngine;
 
 public class Professor : MonoBehaviour
 {
+    public PatternController PatternController;
     public GameObject prefeb;
     public GameObject shootPos;
     
@@ -30,7 +32,6 @@ public class Professor : MonoBehaviour
             yield return new WaitForSeconds(3);
         }
     }
-    
 
     void ShootTO(Projectile prjt, GameObject target)
     {

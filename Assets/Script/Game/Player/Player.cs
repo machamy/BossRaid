@@ -65,6 +65,7 @@ namespace Script.Game.Player
 
         public bool Parry()
         {
+            Collider2D c = GetComponent<Collider2D>();
             if (!parryingArea.Parryable) return false;
             Projectile.Projectile prjt = parryingArea.GetFirst();
             prjt.OnParring(this);
