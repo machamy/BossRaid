@@ -17,7 +17,7 @@ namespace Script.Game.Enemy
 
         private void Awake()
         {
-            int sum = 0;
+            var sum = 0;
             ProbablityList.ForEach(n => sum += n);
             sumOfProbalblty = sum;
         }
