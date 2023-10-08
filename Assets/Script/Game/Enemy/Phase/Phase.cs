@@ -22,11 +22,11 @@ namespace Script.Game.Enemy
             sumOfProbalblty = sum;
         }
 
-        public int GetNextPatternNum(int PatternAmount)
+        public int GetNextPatternNum()
         {
             // 정해진 페이즈를 초과하면 0번 페이즈
             int random_value = Random.Range(0, sumOfProbalblty);
-            for(int i = 0; i <= PatternAmount; i++)
+            for(int i = 0; i < ProbablityList.Count; i++)
             {
                 int next_probablities = ProbablityList[i];
                 if (random_value < next_probablities)

@@ -9,28 +9,35 @@ namespace Script.Game.Enemy
     /// <summary>
     /// 패턴 관리 스크립트
     /// </summary>
-    public class PatternController
+    public class PatternController: MonoBehaviour
     {
         /// <summary>
         /// 패턴 목록
         /// </summary>
         private List<Pattern> Patterns;
         [SerializeField] private List<Phase> Phases;
-
-        private int PATTERN_NUM;
+        [SerializeField] private int PATTERN_NUM;
         public int PhaseLv { get; set; }
         
-        public PatternController(int PATTERN_NUM)
+
+        private void Awake()
         {
             PhaseLv = 0;
+            Patterns = new List<Pattern>();
+            Patterns.Add(new PatternA());
+            Patterns.Add(new PatternB());
+            Patterns.Add(new PatternC());
+            Patterns.Add(new PatternD());
         }
 
         public IEnumerator Rountine(Professor pf, Player.Player p)
         {
+            yield return new WaitForSeconds(2);
+            PhaseLv += 1;
             while (true)
             {
                 Phase currentPhase = Phases[PhaseLv];
-                Pattern pattern = Patterns[currentPhase.GetNextPatternNum(Patterns.Count)];
+                Pattern pattern = Patterns[currentPhase.GetNextPatternNum()];
 
                 foreach (float delay in pattern.NextAction(pf,p))
                 {
@@ -42,7 +49,10 @@ namespace Script.Game.Enemy
 
         public void OnScoreUpdate(int score)
         {
-            ;
+            if (score > Phases[PhaseLv].maxScore)
+            {
+                PhaseLv += 1;
+            }
         }
 
         // /// <summary>
