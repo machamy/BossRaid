@@ -29,10 +29,11 @@ namespace Script.Game.Enemy
                 dir =Vector2.left;
                 //pf.tpRight();
             }
-            
+            yield return 0.375f;
             //pf.과제(dir)
             //pf.팀플(dir)
-            pf.TestShoot(dir); 
+            pf.TestShoot(dir);
+            yield return 0.375f;
             pf.TestShoot(dir);
             
             yield return 1.0f;
