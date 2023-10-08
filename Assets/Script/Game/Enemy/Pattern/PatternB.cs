@@ -29,7 +29,7 @@ namespace Script.Game.Enemy
                     //pf.tpRight();
                     pf.TestShoot(Vector2.left);
                 }
-
+                yield return 0.5f;
                 isLeft = !isLeft;
             }
             

@@ -27,9 +27,11 @@ namespace Script.Game.Enemy
                 dir =Vector2.left;
                 //pf.tpRight();
             }
-            
+            yield return 0.375f;
             //pf.출쳌(isLeft)
+            yield return 0.375f;
             //pf.과제(dir)
+            yield return 0.375f;
             //pf.과제(dir)
             
             yield return 1.0f;
