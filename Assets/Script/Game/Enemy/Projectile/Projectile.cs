@@ -6,7 +6,7 @@ namespace Script.Game.Projectile
 {
     public enum Type
     {
-        과제, 팀플, 출석
+        Practice, Team, Attend
     }
     public class Projectile: MonoBehaviour
     {

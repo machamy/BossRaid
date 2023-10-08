@@ -1,20 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script.Game.Enemy;
+using Script.Game.Player;
 using Script.Game.Projectile;
 using UnityEngine;
 
 public class Professor : MonoBehaviour
 {
-    public PatternController PatternController;
     public GameObject prefeb;
     public GameObject shootPos;
-    
+    public PatternController PatternController;
+    [SerializeField] private Player player;
+
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(TestPattern());
-        
+        Debug.Log(PatternController);
+        player.OnScoreUpdate.AddListener(PatternController.OnScoreUpdate);
+        StartCoroutine(PatternController.Rountine(this, player));
     }
 
     // Update is called once per frame
@@ -32,15 +41,21 @@ public class Professor : MonoBehaviour
             yield return new WaitForSeconds(3);
         }
     }
+    
+    public void TestShoot(Vector2 dir)
+    {
+        GameObject prjt = Instantiate(prefeb);
+        ShootDir(prjt.GetComponent<Projectile>(), dir);
+    }
 
-    void ShootTO(Projectile prjt, GameObject target)
+    internal void ShootTO(Projectile prjt, GameObject target)
     {
         prjt.transform.position = shootPos.transform.position;
         prjt.target = target.transform.position;
         prjt.UpdateDirection();
     }
 
-    void ShootDir(Projectile prjt, Vector2 dir)
+    internal void ShootDir(Projectile prjt, Vector2 dir)
     {
         prjt.transform.position = shootPos.transform.position;
         prjt.UpdateDirection(dir);
