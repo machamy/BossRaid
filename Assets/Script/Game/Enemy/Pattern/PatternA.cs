@@ -1,4 +1,6 @@
-﻿namespace Script.Game.Enemy
+﻿using System.Collections.Generic;
+
+namespace Script.Game.Enemy
 {
     /// <summary>
     /// 간단한 2연격
@@ -9,10 +11,9 @@
         {
         }
 
-        public override float NextAction(Professor pf, Player.Player p)
+        public virtual IEnumerable<float> NextAction(Professor pf, Player.Player p)
         {
-            
-            return 0.0f;
+            yield return 1.0f;
         }
     }
 }

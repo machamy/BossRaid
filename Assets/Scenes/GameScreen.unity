@@ -433,6 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefeb: {fileID: 3675751813295543153, guid: 70d50a2092af1b343890c9b4ce4f20ee, type: 3}
   shootPos: {fileID: 629862511}
+  player: {fileID: 1799270154}
 --- !u!1 &157885671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,6 +1855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DEAFAULT_HP: 3
   parryingArea: {fileID: 1012759114}
+  Professor: {fileID: 82930186}
 --- !u!50 &1799270155
 Rigidbody2D:
   serializedVersion: 4

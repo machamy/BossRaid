@@ -20,6 +20,8 @@ namespace Script.Game.Player
         
         public ParryingArea parryingArea;
 
+        [SerializeField] private Professor Professor;
+        
         public int HP
         {
             get => hp;

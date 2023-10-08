@@ -1,20 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script.Game.Enemy;
+using Script.Game.Player;
 using Script.Game.Projectile;
 using UnityEngine;
 
 public class Professor : MonoBehaviour
 {
-    public PatternController PatternController;
     public GameObject prefeb;
     public GameObject shootPos;
-    
+    public PatternController PatternController;
+    [SerializeField] private Player player;
+
+    private void Awake()
+    {
+        PatternController = new PatternController(4);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(TestPattern());
-        
+        StartCoroutine(PatternController.Rountine(this,player));
     }
 
     // Update is called once per frame
