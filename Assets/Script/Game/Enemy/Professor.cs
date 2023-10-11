@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Script.Game;
 using Script.Game.Enemy;
 using Script.Game.Player;
 using Script.Game.Projectile;
@@ -12,10 +13,12 @@ public class Professor : MonoBehaviour
     public GameObject shootPos;
     public PatternController PatternController;
     [SerializeField] private Player player;
+    public Direction facing;
 
+    
     private void Awake()
     {
-        
+        facing = Direction.Left;
     }
 
     // Start is called before the first frame update
@@ -32,10 +35,46 @@ public class Professor : MonoBehaviour
         
     }
 
+    internal void tpLeft()
+    {
+        
+    }
+
+    internal void tpRight()
+    {
+        
+    }
+
+    internal void 과제()
+    {
+        TestShoot(facing.Vector());
+    }
+
+    internal void 팀플()
+    {
+        TestShoot(facing.Vector());
+    }
+    
+    internal void 출첵(int num = 3, float degreeRange =  180f)
+    {
+        ShootArc(Vector2.down,num,degreeRange);
+    }
+
+    internal void ShootArc(Vector2 direction, int num, float degreeRange)
+    {
+        Vector2 currentDir = Quaternion.AngleAxis(-degreeRange/ num,Vector3.forward) * direction;
+        for (int i = 0; i < num; i++)
+        {
+            direction = Quaternion.AngleAxis(degreeRange / num, Vector3.forward) * currentDir;
+            TestShoot(direction);
+        }
+    }
+
     private IEnumerator TestPattern()
     {
         while (true)
         {
+            
             GameObject prjt = Instantiate(prefeb);
             ShootDir(prjt.GetComponent<Projectile>(), Vector2.left);
             yield return new WaitForSeconds(3);
@@ -45,7 +84,9 @@ public class Professor : MonoBehaviour
     public void TestShoot(Vector2 dir)
     {
         GameObject prjt = Instantiate(prefeb);
-        ShootDir(prjt.GetComponent<Projectile>(), dir);
+        Projectile p = prjt.GetComponent<Projectile>();
+        p.speed = 0.05f;
+        ShootDir(p, dir);
     }
 
     internal void ShootTO(Projectile prjt, GameObject target)
