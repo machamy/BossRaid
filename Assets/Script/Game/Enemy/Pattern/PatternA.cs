@@ -16,7 +16,7 @@ namespace Script.Game.Enemy
 
         public override IEnumerable<float> NextAction(Professor pf, Player.Player p)
         {
-            bool isLeft = false;//Random.Range(0,2) == 1;
+            bool isLeft = Random.Range(0,2) == 1;
             Vector2 dir;
             pf.출첵();
             yield break;
