@@ -60,17 +60,27 @@ public class Professor : MonoBehaviour
     internal void 출첵(int num = 3, float degreeRange =  120f)
     {
         Debug.Log("[Professor::출첵]");
-        ShootArc(Vector2.down,num,degreeRange);
+        foreach (Vector2 direction in GetArc(Vector2.down,num,degreeRange))
+        {
+            TestShoot(direction);
+        }
     }
 
-    internal void ShootArc(Vector2 direction, int num, float degreeRange)
+    /// <summary>
+    /// direction을 기준으로 좌우 degreerange의 범위에 num개의 방향을 구함.
+    /// </summary>
+    /// <param name="direction">쏠 방향</param>
+    /// <param name="num">쏠 개수</param>
+    /// <param name="degreeRange">쏠 범위(degree)</param>
+    internal IEnumerable<Vector2> GetArc(Vector2 direction, int num, float degreeRange)
     {
         Vector2 currentDir = Quaternion.AngleAxis(-degreeRange/ num,Vector3.forward) * direction;
-        for (int i = 0; i < num; i++)
+        yield return currentDir;
+        for (int i = 1; i < num; i++)
         {
             Debug.Log("[Professor::ShootArc] currentDir : "+currentDir);
             currentDir = Quaternion.AngleAxis(degreeRange / num, Vector3.forward) * currentDir;
-            TestShoot(currentDir);
+            yield return currentDir;
         }
     }
 
@@ -102,6 +112,7 @@ public class Professor : MonoBehaviour
 
     internal void ShootDir(Projectile prjt, Vector2 dir)
     {
+        Debug.Log("[Professor::ShootDir] dir : " + dir);
         prjt.transform.position = shootPos.transform.position;
         prjt.UpdateDirection(dir);
     }

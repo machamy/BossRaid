@@ -11,7 +11,7 @@ namespace Script.Game.Projectile
     public class Projectile: MonoBehaviour
     {
         public float speed;
-        public Vector2 velocity;
+        public Vector2 facing;
         public Vector2 target;
         public Type Type { get; private set;}
         
@@ -52,8 +52,8 @@ namespace Script.Game.Projectile
         {
             float angle = MathF.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.right = dir;
-            velocity = speed * dir;
+            transform.up = dir;
+            facing = speed * dir;
         }
 
         private void Start()
@@ -63,7 +63,8 @@ namespace Script.Game.Projectile
 
         private void FixedUpdate()
         {
-            transform.Translate(velocity);
+            transform.Translate(speed * Vector2.up, Space.Self);
+            //transform.Translate(Vector3.left);
         }
 
         private void Remove()
