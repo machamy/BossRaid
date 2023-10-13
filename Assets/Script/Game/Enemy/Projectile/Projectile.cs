@@ -10,7 +10,6 @@ namespace Script.Game.Projectile
     }
     public class Projectile: MonoBehaviour
     {
-        public bool parryable;
         public float speed;
         public Vector2 velocity;
         public Vector2 target;
@@ -51,12 +50,14 @@ namespace Script.Game.Projectile
         /// <param name="dir">투사체가 날아갈 방향</param>
         public void UpdateDirection(Vector2 dir)
         {
+            float angle = MathF.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.right = dir;
             velocity = speed * dir;
         }
 
         private void Start()
         {
-            
         }
         
 

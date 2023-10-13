@@ -42,8 +42,10 @@ namespace Script.Game.Enemy
 
                 foreach (float delay in pattern.NextAction(pf,p))
                 {
+                    /// 패턴간의 딜레이
                     yield return new WaitForSeconds(delay);
                 }
+                // 페이즈간의 딜레이
                 yield return new WaitForSecondsRealtime(currentPhase.frequency);
             }
         }

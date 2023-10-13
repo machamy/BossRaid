@@ -18,25 +18,25 @@ namespace Script.Game.Enemy
         {
             bool isLeft = Random.Range(0,2) == 1;
             Vector2 dir;
-            
-            if (isLeft)
-            {
-                dir = Vector2.right;
-                //pf.tpLeft();
-            }
-            else
-            {
-                dir =Vector2.left;
-                //pf.tpRight();
-            }
-            yield return 0.375f;
-            //pf.과제(dir)
-            //pf.팀플(dir)
-            pf.TestShoot(dir);
-            yield return 0.375f;
-            pf.TestShoot(dir);
-            
-            yield return 1.0f;
+            pf.출첵();
+            // if (isLeft)
+            // {
+            //     pf.facing = Direction.Right;
+            //     pf.tpLeft();
+            // }
+            // else
+            // {
+            //     pf.facing = Direction.Left;
+            //     pf.tpRight();
+            // }
+            // yield return 0.375f;
+            //
+            //
+            // pf.과제();
+            // yield return 0.375f;
+            // pf.팀플();
+
+            yield return 0.5f;
         }
     }
 }
