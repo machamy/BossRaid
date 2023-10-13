@@ -47,16 +47,19 @@ public class Professor : MonoBehaviour
 
     internal void 과제()
     {
+        Debug.Log("[Professor::과제]");
         TestShoot(facing.Vector());
     }
 
     internal void 팀플()
     {
+        Debug.Log("[Professor::팀플]");
         TestShoot(facing.Vector());
     }
     
-    internal void 출첵(int num = 3, float degreeRange =  180f)
+    internal void 출첵(int num = 3, float degreeRange =  120f)
     {
+        Debug.Log("[Professor::출첵]");
         ShootArc(Vector2.down,num,degreeRange);
     }
 
@@ -65,8 +68,9 @@ public class Professor : MonoBehaviour
         Vector2 currentDir = Quaternion.AngleAxis(-degreeRange/ num,Vector3.forward) * direction;
         for (int i = 0; i < num; i++)
         {
-            direction = Quaternion.AngleAxis(degreeRange / num, Vector3.forward) * currentDir;
-            TestShoot(direction);
+            Debug.Log("[Professor::ShootArc] currentDir : "+currentDir);
+            currentDir = Quaternion.AngleAxis(degreeRange / num, Vector3.forward) * currentDir;
+            TestShoot(currentDir);
         }
     }
 
@@ -85,7 +89,7 @@ public class Professor : MonoBehaviour
     {
         GameObject prjt = Instantiate(prefeb);
         Projectile p = prjt.GetComponent<Projectile>();
-        p.speed = 0.05f;
+        p.speed = 1f;
         ShootDir(p, dir);
     }
 
