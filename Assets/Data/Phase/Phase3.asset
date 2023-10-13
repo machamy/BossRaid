@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7455c18ab39f411c84c3bf7f744debd7, type: 3}
   m_Name: Phase3
   m_EditorClassIdentifier: 
-  level: 2
+  level: 3
   maxScore: 1500
   frequency: 4
   ProbablityList: 1e000000280000001e000000
