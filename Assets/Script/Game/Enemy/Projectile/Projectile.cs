@@ -36,6 +36,7 @@ namespace Script.Game.Projectile
             Debug.Log(parringScore);
             Remove();
         }
+        
         /// <summary>
         /// 이미 설정된 타겟으로 발사
         /// </summary>
@@ -63,7 +64,7 @@ namespace Script.Game.Projectile
 
         private void FixedUpdate()
         {
-            transform.Translate(speed * Vector2.up, Space.Self);
+           transform.Translate(speed * Vector2.up, Space.Self); 
             //transform.Translate(Vector3.left);
         }
 
