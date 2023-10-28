@@ -9,13 +9,14 @@ using UnityEngine;
 
 public class Professor : MonoBehaviour
 {
-    public GameObject prefeb;
+    public GameObject prefeb;   //출첵
+    public GameObject prefeb1;  //과제
+    public GameObject prefeb2;  //팀플
     public GameObject shootPos;
     public PatternController PatternController;
     [SerializeField] private Player player;
     public Direction facing;
 
-    
     private void Awake()
     {
         facing = Direction.Left;
@@ -48,13 +49,14 @@ public class Professor : MonoBehaviour
     internal void 과제()
     {
         Debug.Log("[Professor::과제]");
-        TestShoot(facing.Vector());
+        //facing.Vector() 자리에 player 방향을 대입하는 거 어케함
+        TestShoot(facing.Vector(),PrjtType.Practice);
     }
 
     internal void 팀플()
     {
         Debug.Log("[Professor::팀플]");
-        TestShoot(facing.Vector());
+        TestShoot(facing.Vector(),PrjtType.Team);
     }
     
     internal void 출첵(int num = 3, float degreeRange =  120f)
@@ -62,7 +64,7 @@ public class Professor : MonoBehaviour
         Debug.Log("[Professor::출첵]");
         foreach (Vector2 direction in GetArc(Vector2.down,num,degreeRange))
         {
-            TestShoot(direction);
+            TestShoot(direction,PrjtType.Attend);
         }
     }
 
@@ -95,11 +97,30 @@ public class Professor : MonoBehaviour
         }
     }
     
-    public void TestShoot(Vector2 dir)
+    public void TestShoot(Vector2 dir, PrjtType type)
     {
-        GameObject prjt = Instantiate(prefeb);
+        //type마다 프리팹 복사
+        GameObject prjt;
+        
+        switch(type)
+        {
+            case PrjtType.Practice:
+                prjt = Instantiate(prefeb1);
+                break;
+            case PrjtType.Team:
+                prjt = Instantiate(prefeb2);
+                break;
+            case PrjtType.Attend:
+                prjt = Instantiate(prefeb);
+                break;
+            default:
+                // 예외 처리
+                Debug.LogError("Unhandled PrjtType: " + type);
+                return;
+        }
+        
         Projectile p = prjt.GetComponent<Projectile>();
-        p.speed = 1f;
+        //p.speed = 1f;
         ShootDir(p, dir);
     }
 

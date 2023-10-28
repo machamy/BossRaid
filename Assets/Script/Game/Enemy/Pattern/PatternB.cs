@@ -22,12 +22,12 @@ namespace Script.Game.Enemy
                 if (isLeft)
                 {
                     //pf.tpLeft();
-                    pf.TestShoot(Vector2.right);
+                    //pf.TestShoot(Vector2.right);
                 }
                 else
                 {
                     //pf.tpRight();
-                    pf.TestShoot(Vector2.left);
+                    //pf.TestShoot(Vector2.left);
                 }
                 yield return 0.5f;
                 isLeft = !isLeft;

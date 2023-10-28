@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace Script.Game.Projectile
 {
-    public enum Type
+    public enum PrjtType
     {
         Practice, Team, Attend
     }
@@ -13,7 +13,7 @@ namespace Script.Game.Projectile
         public float speed;
         public Vector2 facing;
         public Vector2 target;
-        public Type Type { get; private set;}
+        public PrjtType Type { get; private set;}
         
         public int damage;
         public int parringScore;

@@ -19,7 +19,7 @@ namespace Script.Game.Enemy
             bool isLeft = Random.Range(0,2) == 1;
             Vector2 dir;
             pf.출첵();
-            yield break;
+            //yield break;
             if (isLeft)
             {
                 pf.facing = Direction.Right;

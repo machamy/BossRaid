@@ -433,6 +433,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefeb: {fileID: 3675751813295543153, guid: 70d50a2092af1b343890c9b4ce4f20ee, type: 3}
+  prefeb1: {fileID: 3675751813295543153, guid: 8e9d74c9b97c99143a6d84341a091745, type: 3}
+  prefeb2: {fileID: 3675751813295543153, guid: 9f855181eb8eb42418982954b3d085b1, type: 3}
   shootPos: {fileID: 629862511}
   PatternController: {fileID: 82930187}
   player: {fileID: 1799270154}
@@ -1975,7 +1977,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -207.26, y: -66}
+  m_AnchoredPosition: {x: -207.25977, y: -66}
   m_SizeDelta: {x: 360.5212, y: 79.7741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1870218282
