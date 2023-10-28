@@ -38,7 +38,7 @@ namespace Script.Game.Enemy
             {
                 Phase currentPhase = Phases[PhaseLv];
                 Pattern pattern = Patterns[currentPhase.GetNextPatternNum()];
-                Debug.Log("Sellected Pattern : " + pattern.GetType());
+                Debug.Log("[PatternController::Routine] Sellected Pattern : " + pattern.GetType());
 
                 foreach (float delay in pattern.NextAction(pf,p))
                 {
