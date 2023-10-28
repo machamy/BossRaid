@@ -5,6 +5,7 @@ using Script.Game.Player;
 using Script.Game.Projectile;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Type = System.Type;
 
 namespace Script.Game.Player
@@ -16,10 +17,11 @@ namespace Script.Game.Player
         private int score;
         public UnityEvent<int> OnHPUpdate { get; } = new UnityEvent<int>();
         public UnityEvent<int> OnScoreUpdate { get; } = new UnityEvent<int>();
-        public SkillHolder SkillHolder;
+        public SkillHolder[] SkillHolders;
         
-        public ParryingArea parryingArea;
-
+        public ParryingArea parryingAreaFront;
+        public ParryingArea parryingAreaAll;
+        
         [SerializeField] private Professor Professor;
         
         public int HP
@@ -62,14 +64,16 @@ namespace Script.Game.Player
 
         public void ForceParry()
         {
-            Parry();
+            Parry(PrjtType.Attend, true);
+            Parry(PrjtType.Practice, true);
+            Parry(PrjtType.Team, true);
         }
-
-        public bool Parry()
+        
+        public bool Parry(Projectile.PrjtType type, bool isDirectional = false)
         {
             Collider2D c = GetComponent<Collider2D>();
-            if (!parryingArea.Parryable) return false;
-            Projectile.Projectile prjt = parryingArea.GetFirst();
+            if (!parryingAreaFront.Parryable) return false;
+            Projectile.Projectile prjt = parryingAreaFront.GetFirst();
             prjt.OnParring(this);
             Debug.Log("success");
             return true;
