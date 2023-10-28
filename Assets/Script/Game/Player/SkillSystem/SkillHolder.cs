@@ -48,15 +48,12 @@ namespace Script.Game.Player
             }
         }
 
-        public bool Activate()
+        public void Activate()
         {
             if (state == SkillState.ready)
             {
                 skill.Activate(p);
-                return true;
             }
-
-            return false;
         }
     }
 }
