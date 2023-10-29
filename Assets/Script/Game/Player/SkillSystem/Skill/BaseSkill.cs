@@ -48,7 +48,7 @@ namespace Script.Game.Player
         /// <param name="p"></param>
         public virtual void OnActivate(Player p)
         {
-            
+            p.Parry(type, isDirectional);
         }
     }
 }

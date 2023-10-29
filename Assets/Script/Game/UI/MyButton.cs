@@ -11,6 +11,7 @@ namespace Script.Game
          {
         public bool IsPressing { get; private set; }
         
+        [Header("MyButton")]
         public UnityEvent onDown;
         public UnityEvent onUp;
         public UnityEvent onPressing;

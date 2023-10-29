@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 namespace Script.Game.Player
 {
@@ -20,6 +23,9 @@ namespace Script.Game.Player
         public BaseSkill skill;
         private float cooldownTime;
         private float acitveTime;
+        
+        public Image cooldownImg;
+        
         private State state = State.ready;
         private Player p;
 
@@ -32,44 +38,58 @@ namespace Script.Game.Player
         }
 
 
-        private void Update()
+        private IEnumerator ActiveRoutine()
         {
+            state |= State.active;
+            acitveTime = skill.Duration;
             // 활성화시
-            if (state.HasFlag(State.active))
+            while (acitveTime > 0)
             {
-                if (acitveTime > 0)
-                {
-                    acitveTime -= Time.deltaTime;
-                    skill.OnActivate(p);
-                }
-                else
-                {
-                    skill.OnBeginCooldown(p);
-                    this.state = State.cooldown;
-                }
+                acitveTime -= Time.deltaTime;
+                skill.OnActivate(p);
+                yield return new WaitForFixedUpdate();
             }
+            
+            state = State.cooldown;
+        }
+        private IEnumerator CoolDownRoutine()
+        {
+            state |= State.cooldown;
+            float initialCooltime = cooldownTime = skill.Cooldown;
+            skill.OnBeginCooldown(p);
             // 쿨타임시
-            if (state.HasFlag(State.cooldown))
+            while(cooldownTime > 0)
             {
-                if (cooldownTime > 0)
-                {
-                    cooldownTime -= Time.deltaTime;
-                }
-                else
-                {
-                    skill.OnEndCooldown(p);
-                    this.state = State.ready;
-                }
+                cooldownTime -= Time.deltaTime;
+                cooldownImg.fillAmount = cooldownTime / initialCooltime;
+                yield return new WaitForFixedUpdate();
             }
+
+            cooldownImg.fillAmount = 0;
+            skill.OnEndCooldown(p);
+            state = State.ready;
         }
 
         public void Activate()
         {
             if (state == State.ready)
             {
+                Debug.Log("[SkillHolder::Activate]'" + skill.name + " is Activated!");
                 skill.OnBeginActivate(p);
-                cooldownTime = skill.Cooldown;
-                this.state = State.all;
+                StartCoroutine(ActiveRoutine());
+                StartCoroutine(CoolDownRoutine());
+            }
+            else
+            {
+                if (state.HasFlag(State.active))
+                {
+                    Debug.Log("[SkillHolder::Activate]'" + skill.name + "' is activating : " + ActiveTime);
+                }
+
+                if (state.HasFlag(State.cooldown))
+                {
+                    Debug.Log("[SkillHolder::Activate]'" + skill.name + "' is on cooling : " + CooldownTime);
+                }
             }
         }
     }
