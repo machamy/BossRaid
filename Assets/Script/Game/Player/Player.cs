@@ -15,14 +15,30 @@ namespace Script.Game.Player
         public int DEAFAULT_HP;
         private int hp;
         private int score;
+        private bool isLeft;
+
+        public bool IsLeft
+        {
+            get => isLeft;
+            set
+            {
+                this.isLeft = value;
+                _spriteRenderer.flipX = isLeft;
+            }
+        }
+        
+        
         public UnityEvent<int> OnHPUpdate { get; } = new UnityEvent<int>();
         public UnityEvent<int> OnScoreUpdate { get; } = new UnityEvent<int>();
+        [Header("Skills")]
         public SkillHolder[] SkillHolders;
-        
+        [Header("Parry")]
         public ParryingArea parryingAreaFront;
         public ParryingArea parryingAreaAll;
-        
+        [Header("ETC")]
         [SerializeField] private Professor Professor;
+
+        private SpriteRenderer _spriteRenderer;
         
         public int HP
         {
@@ -53,6 +69,7 @@ namespace Script.Game.Player
         // Start is called before the first frame update
         void Start()
         {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
             hp = DEAFAULT_HP;
         }
 
@@ -79,11 +96,6 @@ namespace Script.Game.Player
             }
             return true;
         }
-
-
-
-
-
         private void OnDeath()
         {
            gameObject.SetActive(false);
