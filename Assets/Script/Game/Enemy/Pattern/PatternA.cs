@@ -17,9 +17,9 @@ namespace Script.Game.Enemy
         public override IEnumerable<float> NextAction(Professor pf, Player.Player p)
         {
             bool isLeft = Random.Range(0,2) == 1;
-            Vector2 dir;
-            pf.출첵();
-            //yield break;
+            //Vector2 dir;
+            //pf.출첵();
+            
             if (isLeft)
             {
                 pf.facing = Direction.Right;

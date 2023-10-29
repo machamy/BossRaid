@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5810109299307405383}
   - component: {fileID: -6564998710192310577}
   m_Layer: 0
-  m_Name: BaseProjectile
+  m_Name: AttendProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

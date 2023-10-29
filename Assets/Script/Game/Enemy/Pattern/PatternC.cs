@@ -17,22 +17,36 @@ namespace Script.Game.Enemy
             bool isLeft = Random.Range(0,2) == 1;
             Vector2 dir;
             
-            if (isLeft)
+            //출첵 이후 교수위치가 Left
+            if (isLeft) 
             {
-                dir = Vector2.right;
+                //dir = Vector2.right;
                 //pf.tpLeft();
+                pf.facing = Direction.Left;
+                pf.tpRight();
+                pf.tpRightUp();
+                pf.출첵();
+                pf.tpLeft();
+                pf.facing = Direction.Right;
             }
             else
             {
-                dir =Vector2.left;
+                //dir =Vector2.left;
                 //pf.tpRight();
+                pf.facing = Direction.Right;
+                pf.tpLeft();
+                pf.tpLeftUp();
+                pf.출첵();
+                pf.tpRight();
+                pf.facing = Direction.Left;
             }
             yield return 0.375f;
-            //pf.출쳌(isLeft)
+
+        
+            //pf.출첵(isLeft)
+            pf.과제();
             yield return 0.375f;
-            //pf.과제(dir)
-            yield return 0.375f;
-            //pf.과제(dir)
+            pf.과제();
             
             yield return 1.0f;
         }

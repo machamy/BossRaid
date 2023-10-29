@@ -489,9 +489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad58f332e466794fbbde7aa75825c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefeb: {fileID: 3675751813295543153, guid: 70d50a2092af1b343890c9b4ce4f20ee, type: 3}
-  prefeb1: {fileID: 3675751813295543153, guid: 8e9d74c9b97c99143a6d84341a091745, type: 3}
-  prefeb2: {fileID: 3675751813295543153, guid: 9f855181eb8eb42418982954b3d085b1, type: 3}
+  attend: {fileID: 3675751813295543153, guid: 70d50a2092af1b343890c9b4ce4f20ee, type: 3}
+  practice: {fileID: 3675751813295543153, guid: 8e9d74c9b97c99143a6d84341a091745, type: 3}
+  team: {fileID: 3675751813295543153, guid: 9f855181eb8eb42418982954b3d085b1, type: 3}
   shootPos: {fileID: 629862511}
   PatternController: {fileID: 82930187}
   player: {fileID: 1799270154}

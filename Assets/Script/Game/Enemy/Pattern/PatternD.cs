@@ -16,17 +16,48 @@ namespace Script.Game.Enemy
         {
             bool isLeft = Random.Range(0, 2) == 1;
             Vector2 dir = Vector2.right;
+            
+            for (int i = 0; i < 1; i++)
+            {
+                if (isLeft)
+                {
+                    pf.facing = Direction.Left;
+                    pf.tpRight();
+                    pf.tpRightUp();
+                    pf.출첵();
+                    pf.tpLeft();
+                    pf.facing = Direction.Right;
+                }
+                else
+                {
+                    pf.facing = Direction.Right;
+                    pf.tpLeft();
+                    pf.tpLeftUp();
+                    pf.출첵();
+                    pf.tpRight();
+                    pf.facing = Direction.Left;
+                }
+		        yield return 0.375f;
+            	pf.팀플();
+            	yield return 0.375f;
+            	pf.팀플();
+                yield return 0.375f;
+                pf.팀플();
+                
+                isLeft = !isLeft;
+            }
 
-            //pf.출쳌(isLeft);
-            //pf.과제(dir);
-            //pf.과제(dir);
+            /*pf.출쳌(isLeft);
+            pf.팀플(dir);
+            pf.팀플(dir);
             isLeft = !isLeft;
             dir = Vector2.left;
-            //pf.tpRight();
-            //pf.출쳌(isLeft);
-            //pf.과제(dir);
-            //pf.과제(dir);
-            
+            pf.tpRight();
+            pf.출쳌(isLeft);
+            pf.팀플(dir);
+            pf.팀플(dir);
+            */
+
             yield return 1.0f;
         }
     }

@@ -21,13 +21,15 @@ namespace Script.Game.Enemy
             {
                 if (isLeft)
                 {
-                    //pf.tpLeft();
-                    //pf.TestShoot(Vector2.right);
+                    pf.facing = Direction.Right;
+                    pf.tpLeft();
+                    pf.과제();
                 }
                 else
                 {
-                    //pf.tpRight();
-                    //pf.TestShoot(Vector2.left);
+                    pf.facing = Direction.Left;
+                    pf.tpRight();
+                    pf.과제();
                 }
                 yield return 0.5f;
                 isLeft = !isLeft;

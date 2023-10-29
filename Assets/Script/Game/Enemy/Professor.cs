@@ -9,9 +9,9 @@ using UnityEngine;
 
 public class Professor : MonoBehaviour
 {
-    public GameObject prefeb;   //출첵
-    public GameObject prefeb1;  //과제
-    public GameObject prefeb2;  //팀플
+    public GameObject attend;  
+    public GameObject practice;  
+    public GameObject team;  
     public GameObject shootPos;
     public PatternController PatternController;
     [SerializeField] private Player player;
@@ -46,17 +46,27 @@ public class Professor : MonoBehaviour
         
     }
 
+    internal void tpLeftUp()    //고정Pos 생성해서 tp
+    {
+        
+    }
+
+    internal void tpRightUp()    
+    {
+        
+    }
+
     internal void 과제()
     {
         Debug.Log("[Professor::과제]");
         //facing.Vector() 자리에 player 방향을 대입하는 거 어케함
-        TestShoot(facing.Vector(),PrjtType.Practice);
+        TestShoot(facing.Vector(), PrjtType.Practice);
     }
 
     internal void 팀플()
     {
         Debug.Log("[Professor::팀플]");
-        TestShoot(facing.Vector(),PrjtType.Team);
+        TestShoot(facing.Vector(), PrjtType.Team);
     }
     
     internal void 출첵(int num = 3, float degreeRange =  120f)
@@ -64,7 +74,7 @@ public class Professor : MonoBehaviour
         Debug.Log("[Professor::출첵]");
         foreach (Vector2 direction in GetArc(Vector2.down,num,degreeRange))
         {
-            TestShoot(direction,PrjtType.Attend);
+            TestShoot(direction, PrjtType.Attend);
         }
     }
 
@@ -91,7 +101,7 @@ public class Professor : MonoBehaviour
         while (true)
         {
             
-            GameObject prjt = Instantiate(prefeb);
+            GameObject prjt = Instantiate(practice);
             ShootDir(prjt.GetComponent<Projectile>(), Vector2.left);
             yield return new WaitForSeconds(3);
         }
@@ -105,13 +115,13 @@ public class Professor : MonoBehaviour
         switch(type)
         {
             case PrjtType.Practice:
-                prjt = Instantiate(prefeb1);
+                prjt = Instantiate(practice);
                 break;
             case PrjtType.Team:
-                prjt = Instantiate(prefeb2);
+                prjt = Instantiate(team);
                 break;
             case PrjtType.Attend:
-                prjt = Instantiate(prefeb);
+                prjt = Instantiate(attend);
                 break;
             default:
                 // 예외 처리
