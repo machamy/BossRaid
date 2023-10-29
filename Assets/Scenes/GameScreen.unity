@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 82930186}
   - component: {fileID: 82930187}
   m_Layer: 0
-  m_Name: Profesesor
+  m_Name: Professor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,6 +496,7 @@ MonoBehaviour:
   PatternController: {fileID: 82930187}
   player: {fileID: 1799270154}
   facing: 0
+  PosSystem: {fileID: 1844367653}
 --- !u!114 &82930187
 MonoBehaviour:
   m_ObjectHideFlags: 0

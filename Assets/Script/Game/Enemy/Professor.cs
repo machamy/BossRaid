@@ -16,6 +16,7 @@ public class Professor : MonoBehaviour
     public PatternController PatternController;
     [SerializeField] private Player player;
     public Direction facing;
+    [SerializeField] public Transform PosSystem;
 
     private void Awake()
     {
@@ -38,12 +39,21 @@ public class Professor : MonoBehaviour
 
     internal void tpLeft()
     {
+        Vector3 Lp = PosSystem.GetChild(0).position;
+        if(shootPos.transform.position != Lp)
+        {
+            transform.position = Lp;
+        }
         
     }
 
     internal void tpRight()
     {
-        
+        Vector3 Rp = PosSystem.GetChild(1).position;
+        if(shootPos.transform.position != Rp)
+        {
+            transform.position = Rp;
+        }
     }
 
     internal void tpLeftUp()    //고정Pos 생성해서 tp

@@ -24,10 +24,12 @@ namespace Script.Game.Enemy
                 //pf.tpLeft();
                 pf.facing = Direction.Left;
                 pf.tpRight();
+                yield return 0.2f;
                 pf.tpRightUp();
                 pf.출첵();
-                pf.tpLeft();
+                yield return 0.2f;
                 pf.facing = Direction.Right;
+                pf.tpLeft();
             }
             else
             {
@@ -35,10 +37,12 @@ namespace Script.Game.Enemy
                 //pf.tpRight();
                 pf.facing = Direction.Right;
                 pf.tpLeft();
+                yield return 0.2f;
                 pf.tpLeftUp();
                 pf.출첵();
-                pf.tpRight();
+                yield return 0.2f;
                 pf.facing = Direction.Left;
+                pf.tpRight();
             }
             yield return 0.375f;
 
