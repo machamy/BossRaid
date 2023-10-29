@@ -28,6 +28,7 @@ namespace Script.Game.Projectile
         }
         /// <summary>
         /// 패링 성공시 실행
+        /// 기본적으로 Destory까지 실행됨
         /// </summary>
         /// <param name="p"></param>
         public virtual void OnParring(Player.Player p)

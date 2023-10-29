@@ -71,11 +71,12 @@ namespace Script.Game.Player
         
         public bool Parry(Projectile.PrjtType type, bool isDirectional = false)
         {
-            Collider2D c = GetComponent<Collider2D>();
+            ParryingArea area = isDirectional ? parryingAreaFront : parryingAreaAll;
             if (!parryingAreaFront.Parryable) return false;
-            Projectile.Projectile prjt = parryingAreaFront.GetFirst();
-            prjt.OnParring(this);
-            Debug.Log("success");
+            foreach (var prjt in area.PopAll(type))
+            {
+                prjt.OnParring(this);
+            }
             return true;
         }
 

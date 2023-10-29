@@ -8,16 +8,23 @@ namespace Script.Game.Player
     /// </summary>
     public class SkillHolder : MonoBehaviour
     {
-        enum SkillState
+        [Flags]
+        enum State
         {
-            ready, active, cooldown
+            ready = 0,
+            active = 1 << 0,
+            cooldown = 1 << 1,
+            all = active | cooldown
         }
-        
+
         public BaseSkill skill;
         private float cooldownTime;
         private float acitveTime;
-        private SkillState state = SkillState.ready;
+        private State state = State.ready;
         private Player p;
+
+        public float CooldownTime{ get=> cooldownTime; }
+        public float ActiveTime{ get=> acitveTime; }
 
         private void Awake()
         {
@@ -27,32 +34,42 @@ namespace Script.Game.Player
 
         private void Update()
         {
-            switch (state)
+            // 활성화시
+            if (state.HasFlag(State.active))
             {
-                case SkillState.ready:
-                    break;
-                case SkillState.active:
+                if (acitveTime > 0)
+                {
                     acitveTime -= Time.deltaTime;
+                    skill.OnActivate(p);
+                }
+                else
+                {
+                    skill.OnBeginCooldown(p);
+                    this.state = State.cooldown;
+                }
+            }
+            // 쿨타임시
+            if (state.HasFlag(State.cooldown))
+            {
+                if (cooldownTime > 0)
+                {
                     cooldownTime -= Time.deltaTime;
-                    break;
-                case SkillState.cooldown:
-                    if (cooldownTime > 0)
-                    {
-                        cooldownTime -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        this.state = SkillState.ready;
-                    }
-                    break;
+                }
+                else
+                {
+                    skill.OnEndCooldown(p);
+                    this.state = State.ready;
+                }
             }
         }
 
         public void Activate()
         {
-            if (state == SkillState.ready)
+            if (state == State.ready)
             {
-                skill.Activate(p);
+                skill.OnBeginActivate(p);
+                cooldownTime = skill.Cooldown;
+                this.state = State.all;
             }
         }
     }

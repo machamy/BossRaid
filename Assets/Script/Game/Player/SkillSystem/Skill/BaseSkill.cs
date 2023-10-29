@@ -16,12 +16,37 @@ namespace Script.Game.Player
         public float Duration => duration;
         public bool IsDirectional => isDirectional;
 
-        public virtual void Activate(Player p)
+        /// <summary>
+        /// 시전시 실행
+        /// </summary>
+        /// <param name="p"></param>
+        public virtual void OnBeginActivate(Player p)
+        {
+            p.Parry(type, isDirectional);
+        }
+
+        /// <summary>
+        /// 쿨타임 시작시 실행
+        /// </summary>
+        /// <param name="p"></param>
+        public virtual void OnBeginCooldown(Player p)
+        {
+            
+        }
+        /// <summary>
+        /// 쿨타임 끝났을때 실행
+        /// </summary>
+        /// <param name="p"></param>
+        public virtual void OnEndCooldown(Player p)
         {
             
         }
 
-        public virtual void BeginCooldown(Player p)
+        /// <summary>
+        /// Actiavete시 매 Update마다 실행
+        /// </summary>
+        /// <param name="p"></param>
+        public virtual void OnActivate(Player p)
         {
             
         }

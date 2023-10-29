@@ -23,12 +23,35 @@ namespace Script.Game.Player
             get => _inRangeList.Any();
         }
 
+
+        /// <summary>
+        /// type에 해당되는 모든 투사체를 리스트에서 빼낸 후 반환.
+        /// Pop된 후에는 ParryingArea에서 관리되지 않음.
+        /// </summary>
+        /// <param name="type">뽑아낼 투사체 type</param>
+        /// <returns>type에 해당되는 모든 투사체 Set</returns>
+        public HashSet<Projectile.Projectile> PopAll(Projectile.PrjtType type){
+            HashSet<Projectile.Projectile> _inRangeSet = new HashSet<Projectile.Projectile>();
+            foreach (var prjt in _inRangeList)
+            {
+                if(prjt.Type == type){
+                    this.Remove(prjt);
+                    _inRangeSet.Add(prjt);
+                }
+            }
+            return _inRangeSet;
+        }
+
+
+
         private void Awake()
         {
             _inRangeList = new LinkedList<Projectile.Projectile>();
             _inRangeSet = new HashSet<Projectile.Projectile>();
         }
 
+
+        [Obsolete]
         public Projectile.Projectile GetFirst()
         {
             return _inRangeList.First();
@@ -48,7 +71,7 @@ namespace Script.Game.Player
             Remove(prjt);   
         }
 
-        public bool Add(Projectile.Projectile prjt)
+        protected bool Add(Projectile.Projectile prjt)
         {
             if (_inRangeSet.Contains(prjt))
                 return false;
@@ -57,7 +80,7 @@ namespace Script.Game.Player
             return true;
         }
         
-        public bool Remove(Projectile.Projectile prjt)
+        protected bool Remove(Projectile.Projectile prjt)
         {
             if (!_inRangeSet.Contains(prjt))
                 return false;
