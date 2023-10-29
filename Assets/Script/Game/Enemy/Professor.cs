@@ -70,8 +70,7 @@ public class Professor : MonoBehaviour
     {
         Debug.Log("[Professor::과제]");
         //facing.Vector() 자리에 player 방향을 대입하는 거 어케함
-        Direction dir = (transform.position.x < player.transform.position.x ? Direction.Left : Direction.Right);
-        TestShoot(dir.Vector(), PrjtType.Practice);
+        TestShoot(facing.Vector(), PrjtType.Practice);
     }
 
     internal void 팀플()
