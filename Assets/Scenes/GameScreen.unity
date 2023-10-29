@@ -267,7 +267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 11400000, guid: 8588ee85573d60b45b6abf5244ff973b, type: 2}
-  cooldownImg: {fileID: 0}
 --- !u!1 &82930180
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,7 +979,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 11400000, guid: 291941d76ffef5043b939de51e0e5244, type: 2}
-  cooldownImg: {fileID: 0}
 --- !u!1 &852790464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,7 +1024,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 11400000, guid: 78ff630d8f81edc4a9b333667d8004db, type: 2}
-  cooldownImg: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
