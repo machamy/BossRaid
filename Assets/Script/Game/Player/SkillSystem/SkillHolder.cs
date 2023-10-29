@@ -24,6 +24,7 @@ namespace Script.Game.Player
         private float cooldownTime;
         private float acitveTime;
         
+        [NonSerialized]
         public Image cooldownImg;
         
         private State state = State.ready;
