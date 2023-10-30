@@ -22,8 +22,19 @@ namespace Script.Game.Player
             get => isLeft;
             set
             {
-                this.isLeft = value;
-                _spriteRenderer.flipX = isLeft;
+                if (isLeft == value)
+                {
+                    return;
+                }
+                isLeft = value;
+                if (isLeft)
+                {
+                    transform.localScale = new Vector3(-1,1,1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(1,1,1);
+                }
             }
         }
         
