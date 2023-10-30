@@ -42,7 +42,7 @@ namespace Script.Game.Player
             return _inRangeSet;
         }
 
-
+        
 
         private void Awake()
         {
@@ -50,6 +50,11 @@ namespace Script.Game.Player
             _inRangeSet = new HashSet<Projectile.Projectile>();
         }
 
+        private void Start()
+        {
+
+        }
+        
 
         [Obsolete]
         public Projectile.Projectile GetFirst()
