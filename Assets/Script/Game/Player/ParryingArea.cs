@@ -30,16 +30,19 @@ namespace Script.Game.Player
         /// </summary>
         /// <param name="type">뽑아낼 투사체 type</param>
         /// <returns>type에 해당되는 모든 투사체 Set</returns>
-        public HashSet<Projectile.Projectile> PopAll(Projectile.PrjtType type){
-            HashSet<Projectile.Projectile> _inRangeSet = new HashSet<Projectile.Projectile>();
+        public Queue<Projectile.Projectile> PopAll(Projectile.PrjtType type){
+            Queue<Projectile.Projectile> queue = new Queue<Projectile.Projectile>();
             foreach (var prjt in _inRangeList)
             {
                 if(prjt.Type == type){
-                    this.Remove(prjt);
-                    _inRangeSet.Add(prjt);
+                    queue.Enqueue(prjt);
                 }
             }
-            return _inRangeSet;
+            foreach (var projectile in queue)
+            {
+                Remove(projectile);
+            }
+            return queue;
         }
 
         

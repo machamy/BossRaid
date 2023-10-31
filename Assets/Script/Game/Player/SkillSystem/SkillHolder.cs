@@ -73,6 +73,8 @@ namespace Script.Game.Player
 
         public void Activate()
         {
+            if(!p.IsAlive)
+                return;
             if (state == State.ready)
             {
                 Debug.Log("[SkillHolder::Activate]'" + skill.name + " is Activated!");

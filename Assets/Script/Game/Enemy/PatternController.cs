@@ -33,7 +33,7 @@ namespace Script.Game.Enemy
         public IEnumerator Rountine(Professor pf, Player.Player p)
         {
             yield return new WaitForSeconds(2);
-            PhaseLv += 1;
+            PhaseLv = 1;
             while (true)
             {
                 Phase currentPhase = Phases[PhaseLv];
@@ -47,6 +47,7 @@ namespace Script.Game.Enemy
                 }
                 // 페이즈간의 딜레이
                 yield return new WaitForSecondsRealtime(currentPhase.frequency);
+                
             }
         }
 
@@ -55,6 +56,7 @@ namespace Script.Game.Enemy
             if (score > Phases[PhaseLv].maxScore)
             {
                 PhaseLv += 1;
+                Debug.Log("[PatternController::OnScoreUpdate] Phase lv up!!("+score+") : " + PhaseLv);
             }
         }
 
