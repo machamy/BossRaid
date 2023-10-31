@@ -23,11 +23,17 @@ public class Professor : MonoBehaviour
         facing = Direction.Left;
     }
 
+    private void StartPattern()
+    {
+        gameObject.SetActive(true);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log(PatternController);
         player.OnScoreUpdate.AddListener(PatternController.OnScoreUpdate);
+        //StartPattern();
         StartCoroutine(PatternController.Rountine(this, player));
     }
 
@@ -44,7 +50,6 @@ public class Professor : MonoBehaviour
         {
             transform.position = Lp;
         }
-        
     }
 
     internal void tpRight()
@@ -58,18 +63,19 @@ public class Professor : MonoBehaviour
 
     internal void tpLeftUp()    //고정Pos 생성해서 tp
     {
-        
+        Vector3 LUp = PosSystem.GetChild(2).position;
+        transform.position = LUp;
     }
 
     internal void tpRightUp()    
     {
-        
+        Vector3 RUp = PosSystem.GetChild(3).position;
+        transform.position = RUp;
     }
 
     internal void 과제()
     {
         Debug.Log("[Professor::과제]");
-        //facing.Vector() 자리에 player 방향을 대입하는 거 어케함
         TestShoot(facing.Vector(), PrjtType.Practice);
     }
 

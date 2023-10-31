@@ -24,12 +24,14 @@ namespace Script.Game.Enemy
                     pf.facing = Direction.Right;
                     pf.tpLeft();
                     pf.과제();
+                    yield return 0.5f;
                 }
                 else
                 {
                     pf.facing = Direction.Left;
                     pf.tpRight();
                     pf.과제();
+                    yield return 0.5f;
                 }
                 yield return 0.5f;
                 isLeft = !isLeft;
