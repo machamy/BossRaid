@@ -36,6 +36,7 @@ namespace Script.Game.Enemy
         public IEnumerator Rountine(Professor pf, Player.Player p)
         {
             yield return new WaitForSeconds(2);
+            pf.StartFadeIn();
             PhaseLv = 1;
             while (true)
             {
