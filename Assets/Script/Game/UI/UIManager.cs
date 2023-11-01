@@ -7,6 +7,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = System.Random;
 
+/// <summary>
+/// UI를 담당함
+/// </summary>
 public class UIManager : MonoBehaviour
 {
     private static readonly string[] SCORE_NAMES = new string[] { "F", "C", "B", "A" };
