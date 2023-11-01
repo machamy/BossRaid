@@ -465,6 +465,7 @@ MonoBehaviour:
   player: {fileID: 1799270154}
   facing: 0
   PosSystem: {fileID: 1844367653}
+  renderer: {fileID: 0}
 --- !u!114 &82930187
 MonoBehaviour:
   m_ObjectHideFlags: 0
