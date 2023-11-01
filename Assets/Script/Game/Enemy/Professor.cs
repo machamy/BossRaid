@@ -17,25 +17,58 @@ public class Professor : MonoBehaviour
     [SerializeField] private Player player;
     public Direction facing;
     [SerializeField] public Transform PosSystem;
+    new public SpriteRenderer renderer;
 
     private void Awake()
     {
         facing = Direction.Left;
     }
 
-    private void StartPattern()
-    {
-        gameObject.SetActive(true);
-    }
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        renderer = GetComponent<SpriteRenderer>();
+
         Debug.Log(PatternController);
         player.OnScoreUpdate.AddListener(PatternController.OnScoreUpdate);
-        //StartPattern();
+        StartCoroutine("FadeOut");
         StartCoroutine(PatternController.Rountine(this, player));
     }
+
+    private IEnumerator FadeOut()
+    {
+        int i = 10;
+        while (i > 0)
+        {
+            i -= 1;
+            float f = i / 10.0f;
+            Color c = renderer.material.color;
+            c.a = f;
+            renderer.material.color = c;
+            yield return new WaitForSeconds(0.02f);
+        }
+    }
+
+    private IEnumerator FadeIn()
+    {
+        int i = 0;
+        while (i < 10)
+        {
+            i += 1;
+            float f = i / 10.0f;
+            Color c = renderer.material.color;
+            c.a = f;
+            renderer.material.color = c;
+            yield return new WaitForSeconds(0.02f);
+        }
+    }
+    public void StartFadeIn()
+    {
+        StartCoroutine(FadeIn());
+    }
+
 
     // Update is called once per frame
     void Update()

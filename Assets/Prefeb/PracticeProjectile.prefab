@@ -101,7 +101,7 @@ MonoBehaviour:
   speed: 0.2
   facing: {x: 0, y: 0}
   target: {x: 0, y: 0}
-  damage: 2
+  damage: 1
   parringScore: 10
 --- !u!61 &-6564998710192310577
 BoxCollider2D:

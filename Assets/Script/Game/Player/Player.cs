@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using Script.Game.Player;
 using Script.Game.Projectile;
 using UnityEngine;
@@ -15,7 +17,11 @@ namespace Script.Game.Player
         public int DEAFAULT_HP;
         private int hp;
         private int score;
+        private bool isAlive;
+        public bool IsAlive => isAlive;
+        
         private bool isLeft;
+        
 
         public bool IsLeft
         {
@@ -82,12 +88,23 @@ namespace Script.Game.Player
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             hp = DEAFAULT_HP;
+            isAlive = true;
+            StartCoroutine(TestScore(1));
         }
 
         // Update is called once per frame
         void Update()
         {
+            
+        }
 
+        IEnumerator TestScore(int n)
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(0.5f);
+                Score += n;
+            }
         }
 
         public void ForceParry()
@@ -99,17 +116,20 @@ namespace Script.Game.Player
         
         public bool Parry(Projectile.PrjtType type, bool isDirectional = false)
         {
+            if (!IsAlive) return false;
             ParryingArea area = isDirectional ? parryingAreaFront : parryingAreaAll;
             if (!parryingAreaFront.Parryable) return false;
-            foreach (var prjt in area.PopAll(type))
+            var q = area.PopAll(type);
+            while (q.Any())
             {
-                prjt.OnParring(this);
+                q.Dequeue().OnParring(this);
             }
             return true;
         }
         private void OnDeath()
         {
-           gameObject.SetActive(false);
+            isAlive = false;
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.1f);
         }
 
         /*
