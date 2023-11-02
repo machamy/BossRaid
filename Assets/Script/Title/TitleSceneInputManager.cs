@@ -1,8 +1,9 @@
+using UnityEngine.Device;
 using UnityEngine.SceneManagement;
 
 namespace Script.Game
 {
-    public class GameSceneInputManager : BaseInputManager
+    public class TitleSceneInputManager : BaseInputManager
     {
         // Start is called before the first frame update
         void Start()
@@ -23,7 +24,7 @@ namespace Script.Game
 
         protected override void OnEscape()
         {
-            SceneManager.LoadScene("Scenes/TitleScreen");
+            Application.Quit();
         }
 
         protected override void OnMenu()

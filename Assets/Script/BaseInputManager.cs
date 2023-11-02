@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Script
 {
-    public class BaseInputManager : MonoBehaviour
+    public abstract class BaseInputManager : MonoBehaviour
     {
         // Start is called before the first frame update
         private void Start()
@@ -27,15 +27,9 @@ namespace Script
             }
         }
 
-        protected virtual void OnHome()
-        {
-        }
-        protected virtual void OnEscape()
-        {
-        }
-        protected virtual void OnMenu()
-        {
-        }
-    
+        protected abstract void OnHome();
+        protected abstract void OnEscape();
+        protected abstract void OnMenu();
+
     }
 }
