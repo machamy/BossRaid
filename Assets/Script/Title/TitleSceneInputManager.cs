@@ -1,20 +1,20 @@
+using System;
 using UnityEngine.Device;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 
 namespace Script.Game
 {
     public class TitleSceneInputManager : BaseInputManager
     {
-        // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
-        
+            base.Start();
         }
 
-        // Update is called once per frame
-        void Update()
+        protected override void Update()
         {
-        
+            base.Update();
         }
 
         protected override void OnHome()

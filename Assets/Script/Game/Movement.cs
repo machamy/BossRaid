@@ -17,14 +17,14 @@ namespace Script.Game
         public Vector3 previousVelocity;
 
         // Start is called before the first frame update
-        void Start()
+        protected virtual void Start()
         {
             body = transform.GetComponent<Rigidbody2D>();
             previousVelocity = currentVelocity = Vector3.zero;
         }
 
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
 
         }

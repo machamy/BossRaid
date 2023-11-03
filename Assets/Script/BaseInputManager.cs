@@ -1,21 +1,23 @@
 using UnityEngine;
+using UnityEngine.tvOS;
 
 namespace Script
 {
     public abstract class BaseInputManager : MonoBehaviour
     {
         // Start is called before the first frame update
-        private void Start()
+        protected virtual void Start()
         {
         
         }
 
         // Update is called once per frame
-        private void Update()
+        protected virtual void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                OnHome();
+                Debug.Log("ESCAPE");
+                OnEscape();
             }
             if (Input.GetKeyDown(KeyCode.Home))
             {
