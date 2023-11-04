@@ -44,7 +44,6 @@ public class GSpreadSheetLoader : MonoBehaviour
         {
             rawRange = rawData.Split(',')[1];
             StartCoroutine(DownloadData("B3:I"+rawRange.Replace("\"",""),true));
-            
         }
         else
         {
@@ -69,10 +68,7 @@ public class GSpreadSheetLoader : MonoBehaviour
             Array.Copy(cols,2,arr,0,length);
             data.Add(cols[0],arr);
         }
-        foreach (var VARIABLE in data)
-        {
-            Debug.Log(VARIABLE);
-        }
+        Debug.Log("[GSpreadSheetLoader] Load & Update Data Complete!!!");
     }
 
     public static bool IsReady()

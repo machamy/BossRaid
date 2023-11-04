@@ -1320,7 +1320,7 @@ GameObject:
   - component: {fileID: 1074955097}
   - component: {fileID: 1074955098}
   m_Layer: 0
-  m_Name: OnlineDataLoader
+  m_Name: DataLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1353,6 +1353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c359d3de0e76654d959934192052832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  key: https://docs.google.com/spreadsheets/d/13y3xJdLwsUohL-XTO-2nYJTsXzRg0PQglyOjY2UEQfQ/edit?usp=sharing
+  range: 
 --- !u!1 &1153727855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,8 +1979,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 303, y: 166.74}
-  m_SizeDelta: {x: 423.755, y: 233.7447}
+  m_AnchoredPosition: {x: 253.44397, y: 166.73999}
+  m_SizeDelta: {x: 324.6429, y: 233.7447}
   m_Pivot: {x: 0.49999982, y: 0.5}
 --- !u!114 &1637074968
 MonoBehaviour:

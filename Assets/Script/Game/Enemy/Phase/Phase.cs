@@ -34,11 +34,12 @@ namespace Script.Game.Enemy
                 }
                 random_value -= next_probablities;
             }
-
+            
             throw new Exception("[Phase::GetNextPattern] 알고리즘 에러");
             return 0;
         }
     }
+    
     
     
 }
