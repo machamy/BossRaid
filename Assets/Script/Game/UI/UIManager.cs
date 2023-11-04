@@ -37,8 +37,8 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHP(int hp)
     {
-        hpText.SetText(SCORE_NAMES[hp]);
-    }
+        hpText.SetText(SCORE_NAMES[Math.Min(3,hp)]);
+}
 
     public void UpdateScore(int score)
     {

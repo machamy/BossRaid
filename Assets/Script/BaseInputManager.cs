@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.tvOS;
 
 namespace Script
 {
