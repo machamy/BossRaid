@@ -7,15 +7,13 @@ using UnityEngine.Networking;
 
 public class GSpreadSheetLoader : MonoBehaviour
 {
-    private static GSpreadSheetLoader instance;
-
     // https://docs.google.com/spreadsheets/d/13y3xJdLwsUohL-XTO-2nYJTsXzRg0PQglyOjY2UEQfQ/edit?usp=sharing
     public string key;
     public string range;
     private string rawData;
     private string rawRange;
-    private Dictionary<string, string[]> data;
-    void Start()
+    private static Dictionary<string, string[]> data;
+    void Awake()
     {
         data = new Dictionary<string, string[]>();
         key = key.Split("edit")[0];
@@ -76,14 +74,28 @@ public class GSpreadSheetLoader : MonoBehaviour
             Debug.Log(VARIABLE);
         }
     }
-    
 
-    string[] Get(string key)
+    public static bool IsReady()
+    {
+        return Contains("PlayerSpeed");
+    }
+    public static bool Contains(string key)
+    {
+        return data.ContainsKey(key);
+    }
+
+    public static string[] Get(string key)
     {
         return data[key];
     }
-    string GetOne(string key)
+
+    public static int GetSize(string key)
     {
-        return data[key][0];
+        return data[key].Length;
+    }
+    
+    public static string GetOne(string key, int idx = 0)
+    {
+        return data[key][idx];
     }
 }
