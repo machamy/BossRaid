@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Script.Game
 {
+    [RequireComponent(typeof(BoxCollider2D))]
     public class BoxCollider2DDrawer : MonoBehaviour
     {
         public Color Color;
