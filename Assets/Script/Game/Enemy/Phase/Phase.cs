@@ -15,6 +15,8 @@ namespace Script.Game.Enemy
         [NonSerialized]
         public int sumOfProbalblty;
 
+        public string Name => $"Phase{level}";
+
         private void Awake()
         {
             var sum = 0;

@@ -19,6 +19,7 @@ public class GSpreadSheetLoader : MonoBehaviour
         key = key.Split("edit")[0];
         key += "gviz/tq?tqx=out:csv&sheet=DB";
         StartCoroutine(DownloadData("A1:B1",false));
+        
     }
     
     /// <summary>
@@ -43,7 +44,8 @@ public class GSpreadSheetLoader : MonoBehaviour
         if (!isData)
         {
             rawRange = rawData.Split(',')[1];
-            StartCoroutine(DownloadData("B3:I"+rawRange.Replace("\"",""),true));
+            range = rawRange.Replace("\"", "");
+            StartCoroutine(DownloadData(range,true));
         }
         else
         {
@@ -62,36 +64,15 @@ public class GSpreadSheetLoader : MonoBehaviour
             var cols = Array.ConvertAll(rows[i].Split(','),(str) => (str.Replace("\"","")));
             if (cols.Count() == 0)
                 continue;
-            Debug.Log(cols[0]);
+            
             int length = int.Parse(cols[1]);
             string[] arr = new string[length];
+            Debug.Log(cols[0] + length);
             Array.Copy(cols,2,arr,0,length);
             data.Add(cols[0],arr);
         }
+        DB.Instance.SetData(data);
         Debug.Log("[GSpreadSheetLoader] Load & Update Data Complete!!!");
     }
 
-    public static bool IsReady()
-    {
-        return Contains("PlayerSpeed");
-    }
-    public static bool Contains(string key)
-    {
-        return data.ContainsKey(key);
-    }
-
-    public static string[] Get(string key)
-    {
-        return data[key];
-    }
-
-    public static int GetSize(string key)
-    {
-        return data[key].Length;
-    }
-    
-    public static string GetOne(string key, int idx = 0)
-    {
-        return data[key][idx];
-    }
 }

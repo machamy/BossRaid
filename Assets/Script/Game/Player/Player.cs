@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using Script.Game.Player;
 using Script.Game.Projectile;
+using Script.Global;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -12,7 +13,7 @@ using Type = System.Type;
 
 namespace Script.Game.Player
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, DBHandler
     {
         public int DEAFAULT_HP;
         private int hp;
@@ -87,9 +88,18 @@ namespace Script.Game.Player
         void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            ApplyDBdata();
             hp = DEAFAULT_HP;
             isAlive = true;
             StartCoroutine(TestScore(1));
+        }
+
+        public void ApplyDBdata()
+        {
+            if (DB.PlayerHP[0] != null)
+                DEAFAULT_HP = int.Parse(DB.PlayerHP[0]);
+            if (DB.PlayerSpeed[0] != null)
+                GetComponent<Movement>().defaultSpeed = float.Parse(DB.PlayerSpeed[0]);
         }
 
         // Update is called once per frame
