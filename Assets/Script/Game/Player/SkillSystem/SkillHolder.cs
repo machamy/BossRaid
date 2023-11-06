@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Script.Global;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
@@ -9,7 +10,7 @@ namespace Script.Game.Player
     /// <summary>
     /// 스킬의 정보를 가지고 실행하는 곳
     /// </summary>
-    public class SkillHolder : MonoBehaviour
+    public class SkillHolder : MonoBehaviour, DBHandler
     {
         [Flags]
         enum State
@@ -38,6 +39,18 @@ namespace Script.Game.Player
             p = GetComponentInParent<Player>();
         }
 
+        private void Start()
+        {
+            ApplyDBdata();
+        }
+
+        public void ApplyDBdata()
+        {
+            var data = DB.Get(skill.name);
+            if (data == null)
+                return;
+            skill.SetData(data);
+        }
 
         private IEnumerator ActiveRoutine()
         {

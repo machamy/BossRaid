@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using System.Linq;
+using Script.Global;
 
 namespace Script.Game.Enemy
 {
     /// <summary>
     /// 패턴 관리 스크립트
     /// </summary>
-    public class PatternController: MonoBehaviour
+    public class PatternController: MonoBehaviour, DBHandler
     {
         /// <summary>
         /// 패턴 목록
@@ -21,6 +23,7 @@ namespace Script.Game.Enemy
 
         void Start()
         {
+            ApplyDBdata();
         }
 
         private void Awake()
@@ -33,8 +36,44 @@ namespace Script.Game.Enemy
             Patterns.Add(new PatternD());
         }
 
+        public void ApplyDBdata()
+        {
+            var scores = DB.PhaseScores;
+            for (int i = 0; i < Phases.Count; i++)
+            {
+                Phases[i].maxScore = (int) float.Parse(scores[i]);
+            }
+            
+            var freq = DB.PhaseFrequencies;
+            for (int i = 0; i < Phases.Count; i++)
+            {
+                Phases[i].frequency = float.Parse(freq[i]);
+            }
+            
+            
+            foreach (Phase p in Phases)
+            {
+                string Name = p.Name;
+                var data = DB.Get(Name + "Probablity");
+                if(data == null)
+                    continue;
+                var s = $"{Name}Probablity : ";
+                for (int i = 0; i < 4; i++)
+                {
+                    s += data[i] + " ";
+                }
+                Debug.Log(s);
+                if (data == null)
+                    return;
+                var query = from v in data
+                    select int.Parse(v);
+                p.ProbablityList = query.ToList();
+            }
+        }
+
         public IEnumerator Rountine(Professor pf, Player.Player p)
         {
+
             yield return new WaitForSeconds(2);
             pf.StartFadeIn();
             PhaseLv = 1;

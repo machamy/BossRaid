@@ -102,7 +102,7 @@ MonoBehaviour:
   facing: {x: 0, y: 0}
   target: {x: 0, y: 0}
   damage: 1
-  parringScore: 10
+  parringScore: 50
 --- !u!61 &-6564998710192310577
 BoxCollider2D:
   m_ObjectHideFlags: 0

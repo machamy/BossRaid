@@ -1,4 +1,5 @@
 ﻿using System;
+using Script.Game.Projectile;
 using UnityEngine;
 
 namespace Script.Game.Player
@@ -16,6 +17,15 @@ namespace Script.Game.Player
         public float Duration => duration;
         public bool IsDirectional => isDirectional;
 
+        public void SetData(string[] data)
+        {
+            Debug.Log($"[BaseSkill::SetData] {type.ToString()} : {data[0]} {data[1]} {data[2]} {data[3]}");
+            cooldown = float.Parse(data[0]);
+            duration = float.Parse(data[1]);
+            isDirectional = data[2] == "TRUE";
+            PrjtType.TryParse(data[3], out type);
+        }
+        
         /// <summary>
         /// 시전시 실행
         /// </summary>

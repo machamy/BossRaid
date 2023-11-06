@@ -96,9 +96,9 @@ namespace Script.Game.Player
 
         public void ApplyDBdata()
         {
-            if (DB.PlayerHP[0] != null)
+            if (DB.PlayerHP != null)
                 DEAFAULT_HP = int.Parse(DB.PlayerHP[0]);
-            if (DB.PlayerSpeed[0] != null)
+            if (DB.PlayerSpeed != null)
                 GetComponent<Movement>().defaultSpeed = float.Parse(DB.PlayerSpeed[0]);
         }
 

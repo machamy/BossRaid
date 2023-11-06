@@ -29,9 +29,9 @@ public class DB
     public static string[] HeyYoung => Get("HeyYoung");	//float float bool string
     public static string[] IPad => Get("IPad");	//float float bool string
     public static string[] Laptop => Get("Laptop");	//float float bool string
-    public static string[] TeamProjectile => Get("TeamProjectile");	//float float int
-    public static string[] PracticeProjectile => Get("PracticeProjectile");	//float float int
-    public static string[] AttendProjectile => Get("AttendProjectile");	//float float int
+    public static string[] TeamProjectile => Get("TeamProjectile");	//float int int
+    public static string[] PracticeProjectile => Get("PracticeProjectile");	//float int int
+    public static string[] AttendProjectile => Get("AttendProjectile");	//float int int
     public static string[] Phase0Probablity => Get("Phase0Probablity");	//int
     public static string[] Phase1Probablity => Get("Phase1Probablity");	//int
     public static string[] Phase2Probablity => Get("Phase2Probablity");	//int

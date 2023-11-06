@@ -2,23 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class GSpreadSheetLoader : MonoBehaviour
 {
-    // https://docs.google.com/spreadsheets/d/13y3xJdLwsUohL-XTO-2nYJTsXzRg0PQglyOjY2UEQfQ/edit?usp=sharing
-    public string key;
-    public string range;
+    // 
+    public readonly string origin_key = "https://docs.google.com/spreadsheets/d/13y3xJdLwsUohL-XTO-2nYJTsXzRg0PQglyOjY2UEQfQ/edit?usp=sharing";
+    public readonly string gid = "2011285628";
+    public readonly string range = "C3:J";
+    private string key;
     private string rawData;
-    private string rawRange;
+
     private static Dictionary<string, string[]> data;
+    [SerializeField] private List<string[]> ch;
     void Awake()
     {
         data = new Dictionary<string, string[]>();
-        key = key.Split("edit")[0];
-        key += "gviz/tq?tqx=out:csv&sheet=DB";
-        StartCoroutine(DownloadData("A1:B1",false));
+        key = origin_key.Split("edit")[0];
+        StartCoroutine(DownloadData(key,range,gid));
         
     }
     
@@ -27,9 +30,9 @@ public class GSpreadSheetLoader : MonoBehaviour
     /// </summary>
     /// <param name="range"></param>
     /// <returns></returns>
-    IEnumerator DownloadData(string range, bool isData)
+    IEnumerator DownloadData(string address, string range, string gid)
     {
-        string url = key + "&range=" + range;
+        string url = $"{address}export?format=tsv&range={range}&gid={gid}";
         
         Debug.Log("[GSpreadSheetLoader::UpdateData] url : "+url);
         using (UnityWebRequest www = UnityWebRequest.Get(url))
@@ -40,17 +43,7 @@ public class GSpreadSheetLoader : MonoBehaviour
             else
                 rawData = "";
         }
-
-        if (!isData)
-        {
-            rawRange = rawData.Split(',')[1];
-            range = rawRange.Replace("\"", "");
-            StartCoroutine(DownloadData(range,true));
-        }
-        else
-        {
-            UpdateData();
-        }
+        UpdateData();
     }
 
     /// <summary>
@@ -61,13 +54,18 @@ public class GSpreadSheetLoader : MonoBehaviour
         string[] rows = rawData.Split('\n');
         for(int i = 0; i < rows.Length; i++)
         {
-            var cols = Array.ConvertAll(rows[i].Split(','),(str) => (str.Replace("\"","")));
+            var cols = Array.ConvertAll(rows[i].Split('\t'),(str) => (str.Replace("\"","")));
             if (cols.Count() == 0)
                 continue;
             
             int length = int.Parse(cols[1]);
             string[] arr = new string[length];
-            Debug.Log(cols[0] + length);
+            // StringBuilder sb = new StringBuilder();
+            // foreach (var s in cols)
+            // {
+            //     sb.Append(s).Append(", ");
+            // }
+            // Debug.Log(sb.ToString());
             Array.Copy(cols,2,arr,0,length);
             data.Add(cols[0],arr);
         }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Script.Global;
 using UnityEngine;
+
 using Random = UnityEngine.Random;
 
 namespace Script.Game.Enemy
@@ -10,7 +12,7 @@ namespace Script.Game.Enemy
     {
         public int level;
         public int maxScore;
-        public int frequency;
+        public float frequency;
         public List<int> ProbablityList;
         [NonSerialized]
         public int sumOfProbalblty;
@@ -23,6 +25,9 @@ namespace Script.Game.Enemy
             ProbablityList.ForEach(n => sum += n);
             sumOfProbalblty = sum;
         }
+        
+
+        
 
         public int GetNextPatternNum()
         {
@@ -40,6 +45,8 @@ namespace Script.Game.Enemy
             throw new Exception("[Phase::GetNextPattern] 알고리즘 에러");
             return 0;
         }
+
+
     }
     
     

@@ -5,13 +5,16 @@ using Script.Game;
 using Script.Game.Enemy;
 using Script.Game.Player;
 using Script.Game.Projectile;
+using Script.Global;
 using UnityEngine;
 
-public class Professor : MonoBehaviour
+public class Professor : MonoBehaviour, DBHandler
 {
+    [Header("Projectile")]
     public GameObject attend;  
     public GameObject practice;  
-    public GameObject team;  
+    public GameObject team; 
+    [Header("ETC")]
     public GameObject shootPos;
     public PatternController PatternController;
     [SerializeField] private Player player;
@@ -33,10 +36,27 @@ public class Professor : MonoBehaviour
 
         Debug.Log(PatternController);
         player.OnScoreUpdate.AddListener(PatternController.OnScoreUpdate);
+        ApplyDBdata();
         StartCoroutine("FadeOut");
         StartCoroutine(PatternController.Rountine(this, player));
     }
 
+    public void ApplyDBdata()
+    {
+        var objs = new [] { attend, practice, team };
+        var dbs = new [] { DB.AttendProjectile, DB.PracticeProjectile, DB.TeamProjectile };
+        for (int i = 0; i< 3;i ++)
+        {
+            var prjt = objs[i].GetComponent<Projectile>();
+            var datas = dbs[i];
+            if(datas == null)
+                continue;
+            prjt.speed = float.Parse(datas[0]);
+            prjt.parringScore = int.Parse(datas[1]);
+            prjt.damage = int.Parse(datas[2]);
+        }
+    }
+    
     private IEnumerator FadeOut()
     {
         int i = 10;
@@ -196,5 +216,6 @@ public class Professor : MonoBehaviour
         prjt.transform.position = shootPos.transform.position;
         prjt.UpdateDirection(dir);
     }
-    
+
+
 }
