@@ -11,7 +11,7 @@ namespace Script.Game.Enemy
     /// <summary>
     /// 패턴 관리 스크립트
     /// </summary>
-    public class PatternController: MonoBehaviour, DBHandler
+    public class PatternController: MonoBehaviour, DBUser
     {
         /// <summary>
         /// 패턴 목록

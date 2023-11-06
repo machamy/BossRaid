@@ -1,7 +1,7 @@
 ﻿namespace Script.Global
 {
 
-    public interface DBHandler
+    public interface DBUser
     {
         
         // public void OnDBUpdate();

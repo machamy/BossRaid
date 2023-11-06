@@ -8,7 +8,7 @@ using Script.Game.Projectile;
 using Script.Global;
 using UnityEngine;
 
-public class Professor : MonoBehaviour, DBHandler
+public class Professor : MonoBehaviour, DBUser
 {
     [Header("Projectile")]
     public GameObject attend;  

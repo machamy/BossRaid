@@ -10,7 +10,7 @@ namespace Script.Game.Player
     /// <summary>
     /// 스킬의 정보를 가지고 실행하는 곳
     /// </summary>
-    public class SkillHolder : MonoBehaviour, DBHandler
+    public class SkillHolder : MonoBehaviour, DBUser
     {
         [Flags]
         enum State

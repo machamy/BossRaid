@@ -13,7 +13,7 @@ using Type = System.Type;
 
 namespace Script.Game.Player
 {
-    public class Player : MonoBehaviour, DBHandler
+    public class Player : MonoBehaviour, DBUser
     {
         public int DEAFAULT_HP;
         private int hp;
