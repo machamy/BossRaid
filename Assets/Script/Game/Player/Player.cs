@@ -132,7 +132,10 @@ namespace Script.Game.Player
             var q = area.PopAll(type);
             while (q.Any())
             {
-                q.Dequeue().OnParring(this);
+                var prjt = q.Dequeue();
+                if (prjt.Type != type)
+                    continue;
+                prjt.OnParring(this);
             }
             return true;
         }
