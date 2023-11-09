@@ -8,13 +8,16 @@ namespace Script.Game.Projectile
     {
         Practice, Team, Attend
     }
-    public class Projectile: MonoBehaviour
+
+    public class Projectile : MonoBehaviour
     {
         public float speed;
         public Vector2 facing;
         public Vector2 target;
-        public PrjtType Type { get; private set;}
-        
+        [SerializeField] private PrjtType type;
+
+        public PrjtType Type => type;
+
         public int damage;
         public int parringScore;
         /// <summary>

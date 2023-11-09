@@ -101,6 +101,7 @@ MonoBehaviour:
   speed: 0.3
   facing: {x: 0, y: 0}
   target: {x: 0, y: 0}
+  type: 1
   damage: 1
   parringScore: 75
 --- !u!61 &-6564998710192310577

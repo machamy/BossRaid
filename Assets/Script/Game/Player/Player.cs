@@ -143,13 +143,14 @@ namespace Script.Game.Player
         {
             if (!IsAlive) return false;
             ParryingArea area = isDirectional ? parryingAreaFront : parryingAreaAll;
-            if (!parryingAreaFront.Parryable) return false;
+            if (!area.Parryable) return false;
             var q = area.PopAll(type);
             while (q.Any())
             {
-                var prjt = q.Dequeue();
+                Projectile.Projectile prjt = q.Dequeue();
                 if (prjt.Type != type)
                     continue;
+                Debug.Log(prjt.name + " "+ prjt.Type);
                 prjt.OnParring(this);
             }
             return true;
