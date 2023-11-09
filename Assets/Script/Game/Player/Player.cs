@@ -8,6 +8,8 @@ using Script.Game.Projectile;
 using Script.Global;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.LowLevel;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Type = System.Type;
 
@@ -142,7 +144,9 @@ namespace Script.Game.Player
         private void OnDeath()
         {
             isAlive = false;
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.1f);
+            PlayerPrefs.SetInt("result_hp", hp);
+            PlayerPrefs.SetInt("result_score", score);
+            SceneManager.LoadScene("EndScreen");
         }
 
         /*

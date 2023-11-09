@@ -39,16 +39,18 @@ namespace Script.Game.Enemy
         public void ApplyDBdata()
         {
             var scores = DB.PhaseScores;
-            for (int i = 0; i < Phases.Count; i++)
-            {
-                Phases[i].maxScore = (int) float.Parse(scores[i]);
-            }
+            if(scores != null)
+                for (int i = 0; i < Phases.Count; i++)
+                {
+                    Phases[i].maxScore = (int) float.Parse(scores[i]);
+                }
             
             var freq = DB.PhaseFrequencies;
-            for (int i = 0; i < Phases.Count; i++)
-            {
-                Phases[i].frequency = float.Parse(freq[i]);
-            }
+            if(freq != null)
+                for (int i = 0; i < Phases.Count; i++)
+                {
+                    Phases[i].frequency = float.Parse(freq[i]);
+                }
             
             
             foreach (Phase p in Phases)

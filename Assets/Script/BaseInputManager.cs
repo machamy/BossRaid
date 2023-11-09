@@ -15,7 +15,6 @@ namespace Script
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Debug.Log("ESCAPE");
                 OnEscape();
             }
             if (Input.GetKeyDown(KeyCode.Home))
