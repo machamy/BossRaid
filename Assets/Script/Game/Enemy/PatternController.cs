@@ -5,6 +5,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using System.Linq;
 using Script.Global;
+using UnityEngine.Events;
 
 namespace Script.Game.Enemy
 {
@@ -19,7 +20,18 @@ namespace Script.Game.Enemy
         private List<Pattern> Patterns;
         [SerializeField] private List<Phase> Phases;
         [SerializeField] private int PATTERN_NUM;
-        public int PhaseLv { get; set; }
+        private int phaseLv;
+        public UnityEvent<int> OnPhaseUpdateEvent;
+    
+        public int PhaseLv
+        {
+            get => phaseLv;
+            set
+            {
+                phaseLv = value;
+                OnPhaseUpdateEvent.Invoke(phaseLv);
+            }
+        }
 
         void Start()
         {
@@ -101,6 +113,7 @@ namespace Script.Game.Enemy
             if (score > Phases[PhaseLv].maxScore)
             {
                 PhaseLv += 1;
+                
                 Debug.Log("[PatternController::OnScoreUpdate] Phase lv up!!("+score+") : " + PhaseLv);
             }
         }
