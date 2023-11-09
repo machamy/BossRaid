@@ -62,7 +62,7 @@ public class GSpreadSheetLoader : MonoBehaviour
         for(int i = 0; i < rows.Length; i++)
         {
             var cols = Array.ConvertAll(rows[i].Split('\t'),(str) => (str.Replace("\"","")));
-            if (cols.Count() == 0)
+            if (!cols.Any())
                 continue;
             
             int length = int.Parse(cols[1]);
