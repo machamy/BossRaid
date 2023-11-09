@@ -1,6 +1,7 @@
 ﻿using System;
 using Script.Game.Projectile;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Script.Game.Player
 {
@@ -12,10 +13,12 @@ namespace Script.Game.Player
         [SerializeField] private bool isDirectional;
         [SerializeField] private string animation;
         [SerializeField] private Projectile.PrjtType type;
+        [SerializeField] private bool canActiveMove;
         
         public float Cooldown => cooldown;
         public float Duration => duration;
         public bool IsDirectional => isDirectional;
+        public bool CanActiveMove => canActiveMove;
 
         public void SetData(string[] data)
         {
@@ -24,6 +27,7 @@ namespace Script.Game.Player
             duration = float.Parse(data[1]);
             isDirectional = data[2] == "TRUE";
             PrjtType.TryParse(data[3], out type);
+            canActiveMove = data[2] == "TRUE";
         }
         
         /// <summary>
@@ -58,7 +62,7 @@ namespace Script.Game.Player
         /// <param name="p"></param>
         public virtual void OnActivate(Player p)
         {
-            p.Parry(type, isDirectional);
+            p.Parry(type, IsDirectional);
         }
     }
 }

@@ -12,7 +12,8 @@ namespace Script.Game
         private Rigidbody2D body;
         public float defaultSpeed;
 
-
+        public bool canMove;
+        
         public Vector3 currentVelocity;
         public Vector3 previousVelocity;
 
@@ -21,6 +22,7 @@ namespace Script.Game
         {
             body = transform.GetComponent<Rigidbody2D>();
             previousVelocity = currentVelocity = Vector3.zero;
+            canMove = true;
         }
 
         // Update is called once per frame
@@ -32,7 +34,8 @@ namespace Script.Game
         
         private void FixedUpdate()
         {
-            ApplyMovement();
+            if(canMove)
+                ApplyMovement();
         }
 
         /// <summary>

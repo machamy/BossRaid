@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 public class GSpreadSheetLoader : MonoBehaviour
@@ -15,14 +16,20 @@ public class GSpreadSheetLoader : MonoBehaviour
     private string key;
     private string rawData;
 
+    public UnityEvent OnDBUpdateEvent;
+
     private static Dictionary<string, string[]> data;
     [SerializeField] private List<string[]> ch;
     void Awake()
     {
         data = new Dictionary<string, string[]>();
         key = origin_key.Split("edit")[0];
+        StartDownload();
+    }
+
+    public void StartDownload()
+    {
         StartCoroutine(DownloadData(key,range,gid));
-        
     }
     
     /// <summary>
@@ -67,9 +74,10 @@ public class GSpreadSheetLoader : MonoBehaviour
             // }
             // Debug.Log(sb.ToString());
             Array.Copy(cols,2,arr,0,length);
-            data.Add(cols[0],arr);
+            data[cols[0]]=arr;
         }
         DB.Instance.SetData(data);
+        OnDBUpdateEvent.Invoke();
         Debug.Log("[GSpreadSheetLoader] Load & Update Data Complete!!!");
     }
 

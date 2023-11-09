@@ -56,6 +56,8 @@ namespace Script.Game.Player
         {
             state |= State.active;
             acitveTime = skill.Duration;
+            if (!skill.CanActiveMove)
+                p.CanMove = false;
             // 활성화시
             while (acitveTime > 0)
             {
@@ -63,6 +65,8 @@ namespace Script.Game.Player
                 skill.OnActivate(p);
                 yield return new WaitForFixedUpdate();
             }
+            if (!skill.CanActiveMove)
+                p.CanMove = true;
             
             state = State.cooldown;
         }

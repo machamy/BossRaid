@@ -22,9 +22,20 @@ namespace Script.Game.Player
         private int score;
         private bool isAlive;
         public bool IsAlive => isAlive;
+
+        private Movement Movement;
+
+        public bool CanMove
+        {
+            get => canMove;
+            set
+            {
+                Movement.canMove = this.canMove = value;
+            }
+        }
         
         private bool isLeft;
-        
+        private bool canMove;
 
         public bool IsLeft
         {
@@ -89,10 +100,12 @@ namespace Script.Game.Player
         // Start is called before the first frame update
         void Start()
         {
+            Movement = GetComponent<Movement>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             ApplyDBdata();
             hp = DEAFAULT_HP;
             isAlive = true;
+            canMove = true;
             StartCoroutine(TestScore(1));
         }
 
@@ -146,7 +159,7 @@ namespace Script.Game.Player
             isAlive = false;
             PlayerPrefs.SetInt("result_hp", hp);
             PlayerPrefs.SetInt("result_score", score);
-            SceneManager.LoadScene("EndScreen");
+            SceneManager.LoadScene("Scenes/ResultScreen");
         }
 
         /*

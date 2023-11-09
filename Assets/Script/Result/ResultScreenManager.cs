@@ -48,9 +48,9 @@ public class ResultScreenManager : BaseInputManager
     protected override void Update()
     {
         base.Update();
-        if (Input.touchCount > 0 && !isOnProgress)
+        if (Input.touchCount > 0)
         {
-            SceneManager.LoadScene("Scenes/TitleScreen");
+            GoTitle();
         }
     }
     
@@ -67,17 +67,26 @@ public class ResultScreenManager : BaseInputManager
         isOnProgress = false;
     }
 
+    private void GoTitle()
+    {
+        if(!isOnProgress)
+            return;
+        SceneManager.LoadScene("Scenes/TitleScreen");
+    }
+
     protected override void OnHome()
     {
-        throw new NotImplementedException();
+        
     }
 
     protected override void OnEscape()
     {
+        GoTitle();
     }
 
     protected override void OnMenu()
     {
+        
     }
 
 

@@ -23,7 +23,7 @@ public class DB
     }
 
     private Dictionary<string, string[]> data = new Dictionary<string, string[]>();
-    
+    public static string[] DB_VERSION => Get("DB_VERSION");
     public static string[] PlayerSpeed => Get("PlayerSpeed");	//float
     public static string[] PlayerHP => Get("PlayerHP");	//int
     public static string[] HeyYoung => Get("HeyYoung");	//float float bool string
@@ -44,7 +44,7 @@ public class DB
 
     public void SetData(string key, string[] value)
     {
-        data.Add(key,value);
+        data[key]= (value);
     }
 
     public void SetData(Dictionary<string, string[]> datadict)
