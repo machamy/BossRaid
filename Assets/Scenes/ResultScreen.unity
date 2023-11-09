@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 1849897896}
   - component: {fileID: 1849897897}
   m_Layer: 0
-  m_Name: EndScreenManager
+  m_Name: ResultScreenManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

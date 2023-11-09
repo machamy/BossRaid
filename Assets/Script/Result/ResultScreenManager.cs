@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// TODO: UI메니저와 역할이 겹침. 상속관계로 만들수 있을듯?
 /// </summary>
-public class EndScreenManager : BaseInputManager
+public class ResultScreenManager : BaseInputManager
 {
     private int hp;
     private int score;
