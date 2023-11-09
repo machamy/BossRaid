@@ -27,7 +27,7 @@ namespace Script.Game.Player
             duration = float.Parse(data[1]);
             isDirectional = data[2] == "TRUE";
             PrjtType.TryParse(data[3], out type);
-            canActiveMove = data[2] == "TRUE";
+            canActiveMove = data[4] == "TRUE";
         }
         
         /// <summary>

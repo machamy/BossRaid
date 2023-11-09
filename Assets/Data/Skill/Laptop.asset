@@ -16,4 +16,5 @@ MonoBehaviour:
   duration: 0.1
   isDirectional: 1
   animation: 
-  type: 0
+  type: 1
+  canActiveMove: 1
