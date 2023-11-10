@@ -20,7 +20,7 @@ namespace Script.Game
         
         private void Start()
         {
-            onUp.AddListener(holder.Activate);
+            onUpEvent.AddListener(holder.Activate);
             GameObject obj = Instantiate(CooldownPrefeb,transform);
             holder.cooldownImg = obj.GetComponent<Image>();
             holder.cooldownImg.fillAmount = 0;

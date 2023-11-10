@@ -15,7 +15,7 @@ namespace Script.Game.Enemy
         public float frequency;
         public List<int> ProbablityList;
         [NonSerialized]
-        public int sumOfProbalblty;
+        public int sumOfProbability;
 
         public string Name => $"Phase{level}";
 
@@ -23,15 +23,17 @@ namespace Script.Game.Enemy
         {
             var sum = 0;
             ProbablityList.ForEach(n => sum += n);
-            sumOfProbalblty = sum;
+            sumOfProbability = sum;
         }
         
-
-        
-
+        /// <summary>
+        /// 확률에 따른 다음 패턴을 가져옴
+        /// </summary>
+        /// <returns>다음 패턴의 번호</returns>
+        /// <exception cref="Exception">sumOfProbability가 잘못됨</exception>
         public int GetNextPatternNum()
         {
-            int random_value = Random.Range(0, sumOfProbalblty);
+            int random_value = Random.Range(0, sumOfProbability);
             for(int i = 0; i < ProbablityList.Count; i++)
             {
                 int next_probablities = ProbablityList[i];

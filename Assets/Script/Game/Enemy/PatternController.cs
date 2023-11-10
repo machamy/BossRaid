@@ -47,7 +47,9 @@ namespace Script.Game.Enemy
             Patterns.Add(new PatternC());
             Patterns.Add(new PatternD());
         }
-
+        /// <summary>
+        /// DB데이터를 모두 적용한다
+        /// </summary>
         public void ApplyDBdata()
         {
             var scores = DB.PhaseScores;
@@ -68,15 +70,14 @@ namespace Script.Game.Enemy
             foreach (Phase p in Phases)
             {
                 string Name = p.Name;
-                var data = DB.Get(Name + "Probablity");
+                var data = DB.Get(Name + "Probability");
                 if(data == null)
                     continue;
-                var s = $"{Name}Probablity : ";
+                var s = $"{Name}Probability : ";
                 for (int i = 0; i < 4; i++)
                 {
                     s += data[i] + " ";
                 }
-                Debug.Log(s);
                 if (data == null)
                     return;
                 var query = from v in data
@@ -85,6 +86,13 @@ namespace Script.Game.Enemy
             }
         }
 
+        /// <summary>
+        /// 패턴을 받아와 실행시키는 루틴.
+        /// while: 페이즈를 받아옴
+        ///  inner-while: 패턴을 받아와 실행
+        /// </summary>
+        /// <param name="pf">교수</param>
+        /// <param name="p">플레이어</param>
         public IEnumerator Rountine(Professor pf, Player.Player p)
         {
 
@@ -108,12 +116,15 @@ namespace Script.Game.Enemy
             }
         }
 
+        /// <summary>
+        /// 점수 업데이트 리스너
+        /// </summary>
+        /// <param name="score"></param>
         public void OnScoreUpdate(int score)
         {
             if (score > Phases[PhaseLv].maxScore)
             {
                 PhaseLv += 1;
-                
                 Debug.Log("[PatternController::OnScoreUpdate] Phase lv up!!("+score+") : " + PhaseLv);
             }
         }

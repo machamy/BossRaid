@@ -32,12 +32,12 @@ public class DB
     public static string[] TeamProjectile => Get("TeamProjectile");	//float int int
     public static string[] PracticeProjectile => Get("PracticeProjectile");	//float int int
     public static string[] AttendProjectile => Get("AttendProjectile");	//float int int
-    public static string[] Phase0Probablity => Get("Phase0Probablity");	//int
-    public static string[] Phase1Probablity => Get("Phase1Probablity");	//int
-    public static string[] Phase2Probablity => Get("Phase2Probablity");	//int
-    public static string[] Phase3Probablity => Get("Phase3Probablity");	//int
-    public static string[] Phase4Probablity => Get("Phase4Probablity");	//int
-    public static string[] Phase5Probablity => Get("Phase5Probablity");	//int
+    public static string[] Phase0Probability => Get("Phase0Probability");	//int
+    public static string[] Phase1Probability => Get("Phase1Probability");	//int
+    public static string[] Phase2Probability => Get("Phase2Probability");	//int
+    public static string[] Phase3Probability => Get("Phase3Probability");	//int
+    public static string[] Phase4Probability => Get("Phase4Probability");	//int
+    public static string[] Phase5Probability => Get("Phase5Probability");	//int
     public static string[] PhaseScores => Get("PhaseScores");	//int
     public static string[] PhaseFrequencies => Get("PhaseFrequencies");	//float
 
@@ -64,6 +64,11 @@ public class DB
         return Instance.data.ContainsKey(key);
     }
 
+    /// <summary>
+    /// key를 이용해 DB데이터를 가져옴. 없을경우 null반환
+    /// </summary>
+    /// <param name="key">가져올 데이터</param>
+    /// <returns>데이터, 없으면 null</returns>
     [CanBeNull]
     public static string[] Get(string key)
     {

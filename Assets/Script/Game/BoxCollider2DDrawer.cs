@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Script.Game
 {
+    /// <summary>
+    /// 히트박스 그려주는 클래스
+    /// </summary>
     [RequireComponent(typeof(BoxCollider2D))]
     public class BoxCollider2DDrawer : MonoBehaviour
     {
@@ -22,7 +25,10 @@ namespace Script.Game
             lineRenderer.SetPositions(positions);
 
         }
-
+        /// <summary>
+        /// 기본 세팅으로 LineRender를 추가함.
+        /// </summary>
+        /// <returns>추가된 LineRenderer</returns>
         private LineRenderer initLineRenderer()
         {
             LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();

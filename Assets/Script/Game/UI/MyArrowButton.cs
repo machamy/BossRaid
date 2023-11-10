@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Script.Game
 {   
@@ -11,9 +12,12 @@ namespace Script.Game
     public class MyArrowButton : MyButton, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
         private Vector2 _positionPointer;
-        public UnityEvent onLeft;
-        public UnityEvent onRight;
+        [FormerlySerializedAs("onLeft")] public UnityEvent onLeftEvent;
+        [FormerlySerializedAs("onRight")] public UnityEvent onRightEvent;
 
+        /// <summary>
+        /// 중간의 0으로 취급되는 너비
+        /// </summary>
         public float midRange;
 
         public override void OnPointerDown(PointerEventData eventData)
@@ -42,10 +46,10 @@ namespace Script.Game
             
             if (_positionPointer.x < transform.position.x-midRange)
             {
-                onLeft.Invoke();
+                onLeftEvent.Invoke();
             }else if (_positionPointer.x > transform.position.x+midRange)
             {
-                onRight.Invoke();
+                onRightEvent.Invoke();
             }
             
             base.FixedUpdate();

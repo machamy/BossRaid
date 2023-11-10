@@ -6,6 +6,7 @@ namespace Script.Game
     /// 이동 함수.
     /// Move 관련 함수로 모든 이동을 취합한 다음
     /// 그 취합된 벡터를 기반으로 오브젝트 이동
+    /// TODO: 방식이 좀 복잡해서 그냥 Player와 합쳐도 무방할듯
     /// </summary>
     public class Movement : MonoBehaviour
     {

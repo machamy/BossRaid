@@ -1,6 +1,10 @@
 ﻿
 using UnityEngine;
 
+/// <summary>
+/// 화면 비율 고정.
+/// TODO: 비율이 하드코딩 되어있음 ㅎㅎ;
+/// </summary>
 public class CameraResolution:MonoBehaviour
     {
         void Start()

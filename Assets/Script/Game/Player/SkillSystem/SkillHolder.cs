@@ -52,6 +52,11 @@ namespace Script.Game.Player
             skill.SetData(data);
         }
 
+        /// <summary>
+        /// 스킬 활성화시 실행되고 있는 루틴
+        /// skill의 OnActivete를 FixedUpdate마다 실행
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator ActiveRoutine()
         {
             state |= State.active;
@@ -70,6 +75,12 @@ namespace Script.Game.Player
             
             state = State.cooldown;
         }
+        /// <summary>
+        /// 스킬이 쿨타임 중일때 실행되고 있는 루틴
+        /// cooltimeImg 를 수정해 쿨다운 표시
+        /// 끝났을때 skill.OnEndCooldown을 실행
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator CoolDownRoutine()
         {
             state |= State.cooldown;

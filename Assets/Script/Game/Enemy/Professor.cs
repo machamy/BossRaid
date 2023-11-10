@@ -35,7 +35,7 @@ public class Professor : MonoBehaviour, DBUser
         renderer = GetComponent<SpriteRenderer>();
 
         Debug.Log(PatternController);
-        player.OnScoreUpdate.AddListener(PatternController.OnScoreUpdate);
+        player.OnScoreUpdateEvent.AddListener(PatternController.OnScoreUpdate);
         ApplyDBdata();
         StartCoroutine("FadeOut");
         StartCoroutine(PatternController.Rountine(this, player));
@@ -129,13 +129,13 @@ public class Professor : MonoBehaviour, DBUser
     internal void 과제()
     {
         Debug.Log("[Professor::과제]");
-        TestShoot(facing.Vector(), PrjtType.Practice);
+        ShootByType(facing.Vector(), PrjtType.Practice);
     }
 
     internal void 팀플()
     {
         Debug.Log("[Professor::팀플]");
-        TestShoot(facing.Vector(), PrjtType.Team);
+        ShootByType(facing.Vector(), PrjtType.Team);
     }
     
     internal void 출첵(int num = 3, float degreeRange =  120f)
@@ -143,7 +143,7 @@ public class Professor : MonoBehaviour, DBUser
         Debug.Log("[Professor::출첵]");
         foreach (Vector2 direction in GetArc(Vector2.down,num,degreeRange))
         {
-            TestShoot(direction, PrjtType.Attend);
+            ShootByType(direction, PrjtType.Attend);
         }
     }
 
@@ -176,7 +176,7 @@ public class Professor : MonoBehaviour, DBUser
         }
     }
     
-    public void TestShoot(Vector2 dir, PrjtType type)
+    public void ShootByType(Vector2 dir, PrjtType type)
     {
         //type마다 프리팹 복사
         GameObject prjt;

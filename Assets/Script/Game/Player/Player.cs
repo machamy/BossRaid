@@ -59,8 +59,8 @@ namespace Script.Game.Player
         }
         
         
-        public UnityEvent<int> OnHPUpdate { get; } = new UnityEvent<int>();
-        public UnityEvent<int> OnScoreUpdate { get; } = new UnityEvent<int>();
+        public UnityEvent<int> OnHPUpdateEvent { get; } = new UnityEvent<int>();
+        public UnityEvent<int> OnScoreUpdateEvent { get; } = new UnityEvent<int>();
         [Header("Skills")]
         public SkillHolder[] SkillHolders;
         [Header("Parry")]
@@ -79,7 +79,7 @@ namespace Script.Game.Player
                 if (value < 0)
                     return;
                 hp = value;
-                OnHPUpdate.Invoke(value);
+                OnHPUpdateEvent.Invoke(value);
                 if (value == 0)
                 {
                     OnDeath();
@@ -87,17 +87,22 @@ namespace Script.Game.Player
             }
         }
 
+        /// <summary>
+        /// 점수. 변경시 OnScoreUpdateEvent호출
+        /// </summary>
         public int Score
         {
             get => score;
             set
             {
                 score = value;
-                OnScoreUpdate.Invoke(score);
+                OnScoreUpdateEvent.Invoke(score);
             }
         }
 
-        // Start is called before the first frame update
+        /// <summary>
+        /// hp, isAlive, canMove 초기화
+        /// </summary>
         void Start()
         {
             Movement = GetComponent<Movement>();
@@ -106,7 +111,6 @@ namespace Script.Game.Player
             hp = DEAFAULT_HP;
             isAlive = true;
             canMove = true;
-            StartCoroutine(TestScore(1));
         }
 
         public void ApplyDBdata()
@@ -122,16 +126,6 @@ namespace Script.Game.Player
         {
             
         }
-
-        IEnumerator TestScore(int n)
-        {
-            while (true)
-            {
-                yield return new WaitForSeconds(0.5f);
-                Score += n;
-            }
-        }
-
         public void ForceParry()
         {
             Parry(PrjtType.Attend, true);
@@ -139,6 +133,13 @@ namespace Script.Game.Player
             Parry(PrjtType.Team, true);
         }
         
+        
+        /// <summary>
+        /// 지정된 type에 따른 투사체를 패링구역에서 패링.
+        /// </summary>
+        /// <param name="type">패링할 타입</param>
+        /// <param name="isDirectional">패링구역 선택. true => front</param>
+        /// <returns></returns>
         public bool Parry(Projectile.PrjtType type, bool isDirectional = false)
         {
             if (!IsAlive) return false;
@@ -155,6 +156,9 @@ namespace Script.Game.Player
             }
             return true;
         }
+        /// <summary>
+        /// 플레이어가 죽을시 실행되는 리스너
+        /// </summary>
         private void OnDeath()
         {
             isAlive = false;

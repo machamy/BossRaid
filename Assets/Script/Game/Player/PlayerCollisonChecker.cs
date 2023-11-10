@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Script.Game.Player
 {
+    /// <summary>
+    /// 플레이어 히트박스
+    /// </summary>
     public class PlayerCollisonChecker: MonoBehaviour
     {
         private Player p;

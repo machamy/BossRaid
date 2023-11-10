@@ -4,6 +4,9 @@ using UnityEngine;
 namespace Script.Game
 {
     
+    /// <summary>
+    /// 간단히 쓰는 방향
+    /// </summary>
     [Flags]
     public enum Direction
     {
@@ -20,6 +23,11 @@ namespace Script.Game
 
     public static class EnumMethod
     {
+        /// <summary>
+        /// 벡터를 반환
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public static Vector2 Vector(this Direction direction)
         {
             Vector2 result = Vector2.zero;

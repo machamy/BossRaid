@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Script.Game.Enemy;
 using UnityEngine;
 
+/// <summary>
+/// 배경 관리 클래스
+/// </summary>
 public class BackGround : MonoBehaviour
 {
     [SerializeField] private PatternController pc;
@@ -22,6 +25,10 @@ public class BackGround : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// 페이즈 업데이트 리스너
+    /// </summary>
+    /// <param name="phasenum"></param>
     public void OnPhaseUpdate(int phasenum)
     {
         _renderer.color = test_colors[phasenum];

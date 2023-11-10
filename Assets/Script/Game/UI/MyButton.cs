@@ -12,25 +12,25 @@ namespace Script.Game
         public bool IsPressing { get; private set; }
         
         [Header("MyButton")]
-        public UnityEvent onDown;
-        public UnityEvent onUp;
-        public UnityEvent onPressing;
+        [FormerlySerializedAs("onDown")]public UnityEvent onDownEvent;
+        [FormerlySerializedAs("onUp")] public UnityEvent onUpEvent;
+        [FormerlySerializedAs("onPressing")] public UnityEvent onPressingEvent;
         
 
         public virtual void OnPointerDown(PointerEventData eventData)
         {
-            onDown.Invoke();
+            onDownEvent.Invoke();
             IsPressing = true;
         }
         public virtual void OnPointerUp(PointerEventData eventData)
         {
-            onUp.Invoke();
+            onUpEvent.Invoke();
             IsPressing = false;
         }
 
         private void OnPointerPressing()
         {
-            onPressing.Invoke();
+            onPressingEvent.Invoke();
         }
         
         protected virtual void FixedUpdate()

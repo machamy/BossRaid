@@ -25,8 +25,8 @@ public class UIManager : MonoBehaviour
         scoreText = UIObject.transform.Find("TxtScore").GetComponent<TextMeshProUGUI>();
         hpText = UIObject.transform.Find("TxtHP").GetComponent<TextMeshProUGUI>();
         Player p = GameObject.Find("Player").GetComponent<Player>();
-        p.OnHPUpdate.AddListener((i) => UpdateHP(i));
-        p.OnScoreUpdate.AddListener((i) => UpdateScore(i));
+        p.OnHPUpdateEvent.AddListener((i) => UpdateHP(i));
+        p.OnScoreUpdateEvent.AddListener((i) => UpdateScore(i));
     }
 
     // Update is called once per frame
@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
         
     }
 
+    
     public void UpdateHP(int hp)
     {
         hpText.SetText(SCORE_NAMES[Math.Min(3,hp)]);

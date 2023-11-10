@@ -54,6 +54,10 @@ public class ResultScreenManager : BaseInputManager
         }
     }
     
+    /// <summary>
+    /// 결과창 출력 루틴
+    /// </summary>
+    /// <returns></returns>
     IEnumerator ShowResultPage()
     {
         isOnProgress = true;
@@ -67,6 +71,9 @@ public class ResultScreenManager : BaseInputManager
         isOnProgress = false;
     }
 
+    /// <summary>
+    /// 진행이 끝났을 때 타이틀 화면으로 돌아간다.
+    /// </summary>
     private void GoTitle()
     {
         if(!isOnProgress)
