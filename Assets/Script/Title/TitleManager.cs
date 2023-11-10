@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,12 +42,7 @@ public class TitleManager : MonoBehaviour
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("DB : ");
-        foreach (var s in DB.DB_VERSION)
-        {
-            sb.Append(s);
-            sb.Append('_');
-        }
-        sb.Remove(sb.Length - 1, 1);
+        sb.Append(string.Join("_", DB.DB_VERSION));
         DB_BTN_TEXT.text = sb.ToString();
     }
 }
