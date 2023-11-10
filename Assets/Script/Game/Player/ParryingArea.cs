@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UIElements;
 
 namespace Script.Game.Player
 {
@@ -32,15 +30,19 @@ namespace Script.Game.Player
         /// <returns>type에 해당되는 모든 투사체 Set</returns>
         public Queue<Projectile.Projectile> PopAll(Projectile.PrjtType type){
             Queue<Projectile.Projectile> queue = new Queue<Projectile.Projectile>();
-            foreach (var prjt in _inRangeList)
+            // 시간복잡도 최적화를 위해 노드 접근
+            var node = _inRangeList.First;
+            while (node is not null)
             {
-                if(prjt.Type == type){
-                    queue.Enqueue(prjt);
+                var next_node = node.Next;
+                var value = node.Value;
+                if (value.Type == type)
+                {
+                    queue.Enqueue(value);
+                    _inRangeList.Remove(node);
+                    _inRangeSet.Remove(value);
                 }
-            }
-            foreach (var projectile in queue)
-            {
-                Remove(projectile);
+                node = next_node;
             }
             return queue;
         }
@@ -65,6 +67,10 @@ namespace Script.Game.Player
             return _inRangeList.First();
         }
 
+        /// <summary>
+        /// 투사체가 들어왔을 떄 추가
+        /// </summary>
+        /// <param name="other"></param>
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.transform.CompareTag("Projectile")) return;
@@ -72,13 +78,22 @@ namespace Script.Game.Player
             Add(prjt);
         }
 
+        /// <summary>
+        /// 투사체가 나갔을 때 제거
+        /// </summary>
+        /// <param name="other"></param>
         private void OnTriggerExit2D(Collider2D other)
         {
             if(!other.transform.CompareTag("Projectile")) return;
             Projectile.Projectile prjt = other.GetComponent<Projectile.Projectile>();
             Remove(prjt);   
         }
-
+        
+        /// <summary>
+        /// 투사체를 관리목록에 추가
+        /// </summary>
+        /// <param name="prjt"></param>
+        /// <returns></returns>
         protected bool Add(Projectile.Projectile prjt)
         {
             if (_inRangeSet.Contains(prjt))
@@ -88,6 +103,11 @@ namespace Script.Game.Player
             return true;
         }
         
+        /// <summary>
+        /// 투사체를 관리목록에서 제거
+        /// </summary>
+        /// <param name="prjt"></param>
+        /// <returns></returns>
         protected bool Remove(Projectile.Projectile prjt)
         {
             if (!_inRangeSet.Contains(prjt))
