@@ -37,6 +37,7 @@ namespace Script.Game
         {
             if(canMove)
                 ApplyMovement();
+            currentVelocity = Vector3.zero; // 관성 제거
         }
 
         /// <summary>
@@ -46,7 +47,6 @@ namespace Script.Game
         {
             previousVelocity = currentVelocity;
             transform.Translate(currentVelocity);
-            currentVelocity = Vector3.zero;
         }
         
         /// <summary>
