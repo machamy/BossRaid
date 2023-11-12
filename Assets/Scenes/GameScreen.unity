@@ -211,13 +211,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac143b69c4547db883d39bd99956c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDown:
+  onDownEvent:
     m_PersistentCalls:
       m_Calls: []
-  onUp:
+  onUpEvent:
     m_PersistentCalls:
       m_Calls: []
-  onPressing:
+  onPressingEvent:
     m_PersistentCalls:
       m_Calls: []
   holder: {fileID: 74234056}
@@ -1401,13 +1401,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac143b69c4547db883d39bd99956c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDown:
+  onDownEvent:
     m_PersistentCalls:
       m_Calls: []
-  onUp:
+  onUpEvent:
     m_PersistentCalls:
       m_Calls: []
-  onPressing:
+  onPressingEvent:
     m_PersistentCalls:
       m_Calls: []
   holder: {fileID: 789519432}
@@ -1952,16 +1952,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a3e349da3543899effb3f66309dc8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDown:
+  onDownEvent:
     m_PersistentCalls:
       m_Calls: []
-  onUp:
+  onUpEvent:
     m_PersistentCalls:
       m_Calls: []
-  onPressing:
+  onPressingEvent:
     m_PersistentCalls:
       m_Calls: []
-  onLeft:
+  onLeftEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1799270153}
@@ -1988,7 +1988,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  onRight:
+  onRightEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1799270153}
@@ -2484,12 +2484,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pc: {fileID: 82930187}
   test_colors:
-  - {r: 1, g: 1, b: 1, a: 0}
-  - {r: 0.61574405, g: 0.7997532, b: 0.9528302, a: 0}
-  - {r: 0.5283019, g: 0.46101815, b: 0.46101815, a: 0}
-  - {r: 0.5471698, g: 0.41553932, b: 0.41553932, a: 0}
-  - {r: 0.5849056, g: 0.3448736, b: 0.3448736, a: 0}
-  - {r: 0.4716981, g: 0.25587398, b: 0.25587398, a: 0}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.61574405, g: 0.7997532, b: 0.9528302, a: 1}
+  - {r: 0.5283019, g: 0.46101815, b: 0.46101815, a: 1}
+  - {r: 0.5471698, g: 0.41553932, b: 0.41553932, a: 1}
+  - {r: 0.5849056, g: 0.3448736, b: 0.3448736, a: 1}
+  - {r: 0.4716981, g: 0.25587398, b: 0.25587398, a: 1}
 --- !u!212 &1901444105
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2645,13 +2645,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac143b69c4547db883d39bd99956c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDown:
+  onDownEvent:
     m_PersistentCalls:
       m_Calls: []
-  onUp:
+  onUpEvent:
     m_PersistentCalls:
       m_Calls: []
-  onPressing:
+  onPressingEvent:
     m_PersistentCalls:
       m_Calls: []
   holder: {fileID: 852790466}

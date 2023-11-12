@@ -28,6 +28,7 @@ namespace Script.Game.Enemy
             get => phaseLv;
             set
             {
+                Debug.Log("phase LV : " +value);
                 phaseLv = value;
                 OnPhaseUpdateEvent.Invoke(phaseLv);
             }
@@ -122,7 +123,7 @@ namespace Script.Game.Enemy
         /// <param name="score"></param>
         public void OnScoreUpdate(int score)
         {
-            if (score > Phases[PhaseLv].maxScore)
+            if (score >= Phases[PhaseLv].maxScore)
             {
                 PhaseLv += 1;
                 Debug.Log("[PatternController::OnScoreUpdate] Phase lv up!!("+score+") : " + PhaseLv);

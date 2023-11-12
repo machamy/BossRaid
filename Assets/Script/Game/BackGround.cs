@@ -31,6 +31,7 @@ public class BackGround : MonoBehaviour
     /// <param name="phasenum"></param>
     public void OnPhaseUpdate(int phasenum)
     {
+        Debug.Log(test_colors[phasenum]);
         _renderer.color = test_colors[phasenum];
     }
 }
