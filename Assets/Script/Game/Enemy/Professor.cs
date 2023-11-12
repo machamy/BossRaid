@@ -129,13 +129,13 @@ public class Professor : MonoBehaviour, DBUser
     internal void 과제()
     {
         Debug.Log("[Professor::과제]");
-        ShootByType(facing.Vector(), PrjtType.Practice);
+        ShootDirByType(facing.Vector(), PrjtType.Practice);
     }
 
     internal void 팀플()
     {
         Debug.Log("[Professor::팀플]");
-        ShootByType(facing.Vector(), PrjtType.Team);
+        ShootDirByType(facing.Vector(), PrjtType.Team);
     }
     
     internal void 출첵(int num = 3, float degreeRange =  120f)
@@ -143,7 +143,7 @@ public class Professor : MonoBehaviour, DBUser
         Debug.Log("[Professor::출첵]");
         foreach (Vector2 direction in GetArc(Vector2.down,num,degreeRange))
         {
-            ShootByType(direction, PrjtType.Attend);
+            ShootDirByType(direction, PrjtType.Attend);
         }
     }
 
@@ -165,6 +165,22 @@ public class Professor : MonoBehaviour, DBUser
         }
     }
 
+    /// <summary>
+    /// 시작 위치와 종료 위치를 동등하게 나눈 num개의 방향을 구함.
+    /// </summary>
+    /// <param name="start">시작점</param>
+    /// <param name="end">종단점</param>
+    /// <param name="num">나눌 개수</param>
+    /// <returns>장소 이터레이터</returns>
+    internal IEnumerable<Vector2> GetSplitPoss(Vector2 start, Vector2 end, int num)
+    {
+        Vector2 diff = end - start;
+        for (int i = 0; i < num; i++)
+        {
+            yield return start + diff * (i/(float)num);
+        }
+    }
+
     private IEnumerator TestPattern()
     {
         while (true)
@@ -175,8 +191,26 @@ public class Professor : MonoBehaviour, DBUser
             yield return new WaitForSeconds(3);
         }
     }
+
+    /// <summary>
+    /// 정해진 위치로 발사
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="type"></param>
+    public void ShootPosByType(Vector2 pos, PrjtType type)
+    {
+        Vector2 dir = (pos - new Vector2(transform.position.x, transform.position.y)).normalized;
+        ShootDirByType(dir,type);
+    }
     
-    public void ShootByType(Vector2 dir, PrjtType type)
+    
+    /// <summary>
+    /// 정해진 방향으로 발사
+    /// TODO: enum이 아니라 prefeb을 넘기는 방식이 더 생산성 있음.
+    /// </summary>
+    /// <param name="dir"></param>
+    /// <param name="type"></param>
+    public void ShootDirByType(Vector2 dir, PrjtType type)
     {
         //type마다 프리팹 복사
         GameObject prjt;
@@ -203,12 +237,13 @@ public class Professor : MonoBehaviour, DBUser
         ShootDir(p, dir);
     }
 
-    internal void ShootTO(Projectile prjt, GameObject target)
-    {
-        prjt.transform.position = shootPos.transform.position;
-        prjt.target = target.transform.position;
-        prjt.UpdateDirection();
-    }
+    // [Obsolete]
+    // internal void ShootTO(Projectile prjt, Vector2 target)
+    // {
+    //     prjt.transform.position = shootPos.transform.position;
+    //     prjt.target = target;
+    //     prjt.UpdateDirection();
+    // }
 
     internal void ShootDir(Projectile prjt, Vector2 dir)
     {

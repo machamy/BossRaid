@@ -76,6 +76,8 @@ namespace Script.Game.Projectile
         {
             Destroy(gameObject);
         }
+        
+        
     }
     
     
