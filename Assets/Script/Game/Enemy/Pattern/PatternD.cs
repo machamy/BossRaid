@@ -49,18 +49,6 @@ namespace Script.Game.Enemy
                 
                 isLeft = !isLeft;
             }
-
-            /*pf.출쳌(isLeft);
-            pf.팀플(dir);
-            pf.팀플(dir);
-            isLeft = !isLeft;
-            dir = Vector2.left;
-            pf.tpRight();
-            pf.출쳌(isLeft);
-            pf.팀플(dir);
-            pf.팀플(dir);
-            */
-
             yield return 1.0f;
         }
     }

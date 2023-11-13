@@ -129,13 +129,13 @@ public class Professor : MonoBehaviour, DBUser
     internal void 과제()
     {
         Debug.Log("[Professor::과제]");
-        ShootDirByType(facing.Vector(), PrjtType.Practice);
+        ShootDirByPrefab(facing.Vector(), practice);
     }
 
     internal void 팀플()
     {
         Debug.Log("[Professor::팀플]");
-        ShootDirByType(facing.Vector(), PrjtType.Team);
+        ShootDirByPrefab(facing.Vector(), team);
     }
     
     internal void 출첵(int num = 3, float degreeRange =  120f)
@@ -143,7 +143,7 @@ public class Professor : MonoBehaviour, DBUser
         Debug.Log("[Professor::출첵]");
         foreach (Vector2 direction in GetArc(Vector2.down,num,degreeRange))
         {
-            ShootDirByType(direction, PrjtType.Attend);
+            ShootDirByPrefab(direction, attend);
         }
     }
 
@@ -234,6 +234,14 @@ public class Professor : MonoBehaviour, DBUser
         
         Projectile p = prjt.GetComponent<Projectile>();
         //p.speed = 1f;
+        ShootDir(p, dir);
+    }
+
+    //prefab 넘기는 방식 ?
+    public void ShootDirByPrefab(Vector2 dir, GameObject prefab)
+    {
+        GameObject prjt = Instantiate(prefab);
+        Projectile p = prjt.GetComponent<Projectile>();
         ShootDir(p, dir);
     }
 
