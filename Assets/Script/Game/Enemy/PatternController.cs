@@ -79,8 +79,6 @@ namespace Script.Game.Enemy
                 {
                     s += data[i] + " ";
                 }
-                if (data == null)
-                    return;
                 var query = from v in data
                     select int.Parse(v);
                 p.ProbablityList = query.ToList();
