@@ -141,9 +141,22 @@ public class Professor : MonoBehaviour, DBUser
     internal void 출첵(int num = 3, float degreeRange =  120f)
     {
         Debug.Log("[Professor::출첵]");
-        foreach (Vector2 direction in GetArc(Vector2.down,num,degreeRange))
+        Vector2 startPoint = Vector2.zero;
+        Vector2 endPoint = Vector2.zero;
+        if (facing == Direction.Left)
         {
-            ShootDirByPrefab(direction, attend);
+            startPoint = new Vector2(-10, -1);
+            endPoint = new Vector2(0, -1);
+        }
+        else if (facing == Direction.Right)
+        {
+            startPoint = new Vector2(0, -1);
+            endPoint = new Vector2(10, -1);
+        }
+        foreach (Vector2 point in GetSplitPoss(startPoint, endPoint, num))
+        {
+            //Vector2 direction = (point - startPoint).normalized;
+            ShootPosByType(point, attend);
         }
     }
 
@@ -197,11 +210,12 @@ public class Professor : MonoBehaviour, DBUser
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="type"></param>
-    public void ShootPosByType(Vector2 pos, PrjtType type)
+    public void ShootPosByType(Vector2 pos, GameObject prefab)
     {
         Vector2 dir = (pos - new Vector2(transform.position.x, transform.position.y)).normalized;
-        ShootDirByType(dir,type);
+        ShootDirByPrefab(dir,prefab);
     }
+
     
     
     /// <summary>
