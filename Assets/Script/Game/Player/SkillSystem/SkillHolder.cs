@@ -72,7 +72,7 @@ namespace Script.Game.Player
             {
                 acitveTime -= Time.deltaTime;
                 skill.OnActivate(p);
-                yield return new WaitForFixedUpdate();
+                yield return null;
             }
             if (!skill.CanActiveMove)
                 p.CanMove = true;
@@ -95,7 +95,7 @@ namespace Script.Game.Player
             {
                 cooldownTime -= Time.deltaTime;
                 cooldownImg.fillAmount = cooldownTime / initialCooltime;
-                yield return new WaitForFixedUpdate();
+                yield return null;
             }
 
             cooldownImg.fillAmount = 0;
