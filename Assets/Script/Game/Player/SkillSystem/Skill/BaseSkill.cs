@@ -8,6 +8,7 @@ namespace Script.Game.Player
     [CreateAssetMenu]
     public class BaseSkill: ScriptableObject
     {
+        [SerializeField] private float delay;
         [SerializeField] private float cooldown;
         [SerializeField] private float duration;
         [SerializeField] private bool isDirectional;
@@ -15,6 +16,7 @@ namespace Script.Game.Player
         [SerializeField] private Projectile.PrjtType type;
         [SerializeField] private bool canActiveMove;
         
+        public float Delay => delay;
         public float Cooldown => cooldown;
         public float Duration => duration;
         public bool IsDirectional => isDirectional;
@@ -22,12 +24,13 @@ namespace Script.Game.Player
 
         public void SetData(string[] data)
         {
-            Debug.Log($"[BaseSkill::SetData] {type.ToString()} : {data[0]} {data[1]} {data[2]} {data[3]}");
-            cooldown = float.Parse(data[0]);
-            duration = float.Parse(data[1]);
-            isDirectional = data[2] == "TRUE";
-            PrjtType.TryParse(data[3], out type);
-            canActiveMove = data[4] == "TRUE";
+            Debug.Log($"[BaseSkill::SetData] {type.ToString()} : {data[0]} {data[1]} {data[2]} {data[3]} {data[4]} {data[5]}");
+            delay = float.Parse(data[0]);
+            cooldown = float.Parse(data[1]);
+            duration = float.Parse(data[2]);
+            isDirectional = data[3] == "TRUE";
+            PrjtType.TryParse(data[4], out type);
+            canActiveMove = data[5] == "TRUE";
         }
         
         /// <summary>

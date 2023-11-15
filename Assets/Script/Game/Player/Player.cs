@@ -21,10 +21,11 @@ namespace Script.Game.Player
         private int hp;
         private int score;
         private bool isAlive;
+        
         public bool IsAlive => isAlive;
 
         private Movement Movement;
-
+        public bool IsUsingSkill => SkillHolders.Any((sh => sh.State.HasFlag(SkillHolder.SkillState.active)));
         public bool CanMove
         {
             get => canMove;

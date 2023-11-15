@@ -13,7 +13,7 @@ namespace Script.Game.Player
     public class SkillHolder : MonoBehaviour, DBUser
     {
         [Flags]
-        enum State
+        public enum SkillState
         {
             ready = 0,
             active = 1 << 0,
@@ -22,13 +22,15 @@ namespace Script.Game.Player
         }
 
         public BaseSkill skill;
+        private float delayTime;
         private float cooldownTime;
         private float acitveTime;
         
         [NonSerialized]
         public Image cooldownImg;
         
-        private State state = State.ready;
+        private SkillState _skillState = SkillState.ready;
+        public SkillState State => _skillState;
         private Player p;
 
         public float CooldownTime{ get=> cooldownTime; }
@@ -59,7 +61,9 @@ namespace Script.Game.Player
         /// <returns></returns>
         private IEnumerator ActiveRoutine()
         {
-            state |= State.active;
+            _skillState |= SkillState.active;
+            if (skill.Duration != 0)
+                yield return new WaitForSeconds(skill.Duration);
             acitveTime = skill.Duration;
             if (!skill.CanActiveMove)
                 p.CanMove = false;
@@ -73,7 +77,7 @@ namespace Script.Game.Player
             if (!skill.CanActiveMove)
                 p.CanMove = true;
             
-            state = State.cooldown;
+            _skillState = SkillState.cooldown;
         }
         /// <summary>
         /// 스킬이 쿨타임 중일때 실행되고 있는 루틴
@@ -83,7 +87,7 @@ namespace Script.Game.Player
         /// <returns></returns>
         private IEnumerator CoolDownRoutine()
         {
-            state |= State.cooldown;
+            _skillState |= SkillState.cooldown;
             float initialCooltime = cooldownTime = skill.Cooldown;
             skill.OnBeginCooldown(p);
             // 쿨타임시
@@ -96,14 +100,16 @@ namespace Script.Game.Player
 
             cooldownImg.fillAmount = 0;
             skill.OnEndCooldown(p);
-            state = State.ready;
+            _skillState = SkillState.ready;
         }
 
         public void Activate()
         {
             if(!p.IsAlive)
                 return;
-            if (state == State.ready)
+            if (p.IsUsingSkill)
+                return;
+            if (_skillState == SkillState.ready)
             {
                 Debug.Log("[SkillHolder::Activate]'" + skill.name + " is Activated!");
                 skill.OnBeginActivate(p);
@@ -112,12 +118,12 @@ namespace Script.Game.Player
             }
             else
             {
-                if (state.HasFlag(State.active))
+                if (_skillState.HasFlag(SkillState.active))
                 {
                     Debug.Log("[SkillHolder::Activate]'" + skill.name + "' is activating : " + ActiveTime);
                 }
 
-                if (state.HasFlag(State.cooldown))
+                if (_skillState.HasFlag(SkillState.cooldown))
                 {
                     Debug.Log("[SkillHolder::Activate]'" + skill.name + "' is on cooling : " + CooldownTime);
                 }
