@@ -126,16 +126,19 @@ public class Professor : MonoBehaviour, DBUser
         transform.position = RUp;
     }
 
-    internal void 과제()
+    
+    internal void 과제() => 과제(facing.Vector());
+    internal void 과제(Vector2 dir)
     {
         Debug.Log("[Professor::과제]");
-        ShootDirByPrefab(facing.Vector(), practice);
+        ShootDirByPrefab(dir, practice);
     }
-
-    internal void 팀플()
+    
+    internal void 팀플() => 팀플(facing.Vector());
+    internal void 팀플(Vector2 dir)
     {
         Debug.Log("[Professor::팀플]");
-        ShootDirByPrefab(facing.Vector(), team);
+        ShootDirByPrefab(dir, team);
     }
     
     internal void 출첵(int num = 3, float degreeRange =  120f)
