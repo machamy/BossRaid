@@ -88,7 +88,7 @@ namespace Script.Game.Enemy
         /// <summary>
         /// 패턴을 받아와 실행시키는 루틴.
         /// while: 페이즈를 받아옴
-        ///  inner-while: 패턴을 받아와 실행
+        ///  inner-foreach: 패턴을 받아와 실행
         /// </summary>
         /// <param name="pf">교수</param>
         /// <param name="p">플레이어</param>
