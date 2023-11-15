@@ -77,7 +77,7 @@ namespace Script.Game.Player
             if (!skill.CanActiveMove)
                 p.CanMove = true;
             
-            _skillState = SkillState.cooldown;
+            _skillState &= ~SkillState.active;
         }
         /// <summary>
         /// 스킬이 쿨타임 중일때 실행되고 있는 루틴
