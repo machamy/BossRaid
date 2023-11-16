@@ -7,12 +7,12 @@ namespace Script.Game
         // Start is called before the first frame update
         private void Start()
         {
-            base.Start();
+            //base.Start();
         }
 
         protected override void Update()
         {
-            base.Update();
+            //base.Update();
         }
 
         protected override void OnHome()
