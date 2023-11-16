@@ -63,6 +63,8 @@ namespace Script.Game.Projectile
 
         private void Start()
         {
+            //5초 뒤 투사체 삭제
+            Destroy(gameObject,5f);
         }
         
 
