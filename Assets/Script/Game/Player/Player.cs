@@ -18,9 +18,11 @@ namespace Script.Game.Player
     public class Player : MonoBehaviour, DBUser
     {
         public int DEAFAULT_HP;
+        public float INVICIBLE_TIME;
         private int hp;
         private int score;
         private bool isAlive;
+        private bool isInvincible;
         
         public bool IsAlive => isAlive;
 
@@ -77,6 +79,8 @@ namespace Script.Game.Player
             get => hp;
             set
             {
+                if (isInvincible)
+                    return;
                 if (value < 0)
                     return;
                 hp = value;
@@ -85,6 +89,7 @@ namespace Script.Game.Player
                 {
                     OnDeath();
                 }
+                StartCoroutine(InvincibleRoutine());
             }
         }
 
@@ -120,6 +125,8 @@ namespace Script.Game.Player
                 DEAFAULT_HP = int.Parse(DB.PlayerHP[0]);
             if (DB.PlayerSpeed != null)
                 GetComponent<Movement>().defaultSpeed = float.Parse(DB.PlayerSpeed[0]);
+            if (DB.PlayerInvicbleTime != null)
+                INVICIBLE_TIME = float.Parse(DB.PlayerInvicbleTime[0]);
         }
 
         // Update is called once per frame
@@ -157,6 +164,18 @@ namespace Script.Game.Player
             }
             return true;
         }
+
+        public IEnumerator InvincibleRoutine()
+        {
+            Color original = _spriteRenderer.color;
+            _spriteRenderer.color = Color.yellow; // 테스트용 색 변경
+            isInvincible = true;
+            yield return new WaitForSeconds(INVICIBLE_TIME);
+            isInvincible = false;
+            _spriteRenderer.color = original;
+        }
+        
+        
         /// <summary>
         /// 플레이어가 죽을시 실행되는 리스너
         /// </summary>

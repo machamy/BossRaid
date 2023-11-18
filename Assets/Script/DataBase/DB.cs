@@ -22,13 +22,14 @@ public class DB
         }
     }
 
-    private Dictionary<string, string[]> data = new Dictionary<string, string[]>();
-    public static string[] DB_VERSION => Get("DB_VERSION");
+    private Dictionary<string, string[]> data = new ();
+    public static string[] DB_VERSION => Get("DB_VERSION");	//string
     public static string[] PlayerSpeed => Get("PlayerSpeed");	//float
     public static string[] PlayerHP => Get("PlayerHP");	//int
-    public static string[] HeyYoung => Get("HeyYoung");	//float float bool string
-    public static string[] IPad => Get("IPad");	//float float bool string
-    public static string[] Laptop => Get("Laptop");	//float float bool string
+    public static string[] PlayerInvicbleTime => Get("PlayerInvicbleTime");	//float
+    public static string[] HeyYoung => Get("HeyYoung");	//float float bool string bool
+    public static string[] IPad => Get("IPad");	//float float bool string bool
+    public static string[] Laptop => Get("Laptop");	//float float bool string bool
     public static string[] TeamProjectile => Get("TeamProjectile");	//float int int
     public static string[] PracticeProjectile => Get("PracticeProjectile");	//float int int
     public static string[] AttendProjectile => Get("AttendProjectile");	//float int int
@@ -38,8 +39,10 @@ public class DB
     public static string[] Phase3Probability => Get("Phase3Probability");	//int
     public static string[] Phase4Probability => Get("Phase4Probability");	//int
     public static string[] Phase5Probability => Get("Phase5Probability");	//int
-    public static string[] PhaseScores => Get("PhaseScores");	//int
+    public static string[] PhaseScores => Get("PhaseScores");	//int (소수는버림처리)
     public static string[] PhaseFrequencies => Get("PhaseFrequencies");	//float
+    public static string[] TextResultFailLowScore => Get("TextResultFailLowScore");	//string
+    public static string[] TextResultClearNoHit => Get("TextResultClearNoHit");	//string
 
 
     public void SetData(string key, string[] value)
