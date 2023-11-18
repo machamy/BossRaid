@@ -12,7 +12,7 @@ public class GSpreadSheetLoader : MonoBehaviour
     // 
     public readonly string origin_key = "https://docs.google.com/spreadsheets/d/13y3xJdLwsUohL-XTO-2nYJTsXzRg0PQglyOjY2UEQfQ/edit?usp=sharing";
     public readonly string gid = "2011285628";
-    public readonly string range = "C3:J";
+    public readonly string range = "C3:O";
     private string key;
     private string rawData;
 
