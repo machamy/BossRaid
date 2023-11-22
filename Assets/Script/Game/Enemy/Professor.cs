@@ -156,10 +156,14 @@ public class Professor : MonoBehaviour, DBUser
             startPoint = new Vector2(0, -1);
             endPoint = new Vector2(10, -1);
         }
-        foreach (Vector2 point in GetSplitPoss(startPoint, endPoint, num))
+
+        // 투사체 그룹 집합
+        HashSet<Projectile> group = new HashSet<Projectile>();
+        foreach (var pos in GetSplitPoss(startPoint, endPoint, num))
         {
-            //Vector2 direction = (point - startPoint).normalized;
-            ShootPosByPrefab(point, attend);
+            Projectile current = ShootPosByPrefab(pos, attend);
+            current.Group = group;
+            group.Add(current);
         }
     }
 
@@ -213,10 +217,10 @@ public class Professor : MonoBehaviour, DBUser
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="type"></param>
-    public void ShootPosByPrefab(Vector2 pos, GameObject prefab)
+    public Projectile ShootPosByPrefab(Vector2 pos, GameObject prefab)
     {
         Vector2 dir = (pos - new Vector2(transform.position.x, transform.position.y)).normalized;
-        ShootDirByPrefab(dir,prefab);
+        return ShootDirByPrefab(dir,prefab);
     }
 
     
@@ -255,11 +259,11 @@ public class Professor : MonoBehaviour, DBUser
     }
 
     //prefab 넘기는 방식 ?
-    public void ShootDirByPrefab(Vector2 dir, GameObject prefab)
+    public Projectile ShootDirByPrefab(Vector2 dir, GameObject prefab)
     {
         GameObject prjt = Instantiate(prefab);
         Projectile p = prjt.GetComponent<Projectile>();
-        ShootDir(p, dir);
+        return ShootDir(p, dir);
     }
 
     // [Obsolete]
@@ -270,11 +274,12 @@ public class Professor : MonoBehaviour, DBUser
     //     prjt.UpdateDirection();
     // }
 
-    internal void ShootDir(Projectile prjt, Vector2 dir)
+    internal Projectile ShootDir(Projectile prjt, Vector2 dir)
     {
         Debug.Log("[Professor::ShootDir] dir : " + dir);
         prjt.transform.position = shootPos.transform.position;
         prjt.UpdateDirection(dir);
+        return prjt;
     }
 
 

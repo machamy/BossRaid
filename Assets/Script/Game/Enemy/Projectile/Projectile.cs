@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -15,6 +16,7 @@ namespace Script.Game.Projectile
         public Vector2 facing;
         public Vector2 target;
         [SerializeField] private PrjtType type;
+        public HashSet<Projectile> Group { get; set; }
 
         public PrjtType Type => type;
 
@@ -38,6 +40,10 @@ namespace Script.Game.Projectile
         {
             p.Score += parringScore;
             Debug.Log(parringScore);
+            foreach (var prjt in Group)
+            {
+                prjt.parringScore = 0;
+            }
             Remove();
         }
         
