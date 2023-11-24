@@ -40,10 +40,11 @@ namespace Script.Game.Projectile
         {
             p.Score += parringScore;
             Debug.Log(parringScore);
-            foreach (var prjt in Group)
-            {
-                prjt.parringScore = 0;
-            }
+            if(parringScore > 0)
+                foreach (var prjt in Group)
+                {
+                    prjt.parringScore = 0;
+                }
             Remove();
         }
         

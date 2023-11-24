@@ -205,7 +205,6 @@ public class Professor : MonoBehaviour, DBUser
     {
         while (true)
         {
-            
             GameObject prjt = Instantiate(practice);
             ShootDir(prjt.GetComponent<Projectile>(), Vector2.left);
             yield return new WaitForSeconds(3);
