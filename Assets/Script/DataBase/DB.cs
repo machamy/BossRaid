@@ -43,6 +43,7 @@ public class DB
     public static string[] PhaseFrequencies => Get("PhaseFrequencies");	//float
     public static string[] TextResultFailLowScore => Get("TextResultFailLowScore");	//string
     public static string[] TextResultClearNoHit => Get("TextResultClearNoHit");	//string
+    
 
 
     public void SetData(string key, string[] value)
