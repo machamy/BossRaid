@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// 배경 관리 클래스
 /// </summary>
-public class BackGround : MonoBehaviour
+public class BackGroundManager : MonoBehaviour
 {
     [SerializeField] private PatternController pc;
     public List<Color> test_colors;
