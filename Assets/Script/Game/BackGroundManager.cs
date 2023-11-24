@@ -31,7 +31,7 @@ public class BackGroundManager : MonoBehaviour
     /// <param name="phasenum"></param>
     public void OnPhaseUpdate(int phasenum)
     {
-        Debug.Log(test_colors[phasenum]);
+        Debug.Log("[BackGroundManager::OnPhaseUpdate]"+test_colors[phasenum]);
         _renderer.color = test_colors[phasenum];
     }
 }
