@@ -6,6 +6,9 @@ namespace Script.Game
     public class GameSceneInputManager : BaseInputManager
     {
         [SerializeField] public GameObject PauseMenu;
+        [SerializeField] public GameObject HelpPanel;
+
+        public string gameSceneName = "GameScreen";
         
         public bool IsPause { get; private set; } = false;
 
@@ -28,7 +31,6 @@ namespace Script.Game
 
         protected override void OnEscape()
         {
-            //SceneManager.LoadScene("Scenes/TitleScreen");
             if (!IsPause)
             {
                 ToPause();
@@ -60,12 +62,21 @@ namespace Script.Game
 
         public void Restart()
         {
-
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(gameSceneName);
         }
 
-        public void Help()
+        public void HelpIn()
         {
             //UI 띄우기
+            PauseMenu.SetActive(false);
+            HelpPanel.SetActive(true);
+        }
+
+        public void HelpOut()
+        {
+            PauseMenu.SetActive(true);
+            HelpPanel.SetActive(false);
         }
 
         public void Tomain()
