@@ -12,11 +12,7 @@ namespace Script.Game.Enemy
   
         }
 
-        private int AttendAmount;
-        private Vector2 LeftPosStart = new Vector2(-10, -1);
-        private Vector2 LeftPosEnd= new Vector2(0, -1);
-        private Vector2 RightPosStart = new Vector2(0, -1);
-        private Vector2 RightPosEnd = new Vector2(-10, -1);
+
         
         
         public override IEnumerable<float> NextAction(Professor pf, Player.Player p)

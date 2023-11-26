@@ -23,7 +23,7 @@ namespace Script.Game.Enemy
                 pf.tpRight();
                 yield return 0.375f;
                 pf.tpRightUp();
-                pf.출첵();
+                pf.출첵(LeftPosStart,LeftPosEnd,AttendAmount);
                 yield return 0.5f;
                 pf.facing = Direction.Right;
                 pf.tpLeft();
@@ -34,7 +34,7 @@ namespace Script.Game.Enemy
                 pf.tpLeft();
                 yield return 0.375f;
                 pf.tpLeftUp();
-                pf.출첵();
+                pf.출첵(RightPosStart,RightPosEnd,AttendAmount);
                 yield return 0.5f;
                 pf.facing = Direction.Left;
                 pf.tpRight();
