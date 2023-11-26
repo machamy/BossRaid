@@ -33,6 +33,11 @@ public class DB
     public static string[] TeamProjectile => Get("TeamProjectile");	//float int int
     public static string[] PracticeProjectile => Get("PracticeProjectile");	//float int int
     public static string[] AttendProjectile => Get("AttendProjectile");	//float int int
+    public static string[] AttendDefaultAmount => Get("AttendDefaultAmount");	//int
+    public static string[] AttendLeftPosStart => Get("AttendLeftPosStart");	//float
+    public static string[] AttendLeftPosEnd => Get("AttendLeftPosEnd");	//float
+    public static string[] AttendRightPosStart => Get("AttendRightPosStart");	//float
+    public static string[] AttendRightPosEnd => Get("AttendRightPosEnd");	//float
     public static string[] Phase0Probability => Get("Phase0Probability");	//int
     public static string[] Phase1Probability => Get("Phase1Probability");	//int
     public static string[] Phase2Probability => Get("Phase2Probability");	//int
