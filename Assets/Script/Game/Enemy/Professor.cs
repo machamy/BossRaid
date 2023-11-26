@@ -141,21 +141,9 @@ public class Professor : MonoBehaviour, DBUser
         ShootDirByPrefab(dir, team);
     }
     
-    internal void 출첵(int num = 3, float degreeRange =  120f)
+    internal void 출첵(Vector2 startPoint, Vector2 endPoint,int num = 3)
     {
         Debug.Log("[Professor::출첵]");
-        Vector2 startPoint = Vector2.zero;
-        Vector2 endPoint = Vector2.zero;
-        if (facing == Direction.Left)
-        {
-            startPoint = new Vector2(-10, -1);
-            endPoint = new Vector2(0, -1);
-        }
-        else if (facing == Direction.Right)
-        {
-            startPoint = new Vector2(0, -1);
-            endPoint = new Vector2(10, -1);
-        }
 
         // 투사체 그룹 집합
         HashSet<Projectile> group = new HashSet<Projectile>();
