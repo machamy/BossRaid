@@ -82,6 +82,9 @@ namespace Script.Game.Enemy
                 var query = from v in data
                     select int.Parse(v);
                 p.ProbablityList = query.ToList();
+                int sum = 0;
+                p.ProbablityList.ForEach(n => sum += n);
+                p.sumOfProbability = sum;
             }
         }
 

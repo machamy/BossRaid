@@ -159,11 +159,19 @@ public class Professor : MonoBehaviour, DBUser
 
         // 투사체 그룹 집합
         HashSet<Projectile> group = new HashSet<Projectile>();
+        float first_distance = -1;
         foreach (var pos in GetSplitPoss(startPoint, endPoint, num))
         {
             Projectile current = ShootPosByPrefab(pos, attend);
+            float distance = (transform.position - (Vector3)pos).magnitude;
             current.Group = group;
             group.Add(current);
+            if (first_distance == -1)
+            {
+                first_distance = distance;
+                continue;
+            }
+            current.speed *= (distance/first_distance); // s1 = (d1/d0)s0
         }
     }
 
