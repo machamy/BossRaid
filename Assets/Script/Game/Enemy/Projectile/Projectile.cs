@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -40,7 +41,8 @@ namespace Script.Game.Projectile
         {
             p.Score += parringScore;
             Debug.Log(parringScore);
-            if(parringScore > 0)
+            if(parringScore > 0 && Group != null)
+                
                 foreach (var prjt in Group)
                 {
                     prjt.parringScore = 0;
