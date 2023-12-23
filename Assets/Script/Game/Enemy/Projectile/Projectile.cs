@@ -70,12 +70,13 @@ namespace Script.Game.Projectile
             facing = speed * dir;
         }
 
-        private void Start()
+        private void Update()
         {
-            //5초 뒤 투사체 삭제
-            Destroy(gameObject,5f);
-        }
-        
+            Vector3 prjtPoint = Camera.main.WorldToScreenPoint(transform.position);
+
+            if(prjtPoint.x<0 || prjtPoint.x>Screen.width || prjtPoint.y<0 || prjtPoint.y >Screen.height)
+                Remove();
+        }        
 
         private void FixedUpdate()
         {
@@ -90,6 +91,5 @@ namespace Script.Game.Projectile
         
         
     }
-    
     
 }
