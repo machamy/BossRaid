@@ -33,6 +33,12 @@ namespace Script.Game.Enemy
         /// <exception cref="Exception">sumOfProbability가 잘못됨</exception>
         public int GetNextPatternNum()
         {
+            //timeScale == 0일 때 패턴 선택 제한
+            if(Time.timeScale == 0f)
+            {
+                return 0;
+            }
+
             int random_value = Random.Range(0, sumOfProbability);
             for(int i = 0; i < ProbablityList.Count; i++)
             {

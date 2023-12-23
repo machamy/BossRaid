@@ -104,13 +104,17 @@ namespace Script.Game.Enemy
             while (true)
             {
                 Phase currentPhase = Phases[PhaseLv];
-                Pattern pattern = Patterns[currentPhase.GetNextPatternNum()];
-                Debug.Log("[PatternController::Routine] Sellected Pattern : " + pattern.GetType());
 
-                foreach (float delay in pattern.NextAction(pf,p))
+                if(Time.timeScale>0f)
                 {
-                    /// 패턴간의 딜레이
-                    yield return new WaitForSeconds(delay);
+                    Pattern pattern = Patterns[currentPhase.GetNextPatternNum()];
+                    Debug.Log("[PatternController::Routine] Sellected Pattern : " + pattern.GetType());
+
+                    foreach (float delay in pattern.NextAction(pf,p))
+                    {
+                        /// 패턴간의 딜레이
+                        yield return new WaitForSeconds(delay);
+                    }
                 }
                 // 페이즈간의 딜레이
                 yield return new WaitForSecondsRealtime(currentPhase.frequency);
