@@ -34,8 +34,10 @@ namespace Script.Game.Enemy
             
             
             pf.과제();
-            yield return 0.375f;
-            pf.팀플();
+            yield return 0.5f;
+            pf.과제();
+            yield return 0.5f;
+            pf.과제();
 
             yield return 0.5f;
         }
