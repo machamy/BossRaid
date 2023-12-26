@@ -26,16 +26,21 @@ namespace Script.Game.FireWall
             {
                 for (float x = minX; x <= maxX; x += 3.5f)
                 {
-                    Vector2 spawnPosition = new Vector2(x, transform.position.y);
+                    Vector2 spawnPosition = new Vector2(x, transform.position.y-7.5f);
                     SpawnFireWall(spawnPosition);
                 }
                 yield return new WaitForSeconds(1.5f);
             }
         }
 
-        internal void 퀴즈()
+        public void 퀴즈()
         {
             TestQuiz();
+        }
+
+        public void 랜덤퀴즈()
+        {
+            TestFunc(6.5f);
         }
 
         //Position 받아서 불기둥 스폰되도록
@@ -53,15 +58,15 @@ namespace Script.Game.FireWall
         }
 
 
-        public void TestFunc()
+        public void TestFunc(float xf)
         {
-            Vector2 newPos = new Vector2(transform.position.x-3.5f, transform.position.y - 7.5f);
+            Vector2 newPos = new Vector2(transform.position.x-xf, transform.position.y-7.5f);
             SpawnByPosition(newPos, fire);
         }
 
         public void TestQuiz()
         {
-            Vector2 playerPos = new Vector2 (player.transform.position.x, player.transform.position.y - 7.5f);
+            Vector2 playerPos = new Vector2 (player.transform.position.x, player.transform.position.y-7.5f);
             SpawnByPosition(playerPos, fire);
         }
 
@@ -70,6 +75,7 @@ namespace Script.Game.FireWall
         {
             //StartCoroutine(TestSpawn());
             //퀴즈();
+            //랜덤퀴즈();
         }
 
         // Update is called once per frame
