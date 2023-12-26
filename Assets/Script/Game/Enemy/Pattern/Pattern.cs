@@ -9,10 +9,10 @@ namespace Script.Game.Enemy
         public int MAX_ACTION_IDX { get; private set;}
         
         protected int AttendAmount = 3;
-        protected Vector2 LeftPosStart = new Vector2(-10, -1);
+        protected Vector2 LeftPosStart = new Vector2(-7, -1);
         protected Vector2 LeftPosEnd = new Vector2(0, -1);
         protected Vector2 RightPosStart = new Vector2(0, -1);
-        protected Vector2 RightPosEnd = new Vector2(-10, -1);
+        protected Vector2 RightPosEnd = new Vector2(7, -1);
         public Pattern(int maxActionIdx)
         {
             MAX_ACTION_IDX = maxActionIdx;
