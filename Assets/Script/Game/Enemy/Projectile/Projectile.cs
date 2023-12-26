@@ -66,7 +66,7 @@ namespace Script.Game.Projectile
         {
             float angle = MathF.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.up = dir;
+            transform.right = dir;
             facing = speed * dir;
         }
 
@@ -80,7 +80,7 @@ namespace Script.Game.Projectile
 
         private void FixedUpdate()
         {
-           transform.Translate(speed * Vector2.up, Space.Self); 
+           transform.Translate(speed * Vector2.right, Space.Self); 
             //transform.Translate(Vector3.left);
         }
 

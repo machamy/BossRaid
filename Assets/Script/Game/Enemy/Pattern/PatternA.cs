@@ -22,12 +22,12 @@ namespace Script.Game.Enemy
             
             if (isLeft)
             {
-                pf.facing = Direction.Right;
+                pf.Facing = Direction.Right;
                 pf.tpLeft();
             }
             else
             {
-                pf.facing = Direction.Left;
+                pf.Facing = Direction.Left;
                 pf.tpRight();
             }
             yield return 0.375f;

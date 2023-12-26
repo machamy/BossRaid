@@ -18,13 +18,27 @@ public class Professor : MonoBehaviour, DBUser
     public GameObject shootPos;
     public PatternController PatternController;
     [SerializeField] private Player player;
-    public Direction facing;
+    private Direction facing;
+
+    public Direction Facing
+    {
+        set
+        {
+            facing = value;
+            if (facing.HasFlag(Direction.Left))
+                renderer.flipX = false;
+            else
+                renderer.flipX = true;
+        }
+        get => facing;
+    }
     [SerializeField] public Transform PosSystem;
-    new public SpriteRenderer renderer;
+    public SpriteRenderer renderer;
 
     private void Awake()
     {
         facing = Direction.Left;
+        
     }
 
     
@@ -39,6 +53,7 @@ public class Professor : MonoBehaviour, DBUser
         ApplyDBdata();
         StartCoroutine("FadeOut");
         StartCoroutine(PatternController.Rountine(this, player));
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     public void ApplyDBdata()
@@ -127,14 +142,14 @@ public class Professor : MonoBehaviour, DBUser
     }
 
     
-    internal void 과제() => 과제(facing.Vector());
+    internal void 과제() => 과제(Facing.Vector());
     internal void 과제(Vector2 dir)
     {
         Debug.Log("[Professor::과제]");
         ShootDirByPrefab(dir, practice);
     }
     
-    internal void 팀플() => 팀플(facing.Vector());
+    internal void 팀플() => 팀플(Facing.Vector());
     internal void 팀플(Vector2 dir)
     {
         Debug.Log("[Professor::팀플]");
