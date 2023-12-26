@@ -9,6 +9,7 @@ using UnityEngine;
 public class BackGroundManager : MonoBehaviour
 {
     [SerializeField] private PatternController pc;
+    [SerializeField] private List<Sprite> bg_imgs;
     public List<Color> test_colors;
     private SpriteRenderer _renderer;
     
@@ -32,6 +33,15 @@ public class BackGroundManager : MonoBehaviour
     public void OnPhaseUpdate(int phasenum)
     {
         Debug.Log("[BackGroundManager::OnPhaseUpdate]"+test_colors[phasenum]);
-        _renderer.color = test_colors[phasenum];
+
+        if (bg_imgs[phasenum])
+        {
+            _renderer.color = Color.white;
+            _renderer.sprite = bg_imgs[phasenum];
+        }
+        else
+        {
+            _renderer.color = test_colors[phasenum];
+        }
     }
 }
