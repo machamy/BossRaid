@@ -1053,9 +1053,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2fb059f668c3b47b820d62c1b87fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fire: {fileID: 2238832256826191446, guid: 80570d020b7dafc47a7e62128d5310e5, type: 3}
+  fire: {fileID: 2238832256826191446, guid: 80570d020b7dafc47a7e62128d5310e5, type: 3}
   minX: -5
   maxX: 5
+  player: {fileID: 1799270148}
 --- !u!1 &384141298
 GameObject:
   m_ObjectHideFlags: 0
@@ -3705,7 +3706,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 316990780, guid: e83dbadf66f6d614aa3d31d90fb21ea2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

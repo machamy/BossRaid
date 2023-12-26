@@ -10,7 +10,7 @@ namespace Script.Game.FireWall
         public int damage;
         public float stopHeight = 3f; // 멈출높이
         private bool IsMove = true;
-        //private GameObject target;
+
 
         public virtual void OnHit(Player.Player p)
         {
@@ -30,13 +30,6 @@ namespace Script.Game.FireWall
             }
         }
 
-        //현재 플레이어의 위치를 받아 불기둥 생성 - 미구현
-        public void UpdateTargetFire()
-        {
-
-        }
-        
-
         private void Remove()
         {
             Destroy(gameObject);
@@ -46,7 +39,7 @@ namespace Script.Game.FireWall
         // Start is called before the first frame update
         void Start()
         {
-            //target = GameObject.FindGameObjectWithTag("Player");
+
         }
 
         // Update is called once per frame
