@@ -43,10 +43,12 @@ namespace Script.Game.Enemy
         {
             PhaseLv = 0;
             Patterns = new List<Pattern>();
+            Patterns.Add(new PatternSingle());
             Patterns.Add(new PatternA());
             Patterns.Add(new PatternB());
             Patterns.Add(new PatternC());
             Patterns.Add(new PatternD());
+            Patterns.Add(new PatternE());
             Patterns.Add(new PatternF());
         }
         /// <summary>
