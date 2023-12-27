@@ -40,13 +40,13 @@ namespace Script.Game.Enemy
             
         }
 
-        //패턴F
+        //패턴E
         public void 랜덤퀴즈(float StartPosx, float EndPosx)
         {
             StartCoroutine(TestSpawn(StartPosx,EndPosx));
         }
 
-        //패턴E
+        //패턴F
         public void 랜덤퀴즈()
         {
             Vector2 playerPos = new Vector2(player.transform.position.x, transform.position.y);

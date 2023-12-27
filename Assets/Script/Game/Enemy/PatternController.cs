@@ -47,6 +47,7 @@ namespace Script.Game.Enemy
             Patterns.Add(new PatternB());
             Patterns.Add(new PatternC());
             Patterns.Add(new PatternD());
+            Patterns.Add(new PatternF());
         }
         /// <summary>
         /// DB데이터를 모두 적용한다
