@@ -40,6 +40,7 @@ namespace Script.Game.Enemy
             }
 
             int random_value = Random.Range(0, sumOfProbability);
+            Debug.Log($"[Phase::GetNextPatternNum] val = {random_value}");
             for(int i = 0; i < ProbablityList.Count; i++)
             {
                 int next_probablities = ProbablityList[i];
@@ -52,6 +53,14 @@ namespace Script.Game.Enemy
             
             throw new Exception("[Phase::GetNextPattern] 알고리즘 에러");
             return 0;
+        }
+
+        public int initSumOfProbablity()
+        {
+            int sum = 0;
+            ProbablityList.ForEach(n => sum += n);
+            sumOfProbability = sum;
+            return sum;
         }
 
 

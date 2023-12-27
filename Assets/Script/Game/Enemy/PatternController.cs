@@ -37,6 +37,10 @@ namespace Script.Game.Enemy
         void Start()
         {
             ApplyDBdata();
+            foreach (var phase in Phases)
+            {
+                phase.initSumOfProbablity();
+            }
         }
 
         private void Awake()
@@ -85,9 +89,6 @@ namespace Script.Game.Enemy
                 var query = from v in data
                     select int.Parse(v);
                 p.ProbablityList = query.ToList();
-                int sum = 0;
-                p.ProbablityList.ForEach(n => sum += n);
-                p.sumOfProbability = sum;
             }
         }
 
