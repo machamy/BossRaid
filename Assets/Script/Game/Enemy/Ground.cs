@@ -35,10 +35,25 @@ namespace Script.Game.Enemy
             }
         }
 
-        //패턴E
-        public void 연속퀴즈()
+        //패턴E 연속퀴즈용
+        private IEnumerator SpawnSequentially(float start, float end)
         {
-            
+            float current = start;
+
+            while (current <= end)
+            {
+                Vector2 spawnPosition = new Vector2(current,transform.position.y);
+                SpawnByPosition(spawnPosition,fire);
+
+                current -= Posinterval;
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
+        //패턴E
+        public void 연속퀴즈(float StartPosx, float EndPosx)
+        {
+            StartCoroutine(SpawnSequentially(StartPosx,EndPosx));
         }
 
         //패턴C
@@ -48,13 +63,13 @@ namespace Script.Game.Enemy
         }
 
         //패턴F
-        public void 랜덤퀴즈()
+        public void 퀴즈()
         {
             Vector2 playerPos = new Vector2(player.transform.position.x, transform.position.y);
             TestInterval(playerPos);
         }
 
-        //Position 받아서 불기둥 스폰되도록
+        //Position 좌표로 받아서 불기둥 스폰
         public FireWall SpawnByPosition(Vector2 position, GameObject prefeb)
         {
             GameObject fire = Instantiate(prefeb);
@@ -66,19 +81,6 @@ namespace Script.Game.Enemy
         {
             fw.transform.position = position;
             return fw;
-        }
-
-
-        public void TestFunc(float xf)
-        {
-            Vector2 newPos = new Vector2(transform.position.x-xf, transform.position.y);
-            SpawnByPosition(newPos, fire);
-        }
-
-        public void TestQuiz()
-        {
-            Vector2 playerPos = new Vector2(player.transform.position.x, transform.position.y);
-            SpawnByPosition(playerPos, fire);
         }
 
         public void TestInterval(Vector2 playerPos)

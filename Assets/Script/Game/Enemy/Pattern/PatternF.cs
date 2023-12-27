@@ -16,7 +16,7 @@ namespace Script.Game.Enemy
         }
         public override IEnumerable<float> NextAction(Professor pf, Player.Player p)
         {
-            gr.랜덤퀴즈();
+            gr.퀴즈();
             yield return 1.0f;
         }
     }
