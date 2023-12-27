@@ -51,7 +51,7 @@ public class Professor : MonoBehaviour, DBUser
         Debug.Log(PatternController);
         player.OnScoreUpdateEvent.AddListener(PatternController.OnScoreUpdate);
         ApplyDBdata();
-        StartCoroutine("FadeOut");
+        StartCoroutine(FadeOut());
         StartCoroutine(PatternController.Rountine(this, player));
         renderer = GetComponent<SpriteRenderer>();
     }
