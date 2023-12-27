@@ -9,7 +9,8 @@ namespace Script.Game.Enemy
         public GameObject fire;
         public float minX = -5f;    
         public float maxX = 5f; 
-        public float interval = 1.5f;
+        public float Posinterval = 1.5f;
+        public float Quizdelay = 1.0f;
         public GameObject player;
 
 
@@ -19,15 +20,15 @@ namespace Script.Game.Enemy
             GameObject fireWall = Instantiate(fire, position, Quaternion.identity);
         }
 
-    
-        IEnumerator TestSpawn()
+        //패턴C 이동제한용 불기둥
+        IEnumerator TestSpawn(float minX, float maxX)
         {
             while (true)
             {
-                for (float x = minX; x <= maxX; x += 3.5f)
+                for (float x = minX; x <= maxX; x += Posinterval)
                 {
                     Vector2 spawnPosition = new Vector2(x, transform.position.y);
-                    SpawnFireWall(spawnPosition);
+                    SpawnByPosition(spawnPosition,fire);
                 }
                 yield return new WaitForSeconds(1.5f);
                 break;
@@ -36,17 +37,20 @@ namespace Script.Game.Enemy
 
         public void 퀴즈()
         {
-            TestQuiz();
+            
         }
 
+        //패턴F
         public void 랜덤퀴즈(float StartPosx, float EndPosx)
         {
-            TestFunc(6.5f);
+            StartCoroutine(TestSpawn(StartPosx,EndPosx));
         }
 
-        public void 랜덤퀴즈(float x)
+        //패턴E
+        public void 랜덤퀴즈()
         {
-            TestFunc(x);
+            Vector2 playerPos = new Vector2(player.transform.position.x, transform.position.y);
+            TestInterval(playerPos);
         }
 
         //Position 받아서 불기둥 스폰되도록
@@ -74,6 +78,21 @@ namespace Script.Game.Enemy
         {
             Vector2 playerPos = new Vector2(player.transform.position.x, transform.position.y);
             SpawnByPosition(playerPos, fire);
+        }
+
+        public void TestInterval(Vector2 playerPos)
+        {
+            Vector2 LeftPos = new Vector2(playerPos.x-Posinterval, transform.position.y);
+            Vector2 RightPos = new Vector2(playerPos.x+Posinterval, transform.position.y);
+            StartCoroutine(SpawnInterval(LeftPos));
+            StartCoroutine(SpawnInterval(RightPos));
+            StartCoroutine(SpawnInterval(playerPos, Quizdelay));
+        }
+
+        private IEnumerator SpawnInterval(Vector2 position, float delay = 0f)
+        {
+            yield return new WaitForSeconds(delay);
+            SpawnByPosition(position, fire);
         }
 
 

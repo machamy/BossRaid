@@ -25,9 +25,15 @@ namespace Script.Game.Enemy
                 if (transform.position.y >= 0.5f)
                 {
                     IsMove = false;
-                    //0.5f초 뒤 Remove();
+                    StartCoroutine(RemoveDelay(1.0f));
                 }
             }
+        }
+
+        private IEnumerator RemoveDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            Remove();
         }
 
         private void Remove()
