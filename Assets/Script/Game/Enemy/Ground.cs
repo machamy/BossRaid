@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Script.Game.FireWall
+namespace Script.Game.Enemy
 {
     public class Ground : MonoBehaviour
     {
         public GameObject fire;
         public float minX = -5f;    
         public float maxX = 5f; 
+        public float interval = 1.5f;
         public GameObject player;
-    
 
 
         //스폰 위치 인자로 받아 씀
@@ -26,10 +26,11 @@ namespace Script.Game.FireWall
             {
                 for (float x = minX; x <= maxX; x += 3.5f)
                 {
-                    Vector2 spawnPosition = new Vector2(x, transform.position.y-7.5f);
+                    Vector2 spawnPosition = new Vector2(x, transform.position.y);
                     SpawnFireWall(spawnPosition);
                 }
                 yield return new WaitForSeconds(1.5f);
+                break;
             }
         }
 
@@ -38,9 +39,14 @@ namespace Script.Game.FireWall
             TestQuiz();
         }
 
-        public void 랜덤퀴즈()
+        public void 랜덤퀴즈(float StartPosx, float EndPosx)
         {
             TestFunc(6.5f);
+        }
+
+        public void 랜덤퀴즈(float x)
+        {
+            TestFunc(x);
         }
 
         //Position 받아서 불기둥 스폰되도록
@@ -60,13 +66,13 @@ namespace Script.Game.FireWall
 
         public void TestFunc(float xf)
         {
-            Vector2 newPos = new Vector2(transform.position.x-xf, transform.position.y-7.5f);
+            Vector2 newPos = new Vector2(transform.position.x-xf, transform.position.y);
             SpawnByPosition(newPos, fire);
         }
 
         public void TestQuiz()
         {
-            Vector2 playerPos = new Vector2 (player.transform.position.x, player.transform.position.y-7.5f);
+            Vector2 playerPos = new Vector2(player.transform.position.x, transform.position.y);
             SpawnByPosition(playerPos, fire);
         }
 

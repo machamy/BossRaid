@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Script.Game.FireWall
+namespace Script.Game.Enemy
 {
     public class FireWall : MonoBehaviour
     {
         public float speed = 15f;
         public int damage;
-        public float stopHeight = 3f; // 멈출높이
         private bool IsMove = true;
 
 
@@ -22,10 +21,11 @@ namespace Script.Game.FireWall
         {
             if (IsMove)
             {
-                transform.Translate(Vector2.up * speed * Time.deltaTime);
-                if (transform.position.y >= stopHeight)
+                transform.Translate(Vector2.up * speed * Time.fixedDeltaTime);
+                if (transform.position.y >= 0.5f)
                 {
                     IsMove = false;
+                    //0.5f초 뒤 Remove();
                 }
             }
         }
@@ -43,8 +43,12 @@ namespace Script.Game.FireWall
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
+            Vector3 prjtPoint = Camera.main.WorldToScreenPoint(transform.position);
+            if(prjtPoint.y<0 || prjtPoint.y >Screen.height)
+                IsMove = false;
+
             UpdateFire();
         }
     }
