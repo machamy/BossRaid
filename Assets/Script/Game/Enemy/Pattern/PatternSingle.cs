@@ -22,24 +22,26 @@ namespace Script.Game.Enemy
         }
         public override IEnumerable<float> NextAction(Professor pf, Player.Player p)
         {
-            switch (GetNextAttack())
+            int atk = GetNextAttack();
+            switch (atk)
             {
-                case 1:
+                case 0:
                     pf.과제();
                     break;
-                case 2:
+                case 1:
                     pf.팀플();
                     break;
-                case 3:
+                case 2:
                     foreach (var delay in (Random.Range(0,2) == 0) ? 출첵L(pf) : 출첵R(pf))
                      {
                          yield return delay;
                      }
                     break;
-                case 4:
+                case 3:
                     gr.퀴즈();
                     break;
             }
+            Debug.Log($"[PatternSingle::NextAction] : {atk}(과제,팀플,출첵,퀴즈)");
             
             yield return 0.0f;
         }
