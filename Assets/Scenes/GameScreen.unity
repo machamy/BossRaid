@@ -484,7 +484,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 707355e48df49534494bcc287eb4261e, type: 2}
   - {fileID: 11400000, guid: c7de1fe417a02e84bbc67a36777a79e0, type: 2}
   - {fileID: 11400000, guid: 7c751dec69cce1d499829f8bfa3d25c2, type: 2}
-  PATTERN_NUM: 4
+  PATTERN_NUM: 7
   OnPhaseUpdateEvent:
     m_PersistentCalls:
       m_Calls: []
