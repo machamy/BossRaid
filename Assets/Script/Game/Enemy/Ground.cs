@@ -19,8 +19,7 @@ namespace Script.Game.Enemy
         {
             GameObject fireWall = Instantiate(fire, position, Quaternion.identity);
         }
-
-        //패턴C 이동제한용 불기둥
+        
         IEnumerator TestSpawn(float minX, float maxX)
         {
             while (true)
@@ -80,6 +79,7 @@ namespace Script.Game.Enemy
             SpawnByPosition(playerPos, fire);
         }
 
+        //패턴C 이동제한용 불기둥
         public void TestInterval(Vector2 playerPos)
         {
             Vector2 LeftPos = new Vector2(playerPos.x-Posinterval, transform.position.y);
