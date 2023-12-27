@@ -21,27 +21,10 @@ namespace Script.Game.Enemy
  
             for (int i = 0; i < 1; i++)
             {
-                if (isLeft)
+                var sellected_CC = (Random.Range(0, 2) == 0) ? 출첵L(pf) : 출첵R(pf);
+                foreach (var delay in sellected_CC)
                 {
-                    pf.Facing = Direction.Left;
-                    pf.tpRight();
-                    yield return 0.375f;
-                    pf.tpRightUp();
-                    pf.출첵(LeftPosStart,LeftPosEnd,AttendAmount);
-                    yield return 0.5f;
-                    pf.Facing = Direction.Right;
-                    pf.tpLeft();
-                }
-                else
-                {
-                    pf.Facing = Direction.Right;
-                    pf.tpLeft();
-                    yield return 0.375f;
-                    pf.tpLeftUp();
-                    pf.출첵(RightPosStart,RightPosEnd,AttendAmount);
-                    yield return 0.5f;
-                    pf.Facing = Direction.Left;
-                    pf.tpRight();
+                    yield return delay;
                 }
 		        yield return 0.375f;
             	pf.팀플();
