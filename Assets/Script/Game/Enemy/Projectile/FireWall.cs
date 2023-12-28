@@ -51,10 +51,7 @@ namespace Script.Game.Enemy
         // Update is called once per frame
         void FixedUpdate()
         {
-            Vector3 prjtPoint = Camera.main.WorldToScreenPoint(transform.position);
-            if(prjtPoint.y<0 || prjtPoint.y >Screen.height)
-                IsMove = false;
-
+            //StartCoroutine(RemoveDelay(1.5f));
             UpdateFire();
         }
     }
