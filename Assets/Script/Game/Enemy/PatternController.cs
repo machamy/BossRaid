@@ -101,10 +101,10 @@ namespace Script.Game.Enemy
         /// <param name="p">플레이어</param>
         public IEnumerator Rountine(Professor pf, Player.Player p)
         {
-
+            PhaseLv = 1;
             yield return new WaitForSeconds(2);
             pf.StartFadeIn();
-            PhaseLv = 1;
+            
             while (true)
             {
                 Phase currentPhase = Phases[PhaseLv];

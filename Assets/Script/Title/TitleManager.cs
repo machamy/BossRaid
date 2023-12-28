@@ -21,6 +21,7 @@ public class TitleManager : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
+        SoundManager.Instance.Play("BGM/Menu",SoundManager.SoundType.BGM);
     }
 
     // Update is called once per frame
@@ -32,6 +33,7 @@ public class TitleManager : MonoBehaviour
     public void ClickStart()
     {
         SceneManager.LoadScene(gameSceneName);
+        SoundManager.Instance.Clear();
     }
 
     /// <summary>

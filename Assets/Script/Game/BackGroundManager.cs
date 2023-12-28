@@ -5,6 +5,7 @@ using UnityEngine;
 
 /// <summary>
 /// 배경 관리 클래스
+/// 음악도 관리함!
 /// </summary>
 public class BackGroundManager : MonoBehaviour
 {
@@ -43,5 +44,14 @@ public class BackGroundManager : MonoBehaviour
         {
             _renderer.color = test_colors[phasenum];
         }
+
+        if (phasenum == 1)
+        {
+            SoundManager.Instance.Play("BGM/NormalField",SoundManager.SoundType.BGM);
+        }else if (phasenum == 4)
+        {
+            SoundManager.Instance.Play("BGM/NormalField",SoundManager.SoundType.BGM);
+        }
+        
     }
 }
