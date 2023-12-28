@@ -35,25 +35,11 @@ namespace Script.Game.Enemy
             }
         }
 
-        //패턴E 연속퀴즈용
-        private IEnumerator SpawnSequentially(float start, float end)
-        {
-            float current = start;
-
-            while (current <= end)
-            {
-                Vector2 spawnPosition = new Vector2(current,transform.position.y);
-                SpawnByPosition(spawnPosition,fire);
-
-                current -= Posinterval;
-                yield return new WaitForSeconds(0.5f);
-            }
-        }
-
         //패턴E
-        public void 연속퀴즈(float StartPosx, float EndPosx)
+        public void 연속퀴즈(Vector2 firePos)
         {
-            StartCoroutine(SpawnSequentially(StartPosx,EndPosx));
+            //StartCoroutine(SpawnSequentially(StartPosx,EndPosx));
+            SpawnByPosition(firePos,fire);
         }
 
         //패턴C
@@ -69,7 +55,7 @@ namespace Script.Game.Enemy
             TestInterval(playerPos);
         }
 
-        //퀴즈공격
+        //기본 퀴즈 공격
         public void 퀴즈()
         {
             Vector2 playerPos = new Vector2(player.transform.position.x, transform.position.y);

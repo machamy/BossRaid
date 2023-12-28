@@ -16,7 +16,13 @@ namespace Script.Game.Enemy
         }
         public override IEnumerable<float> NextAction(Professor pf, Player.Player p)
         {
-            gr.퀴즈();
+            for(float x = 4.0f; x > -7.0f; x -= 1.5f)
+            {
+                Vector2 newPos = new Vector2(x, 0.5f);
+                gr.연속퀴즈(newPos);
+                yield return 0.125f;
+            }
+    
             yield return 1.0f;
         }
     }
