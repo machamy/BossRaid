@@ -72,16 +72,17 @@ namespace Script.Game.Projectile
 
         private void Update()
         {
-            Vector3 prjtPoint = Camera.main.WorldToScreenPoint(transform.position);
-
-            if(prjtPoint.x<0 || prjtPoint.x>Screen.width || prjtPoint.y<0 || prjtPoint.y >Screen.height)
-                Remove();
+            
         }        
 
         private void FixedUpdate()
         {
-           transform.Translate(speed * Vector2.right, Space.Self); 
+            transform.Translate(speed * Vector2.right, Space.Self); 
             //transform.Translate(Vector3.left);
+
+            Vector3 prjtPoint = Camera.main.WorldToScreenPoint(transform.position);
+            if(prjtPoint.x<0 || prjtPoint.x>Screen.width || prjtPoint.y<0 || prjtPoint.y >Screen.height)
+                Remove();
         }
 
         private void Remove()
