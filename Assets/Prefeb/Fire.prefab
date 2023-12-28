@@ -145,4 +145,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15.06
   damage: 0
-  attackIndicator: {fileID: 5479406697940871573, guid: 26ebe77875037634385762e355d118e1, type: 3}
