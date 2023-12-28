@@ -9,7 +9,21 @@ namespace Script.Game.Enemy
         public float speed = 15f;
         public int damage;
         private bool IsMove = true;
+        private bool IsDamage = true;
 
+        private void OnTriggerEnter2D(Collider2D one)
+        {
+            if (one.CompareTag("Player"))
+            {
+                Player.Player player = one.GetComponent<Player.Player>();
+                if(IsDamage)
+                {
+                    OnHit(player);
+                    IsDamage = false;
+                }
+                
+            }
+        }
 
         public virtual void OnHit(Player.Player p)
         {
