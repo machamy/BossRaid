@@ -63,10 +63,17 @@ namespace Script.Game.Enemy
         }
 
         //패턴F
-        public void 퀴즈()
+        public void 좌우퀴즈()
         {
             Vector2 playerPos = new Vector2(player.transform.position.x, transform.position.y);
             TestInterval(playerPos);
+        }
+
+        //퀴즈공격
+        public void 퀴즈()
+        {
+            Vector2 playerPos = new Vector2(player.transform.position.x, transform.position.y);
+            SpawnByPosition(playerPos,fire);
         }
 
         //Position 좌표로 받아서 불기둥 스폰
