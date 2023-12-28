@@ -51,8 +51,8 @@ namespace Script.Game.Enemy
         // Update is called once per frame
         void FixedUpdate()
         {
-            //StartCoroutine(RemoveDelay(1.5f));
-            UpdateFire();
+            StartCoroutine(RemoveDelay(1.5f));
+            //UpdateFire();
         }
     }
 }
