@@ -72,7 +72,7 @@ namespace Script.Game.Enemy
                     }
                     else
                     {
-                        ProbablityList[i] = Math.Min(ProbablityList[i] - 10, 0);
+                        ProbablityList[i] = Math.Max(ProbablityList[i] - 10, 0);
                     }
                     return i;
                 }
