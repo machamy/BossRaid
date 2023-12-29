@@ -28,26 +28,27 @@ namespace Script.Game.Enemy
 
         protected IEnumerable<float> 출첵L(Professor pf)
         {
-            pf.Facing = Direction.Left;
             pf.tpRight();
-            yield return 0.375f;
+            yield return pf.teleport_time + 0.3f;
             pf.tpRightUp();
+            yield return pf.teleport_time + 0.3f;
             pf.출첵(LeftPosStart,LeftPosEnd,AttendAmount);
             yield return 0.5f;
             pf.Facing = Direction.Right;
             pf.tpLeft();
+            yield return pf.teleport_time;
         }
 
         protected IEnumerable<float> 출첵R(Professor pf)
         {
-            pf.Facing = Direction.Right;
             pf.tpLeft();
-            yield return 0.375f;
+            yield return pf.teleport_time + 0.3f;
             pf.tpLeftUp();
+            yield return pf.teleport_time + 0.3f;
             pf.출첵(RightPosStart,RightPosEnd,AttendAmount);
             yield return 0.5f;
-            pf.Facing = Direction.Left;
             pf.tpRight();
+            yield return pf.teleport_time;
         }
     }
     

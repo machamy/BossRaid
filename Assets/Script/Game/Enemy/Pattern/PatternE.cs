@@ -20,7 +20,7 @@ namespace Script.Game.Enemy
             for(float x = Startx; x > -7.0f; x -= 1.5f)
             {
                 pf.tpRight();
-                yield return 0.125f;
+                yield return pf.teleport_time;
                 Vector2 newPos = new Vector2(x, 0.5f);
                 gr.연속퀴즈(newPos);
             }

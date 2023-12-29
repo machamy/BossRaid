@@ -18,7 +18,7 @@ public class BackGroundManager : MonoBehaviour
     void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
-        pc.OnPhaseUpdateEvent.AddListener(OnPhaseUpdate);
+        pc.PhaseUpdateEvent.AddListener(OnPhaseUpdate);
     }
 
     // Update is called once per frame

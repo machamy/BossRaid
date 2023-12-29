@@ -21,15 +21,15 @@ namespace Script.Game.Enemy
             {
                 if (isLeft)
                 {
-                    pf.Facing = Direction.Right;
                     pf.tpLeft();
+                    yield return pf.teleport_time;
                     pf.과제();
                     yield return 0.5f;
                 }
                 else
                 {
-                    pf.Facing = Direction.Left;
                     pf.tpRight();
+                    yield return pf.teleport_time;
                     pf.과제();
                     yield return 0.5f;
                 }

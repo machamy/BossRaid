@@ -20,6 +20,8 @@ public class Professor : MonoBehaviour, DBUser
     [SerializeField] private Player player;
     private Direction facing;
 
+    private Animator _animator;
+    
     public Direction Facing
     {
         set
@@ -47,12 +49,13 @@ public class Professor : MonoBehaviour, DBUser
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
-
+        _animator = GetComponent<Animator>();
         Debug.Log(PatternController);
         player.OnScoreUpdateEvent.AddListener(PatternController.OnScoreUpdate);
         ApplyDBdata();
-        StartCoroutine(FadeOut());
+        //StartCoroutine(FadeOut());
         StartCoroutine(PatternController.Rountine(this, player));
+        PatternController.PhaseUpdateEvent.AddListener(OnPhaseUpdateEvnet);
         renderer = GetComponent<SpriteRenderer>();
     }
 
@@ -71,8 +74,40 @@ public class Professor : MonoBehaviour, DBUser
             prjt.damage = int.Parse(datas[2]);
         }
     }
+
+    public float teleport_time = 0.4f;
+
+    public void OnPhaseUpdateEvnet(int num)
+    {
+        teleport_time = Mathf.Min(0.1f, 0.4f - num * 0.05f);
+    }
     
-    private IEnumerator FadeOut()
+    /// <summary>
+    /// 순간이동과 방향 전환을 한번에
+    /// </summary>
+    /// <param name="position"></param>
+    public void StartTeleport(Vector3 position, float total_time = 0.4f)
+    {
+        if (position == transform.position)
+            return;
+        StartCoroutine(TeleportRoutine(position,total_time));
+    }
+
+    private IEnumerator TeleportRoutine(Vector3 position, float total_time)
+    {
+        _animator.SetBool("IsTeleporting", true);
+        var time = total_time / 2;
+        StartCoroutine(FadeOut(time));
+        yield return new WaitForSeconds(time);
+        transform.position = position;
+        if (transform.position.x < 0) facing = Direction.Right;
+        else facing = Direction.Left;
+        StartCoroutine(FadeIn(time));
+        yield return new WaitForSeconds(time);
+        _animator.SetBool("IsTeleporting", false);
+    }
+    
+    private IEnumerator FadeOut(float time)
     {
         int i = 10;
         while (i > 0)
@@ -82,11 +117,11 @@ public class Professor : MonoBehaviour, DBUser
             Color c = renderer.material.color;
             c.a = f;
             renderer.material.color = c;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(time/10);
         }
     }
 
-    private IEnumerator FadeIn()
+    private IEnumerator FadeIn(float time)
     {
         int i = 0;
         while (i < 10)
@@ -96,13 +131,13 @@ public class Professor : MonoBehaviour, DBUser
             Color c = renderer.material.color;
             c.a = f;
             renderer.material.color = c;
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(time/10);
         }
     }
-    public void StartFadeIn()
-    {
-        StartCoroutine(FadeIn());
-    }
+    // public void StartFadeIn()
+    // {
+    //     //StartCoroutine(FadeIn());
+    // }
 
 
     // Update is called once per frame
@@ -114,31 +149,25 @@ public class Professor : MonoBehaviour, DBUser
     internal void tpLeft()
     {
         Vector3 Lp = PosSystem.GetChild(0).position;
-        if(shootPos.transform.position != Lp)
-        {
-            transform.position = Lp;
-        }
+        StartTeleport(Lp);
     }
 
     internal void tpRight()
     {
         Vector3 Rp = PosSystem.GetChild(1).position;
-        if(shootPos.transform.position != Rp)
-        {
-            transform.position = Rp;
-        }
+        StartTeleport(Rp);
     }
 
     internal void tpLeftUp()    //고정Pos 생성해서 tp
     {
         Vector3 LUp = PosSystem.GetChild(2).position;
-        transform.position = LUp;
+        StartTeleport(LUp);
     }
 
     internal void tpRightUp()    
     {
         Vector3 RUp = PosSystem.GetChild(3).position;
-        transform.position = RUp;
+        StartTeleport(RUp);
     }
 
     

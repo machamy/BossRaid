@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 using System.Linq;
 using Script.Global;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Script.Game.Enemy
 {
@@ -21,7 +22,8 @@ namespace Script.Game.Enemy
         [SerializeField] private List<Phase> Phases;
         [SerializeField] private int PATTERN_NUM;
         private int phaseLv;
-        public UnityEvent<int> OnPhaseUpdateEvent;
+        [FormerlySerializedAs("OnPhaseUpdateEvent")] 
+        public UnityEvent<int> PhaseUpdateEvent;
     
         public int PhaseLv
         {
@@ -30,7 +32,7 @@ namespace Script.Game.Enemy
             {
                 Debug.Log("phase LV : " +value);
                 phaseLv = value;
-                OnPhaseUpdateEvent.Invoke(phaseLv);
+                PhaseUpdateEvent.Invoke(phaseLv);
             }
         }
 
@@ -103,7 +105,7 @@ namespace Script.Game.Enemy
         {
             PhaseLv = 1;
             yield return new WaitForSeconds(2);
-            pf.StartFadeIn();
+            
             
             while (true)
             {
