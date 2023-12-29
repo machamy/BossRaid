@@ -14,6 +14,7 @@ namespace Script.Game
         public float defaultSpeed;
 
         public bool canMove;
+        public bool isMoving;
         
         public Vector3 currentVelocity;
         public Vector3 previousVelocity;
@@ -35,8 +36,16 @@ namespace Script.Game
         
         private void FixedUpdate()
         {
-            if(canMove)
+            
+            if (canMove)
+            {
                 ApplyMovement();
+                if (currentVelocity.magnitude != 0)
+                    isMoving = true;
+                else
+                    isMoving = false;
+            }
+            previousVelocity = currentVelocity;
             currentVelocity = Vector3.zero; // 관성 제거
         }
 
@@ -45,7 +54,6 @@ namespace Script.Game
         /// </summary>
         private void ApplyMovement()
         {
-            previousVelocity = currentVelocity;
             transform.Translate(currentVelocity);
         }
         

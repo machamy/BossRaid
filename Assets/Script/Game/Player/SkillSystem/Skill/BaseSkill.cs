@@ -42,6 +42,11 @@ namespace Script.Game.Player
             p.Parry(type, isDirectional);
         }
 
+        public virtual void OnEndAcitavte(Player p)
+        {
+            p.IsUsingSkill = false;
+        }
+
         /// <summary>
         /// 쿨타임 시작시 실행
         /// </summary>

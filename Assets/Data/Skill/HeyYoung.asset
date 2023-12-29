@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82572188a5894960aae4921fe335b5d0, type: 3}
   m_Name: HeyYoung
   m_EditorClassIdentifier: 
+  delay: 0.2
   cooldown: 1
-  duration: 0.2
+  duration: 0.6
   isDirectional: 0
   animation: 
   type: 2
+  canActiveMove: 0

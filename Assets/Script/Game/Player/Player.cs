@@ -23,13 +23,24 @@ namespace Script.Game.Player
         private int score;
         private bool isAlive;
         private bool isInvincible;
-        
-        
+
+        private Animator Animator;
 
         private Movement Movement;
-        public bool IsUsingSkill => SkillHolders.Any((sh => sh.State.HasFlag(SkillHolder.SkillState.active)));
+        private bool isUsingSkill = false;
+
+        public bool IsUsingSkill
+        {
+            get => isUsingSkill;
+            set
+            {
+                isUsingSkill = value;
+                Animator.SetBool("IsUsingSkill", value);
+            }
+        }
         public bool IsAlive => isAlive;
 
+        public bool IsMoving => Movement.isMoving;
         public bool CanMove
         {
             get => canMove;
@@ -113,6 +124,7 @@ namespace Script.Game.Player
         {
             Movement = GetComponent<Movement>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            Animator = GetComponent<Animator>();
             ApplyDBdata();
             hp = DEAFAULT_HP;
             isAlive = true;
@@ -132,15 +144,32 @@ namespace Script.Game.Player
         // Update is called once per frame
         void Update()
         {
-            
+            Animator.SetBool("IsMoving", IsMoving);
         }
+
+        private void FixedUpdate()
+        {
+            float border = 5f;
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -border, border),
+                transform.position.y
+                ,transform.position.z);
+        }
+
         public void ForceParry()
         {
             Parry(PrjtType.Attend, true);
             Parry(PrjtType.Practice, true);
             Parry(PrjtType.Team, true);
         }
-        
+
+
+        public void PlayAnimation(string name, float time)
+        {
+            float speed = 1.0f / time;
+            Animator.SetFloat($"{name}Speed",speed);
+            Animator.SetBool("IsUsingSkill", true);
+            Animator.SetTrigger(name);
+        }
         
         /// <summary>
         /// 지정된 type에 따른 투사체를 패링구역에서 패링.
@@ -185,6 +214,7 @@ namespace Script.Game.Player
             PlayerPrefs.SetInt("result_hp", hp);
             PlayerPrefs.SetInt("result_score", score);
             SceneManager.LoadScene("Scenes/ResultScreen");
+            SoundManager.Instance.Clear();
         }
 
         /*

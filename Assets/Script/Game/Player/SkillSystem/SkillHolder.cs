@@ -62,8 +62,9 @@ namespace Script.Game.Player
         private IEnumerator ActiveRoutine()
         {
             _skillState |= SkillState.active;
-            if (skill.Duration != 0)
-                yield return new WaitForSeconds(skill.Duration);
+            p.PlayAnimation(skill.name,skill.Duration + skill.Delay);
+            if (skill.Delay != 0)
+                yield return new WaitForSeconds(skill.Delay);
             acitveTime = skill.Duration;
             if (!skill.CanActiveMove)
                 p.CanMove = false;
@@ -77,6 +78,7 @@ namespace Script.Game.Player
             if (!skill.CanActiveMove)
                 p.CanMove = true;
             
+            skill.OnEndAcitavte(p);
             _skillState &= ~SkillState.active;
         }
         /// <summary>

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82572188a5894960aae4921fe335b5d0, type: 3}
   m_Name: IPad
   m_EditorClassIdentifier: 
+  delay: 0.2
   cooldown: 0.5
-  duration: 0.1
+  duration: 0.5
   isDirectional: 1
   animation: 
   type: 0
