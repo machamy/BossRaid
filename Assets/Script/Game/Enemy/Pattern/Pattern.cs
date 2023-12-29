@@ -34,7 +34,6 @@ namespace Script.Game.Enemy
             yield return pf.teleport_time + 0.3f;
             pf.출첵(LeftPosStart,LeftPosEnd,AttendAmount);
             yield return 0.5f;
-            pf.Facing = Direction.Right;
             pf.tpLeft();
             yield return pf.teleport_time;
         }
