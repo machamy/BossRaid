@@ -30,11 +30,11 @@ namespace Script.Game.Enemy
                 pf.출첵(LeftPosStart,LeftPosEnd,AttendAmount);
                 yield return 2.0f;
 
-                gr.랜덤퀴즈(LeftPosStart.x,LeftPosEnd.x);
-                yield return 1.0f;
-                
                 pf.tpRight();
                 yield return pf.teleport_time;
+
+                gr.랜덤퀴즈(LeftPosStart.x,LeftPosEnd.x);
+                yield return 0.5f;
             }
             else
             {
@@ -47,13 +47,14 @@ namespace Script.Game.Enemy
                 yield return pf.teleport_time + 0.3f;
                 pf.출첵(RightPosStart,RightPosEnd,AttendAmount);
                 yield return 2.0f;
-
-                gr.랜덤퀴즈(RightPosStart.x,RightPosEnd.x);
-                yield return 1.0f;
                 
                 pf.tpLeft();
                 yield return pf.teleport_time;
+
+                gr.랜덤퀴즈(RightPosStart.x,RightPosEnd.x);
+                yield return 0.5f;
             }
+            yield return 0.5f;
         }
     }
 }
