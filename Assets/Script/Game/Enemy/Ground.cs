@@ -19,7 +19,7 @@ namespace Script.Game.Enemy
         {
             while (true)
             {
-                for (float x = minX; x < maxX; x += Posinterval)
+                for (float x = minX + Posinterval; x < maxX; x += Posinterval)
                 {
                     Vector2 spawnPosition = new Vector2(x, transform.position.y);
                     StartCoroutine(SpawnByPosition(spawnPosition, fire));
