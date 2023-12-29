@@ -7,28 +7,25 @@ namespace Script.Game.Enemy
     public class Ground : MonoBehaviour
     {
         public GameObject fire;
-        public float minX = -5f;    
-        public float maxX = 5f; 
+        public GameObject firePreview;
+        public float previewDelay = 1.0f;
         public float Posinterval = 1.5f;
-        public float Quizdelay = 1.0f;
+        public float Quizdelay = 1.0f;  //좌우 공격 시 딜레이
         public GameObject player;
 
 
-        //스폰 위치 인자로 받아 씀
-        public void SpawnFireWall(Vector2 position)
-        {
-            GameObject fireWall = Instantiate(fire, position, Quaternion.identity);
-        }
+
 
         //패턴C 이동제한용 불기둥
         IEnumerator TestSpawn(float minX, float maxX)
         {
             while (true)
             {
-                for (float x = minX; x <= maxX; x += Posinterval)
+                for (float x = minX; x < maxX; x += Posinterval)
                 {
                     Vector2 spawnPosition = new Vector2(x, transform.position.y);
-                    SpawnByPosition(spawnPosition,fire);
+                    //SpawnByPosition(spawnPosition,fire);
+                    StartCoroutine(SpawnByPosition(spawnPosition, fire));
                 }
                 yield return new WaitForSeconds(1.5f);
                 break;
@@ -38,8 +35,8 @@ namespace Script.Game.Enemy
         //패턴E
         public void 연속퀴즈(Vector2 firePos)
         {
-            //StartCoroutine(SpawnSequentially(StartPosx,EndPosx));
             SpawnByPosition(firePos,fire);
+            StartCoroutine(SpawnByPosition(firePos, fire));
         }
 
         //패턴C
@@ -59,21 +56,36 @@ namespace Script.Game.Enemy
         public void 퀴즈()
         {
             Vector2 playerPos = new Vector2(player.transform.position.x, transform.position.y);
-            SpawnByPosition(playerPos,fire);
+            StartCoroutine(SpawnByPosition(playerPos, fire));
         }
 
         //Position 좌표로 받아서 불기둥 스폰
-        public FireWall SpawnByPosition(Vector2 position, GameObject prefeb)
+        public IEnumerator SpawnByPosition(Vector2 position, GameObject prefeb)
         {
-            GameObject fire = Instantiate(prefeb);
-            FireWall firewall = fire.GetComponent<FireWall>();
-            return SpawnFireWall(firewall, position);
+            // 미리보기용 공격 범위 표시
+            showPreview(position);
+
+            // 딜레이 후 실제 공격 발동
+            yield return StartCoroutine(realAttack(position, prefeb));
+
+            // 선딜레이 1.0f 후 공격 범위 OFF
+            StartCoroutine(hidePreview(1.5f));
         }
 
-        public FireWall SpawnFireWall(FireWall fw, Vector2 position)
+        IEnumerator realAttack(Vector2 pos, GameObject prefeb)
         {
-            fw.transform.position = position;
-            return fw;
+            yield return new WaitForSeconds(previewDelay);
+
+            GameObject fire = Instantiate(prefeb);
+            FireWall firewall = fire.GetComponent<FireWall>();
+            firewall.transform.position = pos;
+
+        }
+
+        IEnumerator hidePreview(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            firePreview.SetActive(false);
         }
 
         public void TestInterval(Vector2 playerPos)
@@ -88,15 +100,19 @@ namespace Script.Game.Enemy
         private IEnumerator SpawnInterval(Vector2 position, float delay = 0f)
         {
             yield return new WaitForSeconds(delay);
-            SpawnByPosition(position, fire);
+            StartCoroutine(SpawnByPosition(position, fire));
         }
 
+        public void showPreview(Vector2 position)
+        {
+            Instantiate(firePreview, position, Quaternion.identity);
+            firePreview.transform.position = position;
+            firePreview.SetActive(true);
+        }
 
         void Start()
         {
-            //StartCoroutine(TestSpawn());
-            //퀴즈();
-            //랜덤퀴즈();
+
         }
 
         // Update is called once per frame

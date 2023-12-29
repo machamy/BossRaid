@@ -953,8 +953,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: 2238832256826191446, guid: 80570d020b7dafc47a7e62128d5310e5, type: 3}
-  minX: -5
-  maxX: 5
+  firePreview: {fileID: 2238832256826191446, guid: dfc26196afb2bc141acb2eb1b3488159, type: 3}
+  previewDelay: 1.5
   Posinterval: 1.5
   Quizdelay: 1
   player: {fileID: 1799270148}

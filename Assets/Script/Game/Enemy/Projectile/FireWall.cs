@@ -7,6 +7,7 @@ namespace Script.Game.Enemy
     public class FireWall : MonoBehaviour
     {
         public float speed = 15f;
+        public float lifetime = 1.5f;
         public int damage;
         private bool IsMove = true;
         private bool IsDamage = true;
@@ -59,13 +60,13 @@ namespace Script.Game.Enemy
         // Start is called before the first frame update
         void Start()
         {
-
+            
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
-            StartCoroutine(RemoveDelay(1.5f));
+            StartCoroutine(RemoveDelay(lifetime));
             //UpdateFire();
         }
     }
