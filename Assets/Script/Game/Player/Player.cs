@@ -24,19 +24,18 @@ namespace Script.Game.Player
         private bool isAlive;
         private bool isInvincible;
         
-        public bool IsAlive => isAlive;
+        
 
         private Movement Movement;
         public bool IsUsingSkill => SkillHolders.Any((sh => sh.State.HasFlag(SkillHolder.SkillState.active)));
+        public bool IsAlive => isAlive;
+
         public bool CanMove
         {
             get => canMove;
-            set
-            {
-                Movement.canMove = this.canMove = value;
-            }
+            set { Movement.canMove = this.canMove = value; }
         }
-        
+
         private bool isLeft;
         private bool canMove;
 
@@ -49,14 +48,15 @@ namespace Script.Game.Player
                 {
                     return;
                 }
+
                 isLeft = value;
                 if (isLeft)
                 {
-                    transform.localScale = new Vector3(-1,1,1);
+                    transform.localScale = new Vector3(-1, 1, 1);
                 }
                 else
                 {
-                    transform.localScale = new Vector3(1,1,1);
+                    transform.localScale = new Vector3(1, 1, 1);
                 }
             }
         }
