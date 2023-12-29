@@ -24,8 +24,7 @@ namespace Script.Game.Enemy
                 Vector2 newPos = new Vector2(x, 0.5f);
                 gr.연속퀴즈(newPos);
             }
-    
-            yield return 1.0f;
+            
         }
     }
 }

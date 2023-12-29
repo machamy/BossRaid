@@ -19,7 +19,6 @@ namespace Script.Game.Enemy
             pf.tpRight();
             yield return pf.teleport_time;
             gr.좌우퀴즈();
-            yield return 1.0f;
         }
     }
 }

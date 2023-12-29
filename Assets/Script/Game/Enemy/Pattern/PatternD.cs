@@ -35,7 +35,6 @@ namespace Script.Game.Enemy
                 
                 isLeft = !isLeft;
             }
-            yield return 1.0f;
         }
     }
 }
