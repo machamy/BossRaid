@@ -27,13 +27,13 @@ namespace Script.Game.Enemy
 
                 pf.tpRightUp(); //공중에 위치
                 pf.출첵(LeftPosStart,LeftPosEnd,AttendAmount);
-                yield return 1.5f;
+                yield return 2.0f;
 
                 gr.랜덤퀴즈(LeftPosStart.x,LeftPosEnd.x);
                 yield return 1.0f;
 
-                pf.Facing = Direction.Right;
-                pf.tpLeft();
+                pf.Facing = Direction.Left;
+                pf.tpRight();
             }
             else
             {
@@ -44,18 +44,14 @@ namespace Script.Game.Enemy
 
                 pf.tpLeftUp();
                 pf.출첵(RightPosStart,RightPosEnd,AttendAmount);
-                yield return 1.5f;
+                yield return 2.0f;
 
                 gr.랜덤퀴즈(RightPosStart.x,RightPosEnd.x);
                 yield return 1.0f;
 
-                pf.Facing = Direction.Left;
-                pf.tpRight();
+                pf.Facing = Direction.Right;
+                pf.tpLeft();
             }
-            yield return 0.5f;
-            pf.과제();
-            yield return 0.175f;
-            pf.과제();
             
             yield return 1.0f;
         }

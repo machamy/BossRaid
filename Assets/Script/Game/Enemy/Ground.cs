@@ -8,12 +8,10 @@ namespace Script.Game.Enemy
     {
         public GameObject fire;
         public GameObject firePreview;
-        public float previewDelay = 1.0f;
+        public float previewTime = 1.0f;
         public float Posinterval = 1.5f;
         public float Quizdelay = 1.0f;  //좌우 공격 시 딜레이
         public GameObject player;
-
-
 
 
         //패턴C 이동제한용 불기둥
@@ -24,7 +22,6 @@ namespace Script.Game.Enemy
                 for (float x = minX; x < maxX; x += Posinterval)
                 {
                     Vector2 spawnPosition = new Vector2(x, transform.position.y);
-                    //SpawnByPosition(spawnPosition,fire);
                     StartCoroutine(SpawnByPosition(spawnPosition, fire));
                 }
                 yield return new WaitForSeconds(1.5f);
@@ -67,25 +64,16 @@ namespace Script.Game.Enemy
 
             // 딜레이 후 실제 공격 발동
             yield return StartCoroutine(realAttack(position, prefeb));
-
-            // 선딜레이 1.0f 후 공격 범위 OFF
-            StartCoroutine(hidePreview(1.5f));
         }
 
         IEnumerator realAttack(Vector2 pos, GameObject prefeb)
         {
-            yield return new WaitForSeconds(previewDelay);
+            yield return new WaitForSeconds(previewTime);
 
             GameObject fire = Instantiate(prefeb);
             FireWall firewall = fire.GetComponent<FireWall>();
             firewall.transform.position = pos;
 
-        }
-
-        IEnumerator hidePreview(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            firePreview.SetActive(false);
         }
 
         public void TestInterval(Vector2 playerPos)
@@ -107,7 +95,6 @@ namespace Script.Game.Enemy
         {
             Instantiate(firePreview, position, Quaternion.identity);
             firePreview.transform.position = position;
-            firePreview.SetActive(true);
         }
 
         void Start()

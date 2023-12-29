@@ -9,6 +9,7 @@ namespace Script.Game.Enemy
     public class PatternE : Pattern
     {
         private Ground gr;
+        private float Startx = 3.0f;
         
         public PatternE() : base(2)
         {
@@ -16,11 +17,12 @@ namespace Script.Game.Enemy
         }
         public override IEnumerable<float> NextAction(Professor pf, Player.Player p)
         {
-            for(float x = 4.0f; x > -7.0f; x -= 1.5f)
+            for(float x = Startx; x > -7.0f; x -= 1.5f)
             {
+                pf.tpRight();
+                yield return 0.125f;
                 Vector2 newPos = new Vector2(x, 0.5f);
                 gr.연속퀴즈(newPos);
-                yield return 0.125f;
             }
     
             yield return 1.0f;

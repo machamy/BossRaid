@@ -16,6 +16,8 @@ namespace Script.Game.Enemy
         }
         public override IEnumerable<float> NextAction(Professor pf, Player.Player p)
         {
+            pf.tpRight();
+            yield return 0.5f;
             gr.좌우퀴즈();
             yield return 1.0f;
         }
