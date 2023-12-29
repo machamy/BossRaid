@@ -103,7 +103,7 @@ namespace Script.Game.Enemy
         /// <param name="p">플레이어</param>
         public IEnumerator Rountine(Professor pf, Player.Player p)
         {
-            PhaseLv = 1;
+            PhaseLv = 3;
             yield return new WaitForSeconds(2);
             
             

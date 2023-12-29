@@ -100,8 +100,8 @@ public class Professor : MonoBehaviour, DBUser
         StartCoroutine(FadeOut(time));
         yield return new WaitForSeconds(time);
         transform.position = position;
-        if (transform.position.x < 0) facing = Direction.Right;
-        else facing = Direction.Left;
+        if (transform.position.x < 0) Facing = Direction.Right;
+        else Facing = Direction.Left;
         StartCoroutine(FadeIn(time));
         yield return new WaitForSeconds(time);
         _animator.SetBool("IsTeleporting", false);

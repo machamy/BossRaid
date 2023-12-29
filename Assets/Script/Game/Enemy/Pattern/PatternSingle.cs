@@ -47,7 +47,7 @@ namespace Script.Game.Enemy
         }
 
         private int MAX_PROBABILTY = 100;
-        private int[] ProbablityList = {25,25,25,25};
+        private int[] ProbablityList = {25,25,25,25};//{25,25,25,25};
         private int previous_attack = -1;
         
         /// <summary>
