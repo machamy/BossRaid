@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 76e34ad602152a04c9d90d8df264c09f
+guid: 0bb01a2282201b744a48a893b64d55a9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cd72e599a3f59f469b32b3ade4c11a4
-      internalID: 796645261
+      spriteID: c856e6d2fbffdf74f90e1cf2a56a5842
+      internalID: -1030822110
       vertices: []
       indices: 
       edges: []
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bf6005fb00b23440bf99b46672cdadf
-      internalID: 1446249088
+      spriteID: d2187fad67301f245ac34097dfe1d7ab
+      internalID: 1441928035
       vertices: []
       indices: 
       edges: []
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69f78a0bc768f964f973b0cc0696a2d4
-      internalID: -448533951
+      spriteID: d4eed0866af0dc646ac848f5f81818f3
+      internalID: -1912247442
       vertices: []
       indices: 
       edges: []
@@ -200,29 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80c149ba9093a9246bd364f93435085a
-      internalID: -2086450468
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "student 2 \uB2EC\uB9AC\uAE30_4"
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8eb39ac112724db48b1bf46d19701c14
-      internalID: 396840216
+      spriteID: d841da12994a09a4d842929f47e4690f
+      internalID: 490753581
       vertices: []
       indices: 
       edges: []
@@ -238,11 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "student 2 \uB2EC\uB9AC\uAE30_0": 796645261
-      "student 2 \uB2EC\uB9AC\uAE30_1": 1446249088
-      "student 2 \uB2EC\uB9AC\uAE30_2": -448533951
-      "student 2 \uB2EC\uB9AC\uAE30_3": -2086450468
-      "student 2 \uB2EC\uB9AC\uAE30_4": 396840216
+      "student 2 \uB2EC\uB9AC\uAE30_0": -1030822110
+      "student 2 \uB2EC\uB9AC\uAE30_1": 1441928035
+      "student 2 \uB2EC\uB9AC\uAE30_2": -1912247442
+      "student 2 \uB2EC\uB9AC\uAE30_3": 490753581
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
