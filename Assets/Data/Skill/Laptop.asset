@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Laptop
   m_EditorClassIdentifier: 
   delay: 0.2
-  cooldown: 0.3
+  cooldown: 0.9
   duration: 0.6
   isDirectional: 1
   effectAnimation: 

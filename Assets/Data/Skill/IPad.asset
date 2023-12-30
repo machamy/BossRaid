@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IPad
   m_EditorClassIdentifier: 
   delay: 0.2
-  cooldown: 0.5
+  cooldown: 0.8
   duration: 0.5
   isDirectional: 1
   effectAnimation: 

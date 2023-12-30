@@ -86,7 +86,7 @@ namespace Script.Game.Player
         public bool IsMoving => Movement.isMoving;
         public bool CanMove
         {
-            get => canMove && !IsDashing;
+            get => canMove;
             set { canMove = value; }
         }
 

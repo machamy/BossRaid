@@ -23,10 +23,12 @@ public class DB
     }
 
     private Dictionary<string, string[]> data = new ();
-    public static string[] DB_VERSION => Get("DB_VERSION");	//string
+public static string[] DB_VERSION => Get("DB_VERSION");	//string
 public static string[] PlayerSpeed => Get("PlayerSpeed");	//float
 public static string[] PlayerHP => Get("PlayerHP");	//int
 public static string[] PlayerInvicbleTime => Get("PlayerInvicbleTime");	//float
+public static string[] PlayerDashAmount => Get("PlayerDashAmount");	//float
+public static string[] PlayerDashSpeed => Get("PlayerDashSpeed");	//float
 public static string[] HeyYoung => Get("HeyYoung");	//float float bool string bool
 public static string[] IPad => Get("IPad");	//float float bool string bool
 public static string[] Laptop => Get("Laptop");	//float float bool string bool
@@ -48,7 +50,10 @@ public static string[] Phase5Probability => Get("Phase5Probability");	//int
 public static string[] PhaseScores => Get("PhaseScores");	//int (소수는버림처리)
 public static string[] PhaseFrequencies => Get("PhaseFrequencies");	//float
 public static string[] TextResultFailLowScore => Get("TextResultFailLowScore");	//string
-public static string[] TextResultClearNoHit => Get("TextResultClearNoHit");	//string
+public static string[] TextResultClearlow => Get("TextResultClearlow");	//string
+public static string[] TextResultClearmid => Get("TextResultClearmid");	//string
+public static string[] TextResultClearhigh => Get("TextResultClearhigh");	//string
+public static string[] TextResultClearPer => Get("TextResultClearPer");	//string
 public static string[] FireWall => Get("FireWall"); //float int
 public static string[] FireWallAttack => Get("FireWallAttack"); //float
 public static string[] FireWallPattern => Get("FireWallPattern"); //float float

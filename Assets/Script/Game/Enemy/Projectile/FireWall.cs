@@ -31,7 +31,6 @@ namespace Script.Game.Enemy
                     OnHit(player);
                     IsDamage = false;
                 }
-                
             }
         }
 
