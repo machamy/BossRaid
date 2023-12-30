@@ -10,14 +10,17 @@ namespace Script.Game.Enemy
     {
         private Ground gr;
         private float Startx = 3.0f;
+        public float Posinterval;
         
         public PatternE() : base(5,2)
         {
             gr = GameObject.FindObjectOfType<Ground>();
+            Posinterval = gr.Posinterval;
         }
         public override IEnumerable<float> NextAction(Professor pf, Player.Player p)
         {
-            for(float x = Startx; x > -7.0f; x -= 1.5f)
+            
+            for(float x = Startx; x > -7.0f; x -= Posinterval)
             {
                 pf.tpRight();
                 yield return pf.teleport_time;
