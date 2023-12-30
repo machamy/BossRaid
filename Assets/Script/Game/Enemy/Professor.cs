@@ -81,16 +81,19 @@ public class Professor : MonoBehaviour, DBUser
     {
         teleport_time = Mathf.Min(0.1f, 0.4f - num * 0.05f);
     }
+
+    public float StartTeleport(Vector3 position) => StartTeleport(position, teleport_time);
     
     /// <summary>
     /// 순간이동과 방향 전환을 한번에
     /// </summary>
     /// <param name="position"></param>
-    public void StartTeleport(Vector3 position, float total_time = 0.4f)
+    public float StartTeleport(Vector3 position, float total_time)
     {
         if (position == transform.position)
-            return;
+            return 0;
         StartCoroutine(TeleportRoutine(position,total_time));
+        return total_time;
     }
 
     private IEnumerator TeleportRoutine(Vector3 position, float total_time)
@@ -170,22 +173,53 @@ public class Professor : MonoBehaviour, DBUser
         StartTeleport(RUp);
     }
 
+
+    internal void 과제()
+    {
+        _animator.SetTrigger("Practice");
+    }
+
+    internal void 팀플()
+    {
+        _animator.SetTrigger("Team");
+    }
     
-    internal void 과제() => 과제(Facing.Vector());
-    internal void 과제(Vector2 dir)
+    internal void 출첵(Vector2 startPoint, Vector2 endPoint,int num = 3)
+    {
+        _tmpAttendStartPos = startPoint;
+        _tmpAttendEndPos = endPoint;
+        _tmpAttendNum = num;
+        _animator.SetTrigger("Attendance");
+    }
+    
+    /// <summary>
+    /// animation event로 호출
+    /// </summary>
+    internal void Shoot과제() => Shoot과제(Facing.Vector());
+    internal void Shoot과제(Vector2 dir)
     {
         Debug.Log("[Professor::과제]");
         ShootDirByPrefab(dir, practice);
     }
-    
-    internal void 팀플() => 팀플(Facing.Vector());
-    internal void 팀플(Vector2 dir)
+    /// <summary>
+    /// animation event로 호출
+    /// </summary>
+    internal void Shoot팀플() => Shoot팀플(Facing.Vector());
+    internal void Shoot팀플(Vector2 dir)
     {
         Debug.Log("[Professor::팀플]");
         ShootDirByPrefab(dir, team);
     }
+
+    private Vector2 _tmpAttendStartPos;
+    private Vector2 _tmpAttendEndPos;
+    private int _tmpAttendNum;
+    /// <summary>
+    /// animation event로 호출
+    /// </summary>
+    internal void Shoot출첵() => Shoot출첵(_tmpAttendStartPos,_tmpAttendEndPos,_tmpAttendNum);
     
-    internal void 출첵(Vector2 startPoint, Vector2 endPoint,int num = 3)
+    internal void Shoot출첵(Vector2 startPoint, Vector2 endPoint,int num = 3)
     {
         Debug.Log("[Professor::출첵]");
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f2f9c92c2dc9f45498c0974d052a9c28
+guid: 60888e120c328284ea2b3e06976b6d58
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "prof2-2  \uCD9C\uCCB5 \uACF5\uACA9_0"
+      name: prof2 normal attack motion_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a8318f7b7609c64c8540f388a49a087
-      internalID: -1630569304
+      spriteID: 8e8b4313bb29cca42a698dd41bad9604
+      internalID: 757915200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "prof2-2  \uCD9C\uCCB5 \uACF5\uACA9_1"
+      name: prof2 normal attack motion_1
       rect:
         serializedVersion: 2
         x: 64
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7f09e187bdab1d4389427b81975dc78
-      internalID: -947482982
+      spriteID: 08d3925b5cc5ee447b0a056dc01415fe
+      internalID: 849438002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "prof2-2  \uCD9C\uCCB5 \uACF5\uACA9_2"
+      name: prof2 normal attack motion_2
       rect:
         serializedVersion: 2
         x: 128
@@ -179,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58a5b834729f7324784d12913eae4f37
-      internalID: 340442102
+      spriteID: 1644f44df979ec941989f6397ad13e60
+      internalID: 419792440
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "prof2-2  \uCD9C\uCCB5 \uACF5\uACA9_3"
+      name: prof2 normal attack motion_3
       rect:
         serializedVersion: 2
         x: 192
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6f5f27583fc3c7429f054139db6f252
-      internalID: 525934199
+      spriteID: 85ce7a500e7ac1d4cb9d21bd466fcb34
+      internalID: -329088176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "prof2-2  \uCD9C\uCCB5 \uACF5\uACA9_4"
+      name: prof2 normal attack motion_4
       rect:
         serializedVersion: 2
         x: 256
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b7a1f7f13c346e4b80571878e6f0d26
-      internalID: 1111417018
+      spriteID: 36f58e472dff5f14f92f92e7e28643f6
+      internalID: -1792374568
       vertices: []
       indices: 
       edges: []
@@ -238,11 +238,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "prof2-2  \uCD9C\uCCB5 \uACF5\uACA9_0": -1630569304
-      "prof2-2  \uCD9C\uCCB5 \uACF5\uACA9_1": -947482982
-      "prof2-2  \uCD9C\uCCB5 \uACF5\uACA9_2": 340442102
-      "prof2-2  \uCD9C\uCCB5 \uACF5\uACA9_3": 525934199
-      "prof2-2  \uCD9C\uCCB5 \uACF5\uACA9_4": 1111417018
+      prof2 normal attack motion_0: 757915200
+      prof2 normal attack motion_1: 849438002
+      prof2 normal attack motion_2: 419792440
+      prof2 normal attack motion_3: -329088176
+      prof2 normal attack motion_4: -1792374568
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
