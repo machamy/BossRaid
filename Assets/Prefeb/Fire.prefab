@@ -147,6 +147,7 @@ MonoBehaviour:
   speed: 15.06
   lifetime: 1.5
   damage: 1
+  sound: {fileID: 8300000, guid: 4259046872e3f664ba1792bb965e53e6, type: 3}
 --- !u!50 &2676730479784433725
 Rigidbody2D:
   serializedVersion: 4

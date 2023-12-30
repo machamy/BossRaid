@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Script.Global;
+using Script.Game.Projectile;
 using UnityEngine;
 
 namespace Script.Game.Enemy
@@ -75,7 +76,7 @@ namespace Script.Game.Enemy
             GameObject fire = Instantiate(prefeb);
             FireWall firewall = fire.GetComponent<FireWall>();
             firewall.transform.position = pos;
-
+            firewall.OnSummon();
         }
 
         public void TestInterval(Vector2 playerPos)

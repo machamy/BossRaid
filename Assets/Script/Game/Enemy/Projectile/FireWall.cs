@@ -12,6 +12,13 @@ namespace Script.Game.Enemy
         public int damage;
         private bool IsMove = true;
         private bool IsDamage = false;
+        [SerializeField] private AudioClip sound;
+
+        public virtual void OnSummon()
+        {
+            if(sound != null)
+                SoundManager.Instance.Play(sound);
+        }
 
         private void OnTriggerEnter2D(Collider2D one)
         {
