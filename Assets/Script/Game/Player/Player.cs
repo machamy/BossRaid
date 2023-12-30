@@ -29,11 +29,14 @@ namespace Script.Game.Player
         private Animator barrierAnimator;
         [SerializeField]
         private Animator shieldAnimator;
-
+        [SerializeField]
+        private Animator swingAnimator;
+        
         private Movement Movement;
         private bool isUsingSkill;
         private bool isBarriering;
         private bool isShielding;
+        private bool isSwinging;
     
 
         public bool IsDashing => Movement.isDashing;
@@ -67,6 +70,17 @@ namespace Script.Game.Player
                 shieldAnimator.SetBool("IsShielding", value);
             }
         }
+        
+        public bool IsSwinging
+        {
+            get => isSwinging;
+            set
+            {
+                isSwinging = value;
+                swingAnimator.SetBool("IsSwinging", value);
+            }
+        }
+        
         public bool IsAlive => isAlive;
 
         public bool IsMoving => Movement.isMoving;
