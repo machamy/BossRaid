@@ -27,7 +27,7 @@ namespace Script.Game.Player
         private Animator Animator;
 
         private Movement Movement;
-        private bool isUsingSkill = false;
+        private bool isUsingSkill;
 
         public bool IsUsingSkill
         {
