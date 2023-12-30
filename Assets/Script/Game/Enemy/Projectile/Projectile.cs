@@ -30,6 +30,11 @@ namespace Script.Game.Projectile
         public virtual void OnHit(Player.Player p)
         {
             p.HP -= damage;
+            if(damage > 0 && Group != null)
+                foreach (var prjt in Group)
+                {
+                    prjt.damage = 0;
+                }
             Remove();
         }
         /// <summary>
@@ -40,7 +45,6 @@ namespace Script.Game.Projectile
         public virtual void OnParring(Player.Player p)
         {
             p.Score += parringScore;
-            Debug.Log(parringScore);
             if(parringScore > 0 && Group != null)
                 
                 foreach (var prjt in Group)
