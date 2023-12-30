@@ -25,9 +25,12 @@ namespace Script.Game.Player
         private bool isInvincible;
 
         private Animator Animator;
+        [SerializeField]
+        private Animator barrierAnimator;
 
         private Movement Movement;
         private bool isUsingSkill;
+        private bool isBarriering;
 
         public bool IsUsingSkill
         {
@@ -36,6 +39,16 @@ namespace Script.Game.Player
             {
                 isUsingSkill = value;
                 Animator.SetBool("IsUsingSkill", value);
+            }
+        }
+        
+        public bool IsBarriering
+        {
+            get => isBarriering;
+            set
+            {
+                isBarriering = value;
+                barrierAnimator.SetBool("IsBarriering", value);
             }
         }
         public bool IsAlive => isAlive;
@@ -170,6 +183,7 @@ namespace Script.Game.Player
             Animator.SetBool("IsUsingSkill", true);
             Animator.SetTrigger(name);
         }
+        
         
         /// <summary>
         /// 지정된 type에 따른 투사체를 패링구역에서 패링.

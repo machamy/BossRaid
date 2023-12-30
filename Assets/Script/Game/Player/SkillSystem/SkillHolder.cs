@@ -69,6 +69,7 @@ namespace Script.Game.Player
             if (!skill.CanActiveMove)
                 p.CanMove = false;
             // 활성화시
+            skill.OnBeginActivate(p);
             while (acitveTime > 0)
             {
                 acitveTime -= Time.deltaTime;
@@ -114,7 +115,7 @@ namespace Script.Game.Player
             if (_skillState == SkillState.ready)
             {
                 Debug.Log("[SkillHolder::Activate]'" + skill.name + " is Activated!");
-                skill.OnBeginActivate(p);
+                
                 StartCoroutine(ActiveRoutine());
                 StartCoroutine(CoolDownRoutine());
             }
