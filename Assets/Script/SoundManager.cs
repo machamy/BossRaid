@@ -95,7 +95,6 @@ public class SoundManager
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
             audioSource.Play();
-            Debug.Log($"[SoundManager::Play] play bgm : {audioClip.name}");
         }
         else // Effect 효과음 재생
         {

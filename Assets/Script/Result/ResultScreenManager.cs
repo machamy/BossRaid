@@ -60,6 +60,7 @@ public class ResultScreenManager : BaseInputManager
     /// <returns></returns>
     IEnumerator ShowResultPage()
     {
+        SoundManager.Instance.Play("BGM/Clear",SoundManager.SoundType.BGM);
         isOnProgress = true;
         scoreText.SetText($"점수 : {score.ToString("D"+10)}");
         hpText.SetText($"학점 : {SCORE_NAMES[hp]}");
