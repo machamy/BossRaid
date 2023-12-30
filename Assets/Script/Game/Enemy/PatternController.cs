@@ -115,6 +115,10 @@ namespace Script.Game.Enemy
                 {
                     Pattern pattern = Patterns[currentPhase.GetNextPatternNum()];
                     Debug.Log("[PatternController::Routine] Sellected Pattern : " + pattern.GetType());
+                    // 패턴 이름 출력
+                    if(pattern.ID > 0)
+                        pf.Display.displayPattern(pattern.ID);
+                    // 단일 공격은 해당 클래스에서 관리
 
                     foreach (float delay in pattern.NextAction(pf,p))
                     {

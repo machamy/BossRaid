@@ -9,7 +9,7 @@ namespace Script.Game.Enemy
     public class PatternC : Pattern
     {
         private Ground gr;
-        public PatternC() : base(3)
+        public PatternC() : base(3,3)
         {
             gr = GameObject.FindObjectOfType<Ground>();
         }

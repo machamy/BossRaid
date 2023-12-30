@@ -219,11 +219,11 @@ namespace Script.Game.Player
         public IEnumerator InvincibleRoutine()
         {
             Color original = _spriteRenderer.color;
-            _spriteRenderer.color = Color.yellow; // 테스트용 색 변경
+            //_spriteRenderer.color = Color.yellow; // 테스트용 색 변경
             isInvincible = true;
             yield return new WaitForSeconds(INVICIBLE_TIME);
             isInvincible = false;
-            _spriteRenderer.color = original;
+            //_spriteRenderer.color = original;
         }
         
         

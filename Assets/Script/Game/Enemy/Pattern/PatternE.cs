@@ -11,7 +11,7 @@ namespace Script.Game.Enemy
         private Ground gr;
         private float Startx = 3.0f;
         
-        public PatternE() : base(2)
+        public PatternE() : base(5,2)
         {
             gr = GameObject.FindObjectOfType<Ground>();
         }

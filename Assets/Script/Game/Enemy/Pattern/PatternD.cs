@@ -7,7 +7,7 @@ namespace Script.Game.Enemy
     
     public class PatternD: Pattern
     {
-        public PatternD() : base(8)
+        public PatternD() : base(4,8)
         {
   
         }

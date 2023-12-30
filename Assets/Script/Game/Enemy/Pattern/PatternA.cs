@@ -10,7 +10,7 @@ namespace Script.Game.Enemy
     /// </summary>
     public class PatternA : Pattern
     {
-        public PatternA() : base(2)
+        public PatternA() : base(1,2)
         {
         }
 

@@ -8,7 +8,7 @@ namespace Script.Game.Enemy
     /// </summary>
     public class PatternB : Pattern
     {
-        public PatternB() : base(4)
+        public PatternB() : base(2,4)
         {
   
         }

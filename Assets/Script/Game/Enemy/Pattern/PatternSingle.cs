@@ -15,7 +15,7 @@ namespace Script.Game.Enemy
         private Ground gr;
         
         
-        public PatternSingle() : base(2)
+        public PatternSingle() : base(0,2)
         {
             gr = GameObject.FindObjectOfType<Ground>();
             
@@ -23,6 +23,7 @@ namespace Script.Game.Enemy
         public override IEnumerable<float> NextAction(Professor pf, Player.Player p)
         {
             int atk = GetNextAttack();
+            pf.Display.displaySA(atk);
             switch (atk)
             {
                 case 0:

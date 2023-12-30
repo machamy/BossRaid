@@ -7,6 +7,7 @@ using Script.Game.Player;
 using Script.Game.Projectile;
 using Script.Global;
 using UnityEngine;
+using Display = Script.Game.Enemy.Projectile.Display;
 
 public class Professor : MonoBehaviour, DBUser
 {
@@ -18,6 +19,8 @@ public class Professor : MonoBehaviour, DBUser
     public GameObject shootPos;
     public PatternController PatternController;
     [SerializeField] private Player player;
+    [SerializeField] private Display display;
+    public Display Display => display;
     private Direction facing;
 
     private Animator _animator;
