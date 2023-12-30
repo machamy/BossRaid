@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Script.Global;
 using UnityEngine;
 
 namespace Script.Game.Enemy
 {
-    public class Ground : MonoBehaviour
+    public class Ground : MonoBehaviour, DBUser
     {
+        [SerializeField]
         public GameObject fire;
         public GameObject firePreview;
-        public float previewTime = 1.0f;
-        public float Posinterval = 1.5f;
-        public float Quizdelay = 1.0f;  //좌우 공격 시 딜레이
+        public float previewTime;
+        public float Posinterval;
+        public float Posdelay;
+        public float Quizdelay;  //좌우 공격 시 딜레이
         public GameObject player;
 
 
@@ -32,7 +35,6 @@ namespace Script.Game.Enemy
         //패턴E
         public void 연속퀴즈(Vector2 firePos)
         {
-            SpawnByPosition(firePos,fire);
             StartCoroutine(SpawnByPosition(firePos, fire));
         }
 
@@ -99,13 +101,18 @@ namespace Script.Game.Enemy
 
         void Start()
         {
-
+            ApplyDBdata();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void ApplyDBdata()
         {
-
+            if(DB.FireWallAttack != null)
+                previewTime = float.Parse(DB.FireWallAttack[0]);
+            if(DB.FireWallPattern != null)
+            {
+                Posinterval = float.Parse(DB.FireWallPattern[0]);
+                Quizdelay = float.Parse(DB.FireWallPattern[1]);
+            }
         }
     }
 }

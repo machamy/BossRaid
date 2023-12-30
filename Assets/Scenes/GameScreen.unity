@@ -964,6 +964,7 @@ MonoBehaviour:
   firePreview: {fileID: 2238832256826191446, guid: dfc26196afb2bc141acb2eb1b3488159, type: 3}
   previewTime: 1
   Posinterval: 1.5
+  Posdelay: 1.5
   Quizdelay: 2
   player: {fileID: 1799270148}
 --- !u!1 &269081218
