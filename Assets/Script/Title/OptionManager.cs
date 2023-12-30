@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Script.Game
 {
@@ -8,13 +9,17 @@ namespace Script.Game
         [SerializeField] private GameObject OptionUI;
         [SerializeField] private GameObject BGM;
         [SerializeField] private GameObject Effect;
+        [SerializeField] private Slider BGMSlider;
+        [SerializeField] private Slider EffectSlider;
+
         private float volume_bgm;
         private float volume_effect;
         private void Start()
         {
-            float volume_bgm = PlayerPrefs.GetFloat("volume_bgm",0.5f);
-            float volume_effect = PlayerPrefs.GetFloat("volume_effect",0.5f);
-            
+            volume_bgm = PlayerPrefs.GetFloat("volume_bgm",0.5f);
+            volume_effect = PlayerPrefs.GetFloat("volume_effect",0.5f);
+            BGMSlider.value = volume_bgm;
+            EffectSlider.value = volume_effect;
         }
 
         public void OnBGMVolumeChange(float val)
