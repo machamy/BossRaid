@@ -50,7 +50,7 @@ public class BackGroundManager : MonoBehaviour
             SoundManager.Instance.Play("BGM/NormalField",SoundManager.SoundType.BGM);
         }else if (phasenum == 4)
         {
-            SoundManager.Instance.Play("BGM/NormalField",SoundManager.SoundType.BGM);
+            SoundManager.Instance.Play("BGM/FinalField",SoundManager.SoundType.BGM);
         }
         
     }
