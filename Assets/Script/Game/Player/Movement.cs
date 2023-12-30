@@ -16,8 +16,7 @@ namespace Script.Game.Player
         public float defaultSpeed;
         public float dashDistance;
         public float dashTime;
-
-        public bool canMove;
+        
         public bool isMoving;
         
         public Vector3 currentVelocity;
@@ -29,7 +28,6 @@ namespace Script.Game.Player
             body = transform.GetComponent<Rigidbody2D>();
             p = GetComponent<Player>();
             previousVelocity = currentVelocity = Vector3.zero;
-            canMove = true;
         }
 
         // Update is called once per frame
@@ -42,7 +40,7 @@ namespace Script.Game.Player
         private void FixedUpdate()
         {
             
-            if (canMove)
+            if (p.CanMove)
             {
                 ApplyMovement();
                 if (currentVelocity.magnitude != 0)
