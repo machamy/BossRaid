@@ -279,7 +279,6 @@ GameObject:
   - component: {fileID: 82930184}
   - component: {fileID: 82930183}
   - component: {fileID: 82930182}
-  - component: {fileID: 82930181}
   - component: {fileID: 82930186}
   - component: {fileID: 82930187}
   - component: {fileID: 82930188}
@@ -290,23 +289,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &82930181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 82930180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd9356a2a4319c8498716ea0a0d3ab52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultSpeed: 4
-  canMove: 0
-  isMoving: 0
-  currentVelocity: {x: 0, y: 0, z: 0}
-  previousVelocity: {x: 0, y: 0, z: 0}
 --- !u!50 &82930182
 Rigidbody2D:
   serializedVersion: 4
@@ -3869,6 +3851,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onLeftDoubleEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightDoubleEvent:
+    m_PersistentCalls:
+      m_Calls: []
   midRange: 15
 --- !u!1 &1653465471
 GameObject:

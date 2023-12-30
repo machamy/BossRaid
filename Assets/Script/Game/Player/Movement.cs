@@ -1,6 +1,7 @@
+using System.Collections;
 using UnityEngine;
 
-namespace Script.Game
+namespace Script.Game.Player
 {
     /// <summary>
     /// 이동 함수.
@@ -11,7 +12,10 @@ namespace Script.Game
     public class Movement : MonoBehaviour
     {
         private Rigidbody2D body;
+        private Player p;
         public float defaultSpeed;
+        public float dashDistance;
+        public float dashTime;
 
         public bool canMove;
         public bool isMoving;
@@ -23,6 +27,7 @@ namespace Script.Game
         protected virtual void Start()
         {
             body = transform.GetComponent<Rigidbody2D>();
+            p = GetComponent<Player>();
             previousVelocity = currentVelocity = Vector3.zero;
             canMove = true;
         }
@@ -64,6 +69,27 @@ namespace Script.Game
         public void HorizontalMove(float delta)
         {
             currentVelocity += new Vector3(delta * defaultSpeed, 0);
+        }
+
+        internal bool isDashing = false;
+        public void Dash(float delta)
+        {
+            float distance = delta * dashDistance;
+            StartCoroutine(DashRoutine(distance, dashTime));
+            StartCoroutine(p.InvincibleRoutine(dashTime));
+        }
+
+        public IEnumerator DashRoutine(float distance, float time)
+        {
+            int num = 10;
+            isDashing = true;
+            for (int i = 0; i < num; i++)
+            {
+                currentVelocity = Vector3.right * (distance / num);
+                yield return new WaitForSeconds((float)time / num);
+            }
+
+            isDashing = false;
         }
     }
 }

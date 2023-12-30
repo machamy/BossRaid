@@ -15,6 +15,12 @@ namespace Script.Game
         [FormerlySerializedAs("onLeft")] public UnityEvent onLeftEvent;
         [FormerlySerializedAs("onRight")] public UnityEvent onRightEvent;
 
+        private float interval = 0.25f;
+        private float prevTimeL = -1f;
+        private float prevTimeR = -1f;
+        
+        public UnityEvent onLeftDoubleEvent;
+        public UnityEvent onRightDoubleEvent;
         /// <summary>
         /// 중간의 0으로 취급되는 너비
         /// </summary>
@@ -24,6 +30,31 @@ namespace Script.Game
         {
             base.OnPointerDown(eventData);
             _positionPointer = eventData.position;
+    
+            if (_positionPointer.x < transform.position.x-midRange)
+            {
+                if (Time.time - prevTimeL < interval)
+                {
+                    prevTimeL = -1.0f;
+                    onLeftDoubleEvent.Invoke();
+                }
+                else
+                {
+                    prevTimeL = Time.time;
+                }
+            }
+            else if (_positionPointer.x > transform.position.x+midRange)
+            {
+                if (Time.time - prevTimeR < interval)
+                {
+                    prevTimeR = -1.0f;
+                    onRightDoubleEvent.Invoke();
+                }
+                else
+                {
+                    prevTimeR = Time.time;
+                }
+            }
         }
 
         public void OnBeginDrag(PointerEventData eventData)

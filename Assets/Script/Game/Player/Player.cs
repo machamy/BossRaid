@@ -31,6 +31,9 @@ namespace Script.Game.Player
         private Movement Movement;
         private bool isUsingSkill;
         private bool isBarriering;
+    
+
+        public bool IsDashing => Movement.isDashing;
 
         public bool IsUsingSkill
         {
@@ -164,6 +167,7 @@ namespace Script.Game.Player
         void Update()
         {
             Animator.SetBool("IsMoving", IsMoving);
+            Animator.SetBool("IsDashing",IsDashing);
         }
 
         private void FixedUpdate()
@@ -174,6 +178,8 @@ namespace Script.Game.Player
                 ,transform.position.z);
         }
 
+
+
         public void ForceParry()
         {
             Parry(PrjtType.Attend, true);
@@ -182,7 +188,7 @@ namespace Script.Game.Player
         }
 
 
-        public void PlayAnimation(string name, float time)
+        public void PlaySkillAnimation(string name, float time)
         {
             float speed = 1.0f / time;
             Animator.SetFloat($"{name}Speed",speed);
@@ -215,15 +221,17 @@ namespace Script.Game.Player
             }
             return count;
         }
-
-        public IEnumerator InvincibleRoutine()
+        public IEnumerator InvincibleRoutine() => InvincibleRoutine(INVICIBLE_TIME);
+        public IEnumerator InvincibleRoutine(float time)
         {
             Color original = _spriteRenderer.color;
-            //_spriteRenderer.color = Color.yellow; // 테스트용 색 변경
+            Color tmp = _spriteRenderer.color;
+            tmp.a = 0.5f; // 테스트용 색 변경
+            _spriteRenderer.color = tmp;
             isInvincible = true;
-            yield return new WaitForSeconds(INVICIBLE_TIME);
+            yield return new WaitForSeconds(time);
             isInvincible = false;
-            //_spriteRenderer.color = original;
+            _spriteRenderer.color = original;
         }
         
         

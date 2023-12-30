@@ -62,7 +62,7 @@ namespace Script.Game.Player
         private IEnumerator ActiveRoutine()
         {
             _skillState |= SkillState.active;
-            p.PlayAnimation(skill.name,skill.Duration + skill.Delay);
+            p.PlaySkillAnimation(skill.name,skill.Duration + skill.Delay);
             skill.OnStartProcess(p);
             //선딜레이
             if (skill.Delay != 0)
