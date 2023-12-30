@@ -162,7 +162,8 @@ public class SoundManager
     public void ChangeVolumeEffect(float val)
     {
         var nodeSrc = _effectSources.First;
-
+        if (nodeSrc == null)
+            return;
         do
         {
             var src = nodeSrc.Value;

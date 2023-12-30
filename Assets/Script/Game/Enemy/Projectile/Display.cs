@@ -103,9 +103,9 @@ namespace Script.Game.Enemy.Projectile
             int r,g,b;
             var raw = code.Substring(1);;
             int s = 0;
-            r = Convert.ToInt32(raw.Substring(s, 2));
-            g = Convert.ToInt32(raw.Substring(s, 2));
-            b = Convert.ToInt32(raw.Substring(s, 2));
+            r = Convert.ToInt32(raw.Substring(s, 2),16);
+            g = Convert.ToInt32(raw.Substring(s, 2),16);
+            b = Convert.ToInt32(raw.Substring(s, 2),16);
             return new Color((float)r/256,(float)g/256,(float)b/256,1);
         }
     }
