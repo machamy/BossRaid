@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -34,7 +35,7 @@ public class SoundManager
     /// BGM와 효과음은 오디오 소스 분리
     /// </summary>
     private AudioSource _bgmSource;
-    private List<AudioSource> _effectSources;
+    private LinkedList<AudioSource> _effectSources;
     private LinkedList<string> _playingEffects;
     /// <summary>
     /// 소리가 미리 저장되어 있는 딕셔너리
@@ -45,7 +46,7 @@ public class SoundManager
 
     public SoundManager()
     {
-        _effectSources = new List<AudioSource>();
+        _effectSources = new LinkedList<AudioSource>();
         _playingEffects = new LinkedList<string>();
     }
 
@@ -118,7 +119,7 @@ public class SoundManager
     private AudioSource AddEffectSource()
     {
         var source = effect_go.AddComponent<AudioSource>();
-        _effectSources.Add(source);
+        _effectSources.AddLast(source);
         return source;
     }
     
@@ -148,21 +149,53 @@ public class SoundManager
         return audioClip;
     }
 
-    public void Stop(string name)
+    public void ChangeVolumeBGM(float val)
     {
-        int idx = 0;
-        var node = _playingEffects.First;
-        
+        _bgmSource.volume = val;
+    }
+    
+    
+    /// <summary>
+    /// effect 리스트를 돌며 볼륨 변경
+    /// 만약 재생중이 아닌 소스가 있을경우 삭제
+    /// </summary>
+    /// <param name="val"></param>
+    public void ChangeVolumeEffect(float val)
+    {
+        var nodeSrc = _effectSources.First;
+
         do
         {
-            if (node.Value == name)
+            var src = nodeSrc.Value;
+            nodeSrc = nodeSrc.Next;
+            if (src.isPlaying)
             {
-                _effectSources[idx].Stop();
-                _playingEffects.Remove(node);
+                src.volume = val;
             }
-            idx++;
-        } while (node.Next != null);
+            else
+            {
+                _effectSources.Remove(nodeSrc);
+            }
+        } while (nodeSrc != null);
     }
+
+    // public void Stop(string name)
+    // {
+    //     var node_src = _effectSources.First;
+    //     var node = _playingEffects.First;
+    //     
+    //     do
+    //     {
+    //         var src = node.Value;
+    //         node_src = node_src.Next;
+    //         node = node.Next;
+    //         if (node.Value == name)
+    //         {
+    //             node_src.Value.Stop();
+    //             _playingEffects.Remove(node);
+    //         }
+    //     } while (node != null);
+    // }
     
     public void Clear()
     {

@@ -16,12 +16,15 @@ public class TitleManager : MonoBehaviour
 {
     public string gameSceneName = "GameScreen";
     [FormerlySerializedAs("dbbtn_text")] public Text DB_BTN_TEXT;
+    [SerializeField]
+    private GameObject OptionUI;
     
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
         SoundManager.Instance.Play("BGM/Menu",SoundManager.SoundType.BGM);
+        OptionUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,6 +37,26 @@ public class TitleManager : MonoBehaviour
     {
         SceneManager.LoadScene(gameSceneName);
         SoundManager.Instance.Clear();
+    }
+
+    public void ClickHowto()
+    {
+        
+    }
+
+    public void ClickCredit()
+    {
+        
+    }
+
+    public void ClickOption()
+    {
+        OptionUI.SetActive(true);
+    }
+
+    public void ClickQuit()
+    {
+        Application.Quit();
     }
 
     /// <summary>
