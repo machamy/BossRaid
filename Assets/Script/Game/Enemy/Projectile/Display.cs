@@ -40,7 +40,7 @@ namespace Script.Game.Enemy.Projectile
 
         public void displaySA(int i)
         {
-            // displayText(saNames[i], saColors[i], saDisplayTime, saFadeoutTime);
+            displayText(saNames[i], saColors[i], saDisplayTime, saFadeoutTime);
         }
 
         public void displayPattern(int i)
