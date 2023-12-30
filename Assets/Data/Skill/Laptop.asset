@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82572188a5894960aae4921fe335b5d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ab70abdd4bd4d5aac5e321d4a96385e, type: 3}
   m_Name: Laptop
   m_EditorClassIdentifier: 
   delay: 0.2
   cooldown: 0.3
   duration: 0.6
   isDirectional: 1
-  animation: 
+  effectAnimation: 
   type: 1
   canActiveMove: 1
   successSound: {fileID: 8300000, guid: e69fd7a77051a6046854f6676dfbddd1, type: 3}
