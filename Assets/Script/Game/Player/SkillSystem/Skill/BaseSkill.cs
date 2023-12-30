@@ -12,7 +12,7 @@ namespace Script.Game.Player
         [SerializeField] private float cooldown;
         [SerializeField] private float duration;
         [SerializeField] private bool isDirectional;
-        [SerializeField] private string animation;
+        [SerializeField] private string effectAnimation;
         [SerializeField] private Projectile.PrjtType type;
         [SerializeField] private bool canActiveMove;
         [SerializeField] private AudioClip successSound;
