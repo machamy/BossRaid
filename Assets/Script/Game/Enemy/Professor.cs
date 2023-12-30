@@ -352,6 +352,7 @@ public class Professor : MonoBehaviour, DBUser
         Debug.Log("[Professor::ShootDir] dir : " + dir);
         prjt.transform.position = shootPos.transform.position;
         prjt.UpdateDirection(dir);
+        prjt.OnSummon();
         return prjt;
     }
 

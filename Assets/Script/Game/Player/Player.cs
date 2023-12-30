@@ -107,13 +107,19 @@ namespace Script.Game.Player
                     return;
                 if (value < 0)
                     return;
+                bool injured = (value < hp);
                 hp = value;
                 OnHPUpdateEvent.Invoke(value);
-                if (value == 0)
+                // 부상시
+                if (injured)
                 {
-                    OnDeath();
+                    if (value == 0)
+                    {
+                        OnDeath();
+                    }
+                    SoundManager.Instance.Play("Effect/Injured");
+                    StartCoroutine(InvincibleRoutine());
                 }
-                StartCoroutine(InvincibleRoutine());
             }
         }
 
@@ -191,21 +197,23 @@ namespace Script.Game.Player
         /// <param name="type">패링할 타입</param>
         /// <param name="isDirectional">패링구역 선택. true => front</param>
         /// <returns></returns>
-        public bool Parry(Projectile.PrjtType type, bool isDirectional = false)
+        public int Parry(Projectile.PrjtType type, bool isDirectional = false)
         {
-            if (!IsAlive) return false;
+            if (!IsAlive) return 0;
             ParryingArea area = isDirectional ? parryingAreaFront : parryingAreaAll;
-            if (!area.Parryable) return false;
+            if (!area.Parryable) return 0;
             var q = area.PopAll(type);
+            int count = 0;
             while (q.Any())
             {
                 Projectile.Projectile prjt = q.Dequeue();
                 if (prjt.Type != type)
                     continue;
                 Debug.Log(prjt.name + " "+ prjt.Type);
+                count++;
                 prjt.OnParring(this);
             }
-            return true;
+            return count;
         }
 
         public IEnumerator InvincibleRoutine()

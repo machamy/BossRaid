@@ -19,3 +19,4 @@ MonoBehaviour:
   animation: 
   type: 0
   canActiveMove: 1
+  successSound: {fileID: 8300000, guid: 2cb1248bb90d828448422adb50a53cd5, type: 3}

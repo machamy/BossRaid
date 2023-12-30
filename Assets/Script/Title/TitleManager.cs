@@ -22,6 +22,7 @@ public class TitleManager : MonoBehaviour
     [SerializeField] private Image backgroundImg;
     [SerializeField] private Image fadeImg;
     [SerializeField] private Sprite[] backgroundSprite;
+    [SerializeField] private AudioClip clickSound;
     
     // Start is called before the first frame update
     void Start()
@@ -60,26 +61,29 @@ public class TitleManager : MonoBehaviour
     
     public void ClickStart()
     {
+        SoundManager.Instance.Play(clickSound);
         StartCoroutine(StartRoutine());
     }
 
     public void ClickHowto()
     {
-        
+        SoundManager.Instance.Play(clickSound);
     }
 
     public void ClickCredit()
     {
-        
+        SoundManager.Instance.Play(clickSound);
     }
 
     public void ClickOption()
     {
+        SoundManager.Instance.Play(clickSound);
         OptionUI.SetActive(true);
     }
 
     public void ClickQuit()
     {
+        SoundManager.Instance.Play(clickSound);
         Application.Quit();
     }
 

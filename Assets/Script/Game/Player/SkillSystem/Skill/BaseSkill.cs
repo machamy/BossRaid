@@ -15,6 +15,7 @@ namespace Script.Game.Player
         [SerializeField] private string animation;
         [SerializeField] private Projectile.PrjtType type;
         [SerializeField] private bool canActiveMove;
+        [SerializeField] private AudioClip successSound;
         
         public float Delay => delay;
         public float Cooldown => cooldown;
@@ -32,15 +33,33 @@ namespace Script.Game.Player
             PrjtType.TryParse(data[4], out type);
             canActiveMove = data[5] == "TRUE";
         }
+
+        public virtual void OnParrySucess()
+        {
+            if(successSound != null)
+                SoundManager.Instance.Play(successSound);
+        }
         
         /// <summary>
-        /// 시전시 실행
+        /// 선딜레이 시작시 실행.
+        /// </summary>
+        /// <param name="p"></param>
+        public virtual void OnStartProcess(Player p)
+        {
+        
+        }
+        /// <summary>
+        /// 발동(선딜종료)시 실행
         /// </summary>
         /// <param name="p"></param>
         public virtual void OnBeginActivate(Player p)
         {
-            p.Parry(type, isDirectional);
+            
         }
+        /// <summary>
+        /// 시전 종료시 실행
+        /// </summary>
+        /// <param name="p"></param>
 
         public virtual void OnEndAcitavte(Player p)
         {
@@ -70,7 +89,9 @@ namespace Script.Game.Player
         /// <param name="p"></param>
         public virtual void OnActivate(Player p)
         {
-            p.Parry(type, IsDirectional);
+            int succesed = p.Parry(type, IsDirectional);
+            if(succesed>0)
+                SoundManager.Instance.Play(this.successSound);
         }
     }
 }

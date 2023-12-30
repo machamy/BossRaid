@@ -17,12 +17,23 @@ namespace Script.Game.Projectile
         public Vector2 facing;
         public Vector2 target;
         [SerializeField] private PrjtType type;
+        [SerializeField] private AudioClip sound;
         public HashSet<Projectile> Group { get; set; }
 
         public PrjtType Type => type;
 
         public int damage;
         public int parringScore;
+
+        /// <summary>
+        /// 생성시 실행.
+        /// </summary>
+        public virtual void OnSummon()
+        {
+            SoundManager.Instance.Play(sound);
+        }
+        
+        
         /// <summary>
         /// 피격 성공시 실행
         /// </summary>

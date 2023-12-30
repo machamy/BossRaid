@@ -102,6 +102,7 @@ MonoBehaviour:
   facing: {x: 0, y: 0}
   target: {x: 0, y: 0}
   type: 1
+  sound: {fileID: 8300000, guid: 8141035110977a643bd8da8fba98faec, type: 3}
   damage: 1
   parringScore: 75
 --- !u!61 &-6564998710192310577

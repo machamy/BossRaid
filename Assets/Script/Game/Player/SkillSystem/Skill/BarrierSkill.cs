@@ -6,6 +6,13 @@ namespace Script.Game.Player
     [CreateAssetMenu]
     public class BarrierSkill : BaseSkill
     {
+        
+        public override void OnStartProcess(Player p)
+        {
+            base.OnStartProcess(p);
+            SoundManager.Instance.Play("Effect/Barrier");
+        }
+
         public override void OnBeginActivate(Player p)
         {
             base.OnBeginActivate(p);

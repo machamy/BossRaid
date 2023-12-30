@@ -63,7 +63,7 @@ namespace Script.Game.Player
         {
             _skillState |= SkillState.active;
             p.PlayAnimation(skill.name,skill.Duration + skill.Delay);
-            
+            skill.OnStartProcess(p);
             //선딜레이
             if (skill.Delay != 0)
                 yield return new WaitForSeconds(skill.Delay);
