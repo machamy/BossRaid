@@ -10,12 +10,13 @@ namespace Script.Game.Enemy
         public float lifetime = 1.5f;
         public int damage;
         private bool IsMove = true;
-        private bool IsDamage = true;
+        private bool IsDamage = false;
 
         private void OnTriggerEnter2D(Collider2D one)
         {
             if (one.CompareTag("Player"))
             {
+                IsDamage = true;
                 Player.Player player = one.GetComponent<Player.Player>();
                 if(IsDamage)
                 {
