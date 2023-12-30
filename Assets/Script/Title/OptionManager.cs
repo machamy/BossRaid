@@ -16,10 +16,12 @@ namespace Script.Game
         private float volume_effect;
         private void Start()
         {
-            volume_bgm = PlayerPrefs.GetFloat("volume_bgm",0.5f);
-            volume_effect = PlayerPrefs.GetFloat("volume_effect",0.5f);
+            volume_bgm = PlayerPrefs.GetFloat("volume_bgm",1.0f);
+            volume_effect = PlayerPrefs.GetFloat("volume_effect",1.0f);
             BGMSlider.value = volume_bgm;
             EffectSlider.value = volume_effect;
+            SoundManager.Instance.ChangeVolumeBGM(volume_bgm);
+            SoundManager.Instance.ChangeVolumeEffect(volume_effect);
         }
 
         public void OnBGMVolumeChange(float val)
