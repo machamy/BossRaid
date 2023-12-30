@@ -66,6 +66,8 @@ namespace Script.Game.Player
         /// <param name="delta">속도 배수</param>
         public void HorizontalMove(float delta)
         {
+            if (isDashing)
+                return;
             currentVelocity += new Vector3(delta * defaultSpeed, 0);
         }
 
