@@ -13,7 +13,7 @@ using Random = System.Random;
 /// </summary>
 public class UIManager : MonoBehaviour
 {
-    private static readonly string[] SCORE_NAMES = new string[] { "F","D", "C", "B", "A" };
+
     private float[] hp_bar_const = { 0f,0.133f,0.366f,0.699f,1.0f };
     
     

@@ -18,7 +18,7 @@ public class ResultScreenManager : BaseInputManager
     private TextMeshProUGUI scoreText;
 
     private bool isOnProgress;
-
+    private static readonly string[] SCORE_NAMES = new string[] { "F","D", "C", "B", "A" };
     private void Awake()
     {
         isOnProgress = false;
@@ -61,8 +61,8 @@ public class ResultScreenManager : BaseInputManager
     IEnumerator ShowResultPage()
     {
         isOnProgress = true;
-        scoreText.SetText(score.ToString("D"+10));
-        hpText.SetText(hp.ToString());
+        scoreText.SetText($"점수 : {score.ToString("D"+10)}");
+        hpText.SetText($"학점 : {SCORE_NAMES[hp]}");
         yield return new WaitForSeconds(1.5f);
         scoreText.enabled = true;
         yield return new WaitForSeconds(3.8f);
