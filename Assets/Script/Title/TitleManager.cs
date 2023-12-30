@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
+using Image = UnityEngine.UI.Image;
 
 /// <summary>
 /// 타이틀 화면 관리자
@@ -18,6 +19,9 @@ public class TitleManager : MonoBehaviour
     [FormerlySerializedAs("dbbtn_text")] public Text DB_BTN_TEXT;
     [SerializeField]
     private GameObject OptionUI;
+    [SerializeField] private Image backgroundImg;
+    [SerializeField] private Image fadeImg;
+    [SerializeField] private Sprite[] backgroundSprite;
     
     // Start is called before the first frame update
     void Start()
@@ -32,11 +36,31 @@ public class TitleManager : MonoBehaviour
     {
         
     }
+
+    IEnumerator StartRoutine()
+    {
+        backgroundImg.sprite = backgroundSprite[1];
+        fadeImg.gameObject.SetActive(true);
+        
+        float time = 0.5f;
+        int maxFrame = 16;
+        int frame = 1;
+        while (frame <= maxFrame)
+        {
+            Color c = fadeImg.color;
+            c.a = (float)frame / maxFrame;
+            fadeImg.color = c;
+            frame++;
+            yield return new WaitForSeconds(time/maxFrame);
+        }
+        //backgroundImg.sprite = backgroundSprite[0];
+        SceneManager.LoadScene(gameSceneName);
+        SoundManager.Instance.Clear();
+    }
     
     public void ClickStart()
     {
-        SceneManager.LoadScene(gameSceneName);
-        SoundManager.Instance.Clear();
+        StartCoroutine(StartRoutine());
     }
 
     public void ClickHowto()
