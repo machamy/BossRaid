@@ -133,7 +133,6 @@ namespace Script.Game.Player
 
         public void ApplyDBdata()
         {
-            Debug.Log("[Player::ApplyDBdata] DB HP :"+int.Parse(DB.PlayerHP[0]));
             if (DB.PlayerHP != null)
                 DEAFAULT_HP = int.Parse(DB.PlayerHP[0]);
             if (DB.PlayerSpeed != null)
