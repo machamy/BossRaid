@@ -172,10 +172,10 @@ public class SoundManager
             {
                 src.volume = val;
             }
-            else
-            {
-                _effectSources.Remove(nodeSrc);
-            }
+            // else
+            // {
+            //     _effectSources.Remove(nodeSrc);
+            // }
         } while (nodeSrc != null);
     }
 
