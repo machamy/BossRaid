@@ -63,11 +63,14 @@ namespace Script.Game.Player
         {
             _skillState |= SkillState.active;
             p.PlayAnimation(skill.name,skill.Duration + skill.Delay);
+            
+            //선딜레이
             if (skill.Delay != 0)
                 yield return new WaitForSeconds(skill.Delay);
             acitveTime = skill.Duration;
             if (!skill.CanActiveMove)
                 p.CanMove = false;
+            
             // 활성화시
             skill.OnBeginActivate(p);
             while (acitveTime > 0)
@@ -78,7 +81,7 @@ namespace Script.Game.Player
             }
             if (!skill.CanActiveMove)
                 p.CanMove = true;
-            
+            // 비활성화 작업
             skill.OnEndAcitavte(p);
             _skillState &= ~SkillState.active;
         }
