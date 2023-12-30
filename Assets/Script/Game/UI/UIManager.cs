@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI hpText;
     private Image BarHP;
     private TextMeshProUGUI scoreText;
-    private const int ZERO_NUM = 10;
+    public const int ZERO_NUM = 10;
     void Start()
     {
         scoreText = UIObject.transform.Find("TxtScore").GetComponent<TextMeshProUGUI>();

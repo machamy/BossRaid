@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Script;
+using Script.Global;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,16 +10,24 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// TODO: UI메니저와 역할이 겹침. 상속관계로 만들수 있을듯?
 /// </summary>
-public class ResultScreenManager : BaseInputManager
+public class ResultScreenManager : BaseInputManager, DBUser
 {
-    private int hp;
-    private int score;
     [SerializeField] private GameObject UIObject;
-    private TextMeshProUGUI hpText;
+
+    private int hpValue;
+    private int scoreValue;
+    
     private TextMeshProUGUI scoreText;
+    private TextMeshProUGUI msgText;
+    private TextMeshProUGUI gradeText;
+    
+    private Transform score;
+    private Transform msg;
+    private Transform grade;
+    
 
     private bool isOnProgress;
-    private static readonly string[] SCORE_NAMES = new string[] { "F","D", "C", "B", "A" };
+    private static readonly string[] GRADE_NAMES = new string[] { "F","D", "C", "B", "A" };
     private void Awake()
     {
         isOnProgress = false;
@@ -27,20 +36,34 @@ public class ResultScreenManager : BaseInputManager
     // Start is called before the first frame update
     void Start()
     {
-        scoreText = UIObject.transform.Find("TxtScore").GetComponent<TextMeshProUGUI>();
-        hpText = UIObject.transform.Find("TxtHP").GetComponent<TextMeshProUGUI>();
-        scoreText.enabled = false;
-        hpText.enabled = true;
+        score = UIObject.transform.Find("Score");
+        msg = UIObject.transform.Find("Msg");
+        grade = UIObject.transform.Find("Grade");
+        
+        scoreText = score.GetComponentInChildren<TextMeshProUGUI>();
+        msgText = msg.GetComponentInChildren<TextMeshProUGUI>();
+        gradeText = grade.GetComponentInChildren<TextMeshProUGUI>();
+        
+        scoreText.SetText("dummy");
+        msgText.SetText("dummy");
+        gradeText.SetText("dummy");
+        Debug.Log(scoreText.text);
+        score.gameObject.SetActive(false);
+        msg.gameObject.SetActive(false);
+        grade.gameObject.SetActive(false);
+        
+        ApplyDBdata();
+        
         if (!PlayerPrefs.HasKey("result_score"))
         {
-            hp = score = 0;
+            hpValue = scoreValue = 0;
         }
         else
         {
-            hp = PlayerPrefs.GetInt("result_hp");
-            score = PlayerPrefs.GetInt("result_score");
+            hpValue = PlayerPrefs.GetInt("result_hp");
+            scoreValue = PlayerPrefs.GetInt("result_score");
         }
-
+        
         StartCoroutine(ShowResultPage());
     }
 
@@ -62,13 +85,20 @@ public class ResultScreenManager : BaseInputManager
     {
         SoundManager.Instance.Play("BGM/Clear",SoundManager.SoundType.BGM);
         isOnProgress = true;
-        scoreText.SetText($"점수 : {score.ToString("D"+10)}");
-        hpText.SetText($"학점 : {SCORE_NAMES[hp]}");
-        yield return new WaitForSeconds(1.5f);
-        scoreText.enabled = true;
-        yield return new WaitForSeconds(3.8f);
-        hpText.enabled = true;
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
+        
+        score.gameObject.SetActive(true);
+        scoreText.SetText($"{scoreValue.ToString("D"+UIManager.ZERO_NUM)}");
+        yield return new WaitForSeconds(1.0f);
+        
+        msg.gameObject.SetActive(true);
+        msgText.SetText($"{msgs[hpValue]}");
+        yield return new WaitForSeconds(1.0f);
+        
+        grade.gameObject.SetActive(true);
+        gradeText.SetText($"{GRADE_NAMES[hpValue]}");
+        yield return new WaitForSeconds(0.5f);
+        
         isOnProgress = false;
     }
 
@@ -77,7 +107,7 @@ public class ResultScreenManager : BaseInputManager
     /// </summary>
     private void GoTitle()
     {
-        if(!isOnProgress)
+        if(isOnProgress)
             return;
         SceneManager.LoadScene("Scenes/TitleScreen");
     }
@@ -97,5 +127,22 @@ public class ResultScreenManager : BaseInputManager
         
     }
 
-
+    private string[] msgs = {"작별이다 학생,\n F가 없는 시대에 태어났을 뿐인 \"범부\"여",
+        "\"그런 학점으로 괜찮은가?\"",
+        "교수여, 저장된 과제는 충분한가?",
+        "\"파이어 학점이 되어줘\"",
+        "이제부터는, 내가 하늘에 서겠다"} ;
+    public void ApplyDBdata()
+    {
+        
+        if (DB.TextResultClearhigh == null)
+            return;
+        msgs = new string[6];
+        int i = 0;
+        msgs[i++] = DB.TextResultFailLowScore[0];
+        msgs[i++] = DB.TextResultClearlow[0];
+        msgs[i++] = DB.TextResultClearmid[0];
+        msgs[i++] = DB.TextResultClearhigh[0];
+        msgs[i++] = DB.TextResultClearPer[0];
+    }
 }
