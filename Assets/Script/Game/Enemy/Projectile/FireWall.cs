@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Script.Global;
 using UnityEngine;
 
 namespace Script.Game.Enemy
 {
-    public class FireWall : MonoBehaviour
+    public class FireWall : MonoBehaviour, DBUser
     {
         public float speed = 15f;
-        public float lifetime = 1.5f;
+        public float lifetime;
         public int damage;
         private bool IsMove = true;
         private bool IsDamage = false;
@@ -58,10 +59,19 @@ namespace Script.Game.Enemy
         }
 
 
-        // Start is called before the first frame update
         void Start()
         {
-            
+            ApplyDBdata();
+        }
+
+        public void ApplyDBdata()
+        {
+            if (DB.FireWall != null)
+            {
+                lifetime = float.Parse(DB.FireWall[0]);
+                damage = int.Parse(DB.FireWall[1]);
+            }
+
         }
 
         // Update is called once per frame

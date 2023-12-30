@@ -49,6 +49,9 @@ public static string[] PhaseScores => Get("PhaseScores");	//int (소수는버림
 public static string[] PhaseFrequencies => Get("PhaseFrequencies");	//float
 public static string[] TextResultFailLowScore => Get("TextResultFailLowScore");	//string
 public static string[] TextResultClearNoHit => Get("TextResultClearNoHit");	//string
+public static string[] FireWall => Get("FireWall"); //float int
+public static string[] FireWallAttack => Get("FireWallAttack"); //float
+public static string[] FireWallPattern => Get("FireWallPattern"); //float float
     
 
 
