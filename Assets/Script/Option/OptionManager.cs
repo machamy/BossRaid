@@ -7,7 +7,7 @@ namespace Script.Game
 {
     public class OptionManager : MonoBehaviour
     {
-        private static bool initialized = false;
+        private bool initialized = false;
         
         [FormerlySerializedAs("OptionUI")] [SerializeField] private GameObject OptionElements;
         [SerializeField] private GameObject BGM;

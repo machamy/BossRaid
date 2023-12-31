@@ -50,6 +50,7 @@ public class TitleManager : MonoBehaviour
                 if (DB.DB_VERSION == null)
                 {
                     DB.Instance.SetData("DB_VERSION",new[] { "경고! 오래된 데이터 베이스임. 인터넷에 연결해주세요" });
+                    OnDBUpdate();
                 }
                 
             }
