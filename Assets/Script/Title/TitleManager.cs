@@ -30,7 +30,7 @@ public class TitleManager : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         SoundManager.Instance.Play("BGM/Menu",SoundManager.SoundType.BGM);
-        var option = Instantiate<GameObject>(OptionPrefeb,parent:UI.transform);
+        var option = Instantiate(OptionPrefeb,parent:UI.transform);
         OptionUI = option;
     }
 
