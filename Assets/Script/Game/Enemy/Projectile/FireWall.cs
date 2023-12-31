@@ -13,6 +13,18 @@ namespace Script.Game.Enemy
         private bool IsMove = true;
         private bool IsDamage = false;
         [SerializeField] private AudioClip sound;
+        private Animator Animator;
+        private bool isFire;
+
+        public bool IsFire
+        {
+            get => isFire;
+            set
+            {
+                isFire = value;
+                Animator.SetBool("IsFire", value);
+            }
+        }
 
         public virtual void OnSummon()
         {
@@ -56,6 +68,7 @@ namespace Script.Game.Enemy
         private IEnumerator RemoveDelay(float delay)
         {
             yield return new WaitForSeconds(delay);
+            isFire = false;
             Remove();
         }
 
@@ -68,6 +81,8 @@ namespace Script.Game.Enemy
         void Start()
         {
             ApplyDBdata();
+            Animator = GetComponent<Animator>();
+            isFire = true;
         }
 
         public void ApplyDBdata()
