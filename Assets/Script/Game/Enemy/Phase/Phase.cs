@@ -39,6 +39,10 @@ namespace Script.Game.Enemy
                 return 0;
             }
 
+            int forcePattern = MyDebug.Instance.getInt("forcePattern");
+            if (forcePattern != -1)
+                return forcePattern;
+
             int random_value = Random.Range(0, sumOfProbability);
             Debug.Log($"[Phase::GetNextPatternNum] val = {random_value}");
             for(int i = 0; i < ProbablityList.Count; i++)
