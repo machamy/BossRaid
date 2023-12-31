@@ -33,8 +33,6 @@ public class BackGroundManager : MonoBehaviour
     /// <param name="phasenum"></param>
     public void OnPhaseUpdate(int phasenum)
     {
-        Debug.Log("[BackGroundManager::OnPhaseUpdate]"+test_colors[phasenum]);
-
         if (bg_imgs[phasenum])
         {
             _renderer.color = Color.white;
@@ -48,7 +46,7 @@ public class BackGroundManager : MonoBehaviour
         if (phasenum == 1)
         {
             SoundManager.Instance.Play("BGM/NormalField",SoundManager.SoundType.BGM);
-        }else if (phasenum == 4)
+        }else if (phasenum == 5)
         {
             SoundManager.Instance.Play("BGM/FinalField",SoundManager.SoundType.BGM);
         }
