@@ -27,12 +27,12 @@ namespace Script.Game
         public void OnBGMVolumeChange(float val)
         {
             volume_bgm = val;
-            SoundManager.Instance.ChangeVolumeBGM(volume_bgm);
+            SoundManager.Instance.ChangeSrcVolumeBGM(volume_bgm);
         }
         public void OnEffectVolumeChange(float val)
         {
             volume_effect = val;
-            SoundManager.Instance.ChangeVolumeEffect(volume_effect);
+            SoundManager.Instance.ChangeSrcVolumeEffect(volume_effect);
         }
 
         public void ClickExit()

@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
+using Object = UnityEngine.Object;
 
 /// <summary>
 /// 싱글턴
@@ -41,8 +44,10 @@ public class SoundManager
     /// 소리가 미리 저장되어 있는 딕셔너리
     /// </summary>
     private Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
-    
 
+    private AudioMixer mixer;
+    private AudioMixerGroup bgmGroup;
+    private AudioMixerGroup effectGroup;
 
     public SoundManager()
     {
@@ -68,6 +73,9 @@ public class SoundManager
             effect_go.transform.parent = root.transform;
             this.effect_go = effect_go;
             AddEffectSource();
+            mixer = Resources.Load<AudioMixer>("MainMixer");
+            bgmGroup = mixer.FindMatchingGroups("BGM")[0];
+            effectGroup = mixer.FindMatchingGroups("Effect")[0];
             
             _bgmSource.loop = true; // bgm 재생기는 무한 반복 재생
         }
@@ -75,13 +83,13 @@ public class SoundManager
 
     private GameObject effect_go;
     
-    public void Play(string path, SoundType type = SoundType.Effect, float pitch = 1.0f)
+    public void Play(string path, SoundType type = SoundType.Effect, float pitch = 1.0f, float volume = 1.0f)
     {
         AudioClip audioClip = GetOrAddAudioClip(path, type);
-        Play(audioClip, type, pitch);
+        Play(audioClip, type, pitch,volume);
     }
     
-    public void Play(AudioClip audioClip, SoundType type = SoundType.Effect, float pitch = 1.0f)
+    public void Play(AudioClip audioClip, SoundType type = SoundType.Effect, float pitch = 1.0f,float volume = 1.0f)
     {
         if (audioClip == null)
             return;
@@ -94,12 +102,16 @@ public class SoundManager
 
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
+            audioSource.volume = volume;
+            audioSource.outputAudioMixerGroup = bgmGroup;
             audioSource.Play();
         }
         else // Effect 효과음 재생
         {
             AudioSource audioSource = GetEffectSource();
             audioSource.pitch = pitch;
+            audioSource.volume = volume;
+            audioSource.outputAudioMixerGroup = effectGroup;
             audioSource.PlayOneShot(audioClip);
             _playingEffects.AddLast(audioClip.name);
         }
@@ -150,6 +162,16 @@ public class SoundManager
 
     public void ChangeVolumeBGM(float val)
     {
+        mixer.SetFloat("BGM", Mathf.Log10(val));
+    }
+
+    public void ChangeVolumeEffect(float val)
+    {
+        mixer.SetFloat("BGM", Mathf.Log10(val));
+    }
+    
+    public void ChangeSrcVolumeBGM(float val)
+    {
         _bgmSource.volume = val;
     }
     
@@ -159,7 +181,7 @@ public class SoundManager
     /// 만약 재생중이 아닌 소스가 있을경우 삭제
     /// </summary>
     /// <param name="val"></param>
-    public void ChangeVolumeEffect(float val)
+    public void ChangeSrcVolumeEffect(float val)
     {
         var nodeSrc = _effectSources.First;
         if (nodeSrc == null)
