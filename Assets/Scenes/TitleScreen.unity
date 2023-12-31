@@ -853,21 +853,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c359d3de0e76654d959934192052832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDBUpdateEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1292434253}
-        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
-        m_MethodName: OnDBUpdate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!4 &930105522
 Transform:
   m_ObjectHideFlags: 0
@@ -919,8 +904,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -985.717, y: -499.099}
-  m_SizeDelta: {x: 368.563, y: 55.72}
+  m_AnchoredPosition: {x: -984.60614, y: -499.099}
+  m_SizeDelta: {x: 370.7847, y: 55.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &955356646
 MonoBehaviour:
@@ -1029,6 +1014,7 @@ GameObject:
   - component: {fileID: 1292434250}
   - component: {fileID: 1292434253}
   - component: {fileID: 1292434254}
+  - component: {fileID: 1292434255}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1111,6 +1097,7 @@ MonoBehaviour:
   _sheetLoader: {fileID: 930105521}
   OptionPrefeb: {fileID: 4600358799879724315, guid: a0b1cc1ea868f0f4daf64ab69f5f4dd9, type: 3}
   OptionUI: {fileID: 0}
+  jsonLoader: {fileID: 1292434255}
 --- !u!114 &1292434254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1121,6 +1108,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8e79b08c6cb47b59d4d38ba9f23efb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1292434255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292434249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aefe935be5b94e63b82c181e5d591aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1378318691

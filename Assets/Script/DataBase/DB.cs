@@ -5,6 +5,8 @@ using System.Text;
 using JetBrains.Annotations;
 using Script.Game.Player;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 /// <summary>
 /// 게임 DB가 담기는 싱글턴 클래스
@@ -23,8 +25,10 @@ public class DB
             return instance;
         }
     }
-
+    public UnityEvent OnDBUpdateEvent = new UnityEvent();
+    
     private Dictionary<string, string[]> data = new();
+    public Dictionary<string, string[]> Data => data;
 
     public static bool DEBUG_OPTION(string option) => DEBUG.Any((s) => s.ToLower() == option.ToLower()); //string
 

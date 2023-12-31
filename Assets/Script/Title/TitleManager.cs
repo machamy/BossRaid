@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Script.Global;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -26,6 +27,9 @@ public class TitleManager : MonoBehaviour
     [SerializeField] private GSpreadSheetLoader _sheetLoader;
     [FormerlySerializedAs("Option")] public GameObject OptionPrefeb;
     public GameObject OptionUI;
+
+
+    [FormerlySerializedAs("_dataManager")] [SerializeField] private JsonLoader jsonLoader;
     
     // Start is called before the first frame update
     void Start()
@@ -35,8 +39,26 @@ public class TitleManager : MonoBehaviour
         var option = Instantiate(OptionPrefeb,parent:UI.transform);
         OptionUI = option;
 
+        DB.Instance.OnDBUpdateEvent.AddListener(OnDBUpdate);
+        // DB가 없을경우 DB를 받아온다
         if (DB.DB_VERSION == null)
-            _sheetLoader.StartDownload();
+        {
+            //인터넷이 없으면 저장된 값을 불러옴
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                jsonLoader.LoadJson();
+                if (DB.DB_VERSION == null)
+                {
+                    DB.Instance.SetData("DB_VERSION",new[] { "경고! 오래된 데이터 베이스임. 인터넷에 연결해주세요" });
+                }
+                
+            }
+            else
+            {
+                _sheetLoader.StartDownload();
+            }
+        }
+            
         else
             DB_BTN_TEXT.text = DB.DB_VERSION_TEXT;
     }
@@ -110,5 +132,6 @@ public class TitleManager : MonoBehaviour
     public void OnDBUpdate()
     {
         DB_BTN_TEXT.text = DB.DB_VERSION_TEXT;
+        jsonLoader.SaveJson();
     }
 }

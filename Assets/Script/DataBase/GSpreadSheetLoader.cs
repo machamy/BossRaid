@@ -16,7 +16,7 @@ public class GSpreadSheetLoader : MonoBehaviour
     private string key;
     private string rawData;
 
-    public UnityEvent OnDBUpdateEvent;
+
 
     private static Dictionary<string, string[]> data;
     [SerializeField] private List<string[]> ch;
@@ -77,7 +77,7 @@ public class GSpreadSheetLoader : MonoBehaviour
             data[cols[0]]=arr;
         }
         DB.Instance.SetData(data);
-        OnDBUpdateEvent.Invoke();
+        DB.Instance.OnDBUpdateEvent.Invoke();
         Debug.Log("[GSpreadSheetLoader] Load & Update Data Complete!!!");
     }
 
