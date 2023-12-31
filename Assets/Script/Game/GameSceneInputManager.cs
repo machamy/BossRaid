@@ -81,6 +81,7 @@ namespace Script.Game
 
         public void Tomain()
         {
+            Time.timeScale = 1f; 
             SceneManager.LoadScene("Scenes/TitleScreen");
         }
     }
