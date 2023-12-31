@@ -12,6 +12,8 @@ namespace Script.Game
     public class MyArrowButton : MyButton, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
         private Vector2 _positionPointer;
+        public float midRange;
+        
         [FormerlySerializedAs("onLeft")] public UnityEvent onLeftEvent;
         [FormerlySerializedAs("onRight")] public UnityEvent onRightEvent;
 
@@ -24,7 +26,7 @@ namespace Script.Game
         /// <summary>
         /// 중간의 0으로 취급되는 너비
         /// </summary>
-        public float midRange;
+     
 
         public override void OnPointerDown(PointerEventData eventData)
         {
