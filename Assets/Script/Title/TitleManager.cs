@@ -18,6 +18,7 @@ public class TitleManager : MonoBehaviour
     public string gameSceneName = "GameScreen";
     [FormerlySerializedAs("dbbtn_text")] public Text DB_BTN_TEXT;
     [SerializeField] private GameObject UI;
+    [SerializeField] private GameObject Alert;
     [SerializeField] private Image backgroundImg;
     [SerializeField] private Image fadeImg;
     [SerializeField] private Sprite[] backgroundSprite;
@@ -33,9 +34,11 @@ public class TitleManager : MonoBehaviour
         SoundManager.Instance.Play("BGM/Menu",SoundManager.SoundType.BGM);
         var option = Instantiate(OptionPrefeb,parent:UI.transform);
         OptionUI = option;
-        
-        if(DB.DB_VERSION == null)
+
+        if (DB.DB_VERSION == null)
             _sheetLoader.StartDownload();
+        else
+            DB_BTN_TEXT.text = DB.DB_VERSION_TEXT;
     }
 
     // Update is called once per frame
@@ -48,6 +51,13 @@ public class TitleManager : MonoBehaviour
     {
         backgroundImg.sprite = backgroundSprite[1];
         fadeImg.gameObject.SetActive(true);
+        
+        if (DB.DB_VERSION == null)
+        {
+            Alert.gameObject.SetActive(true);
+            yield return new WaitUntil(() => DB.DB_VERSION != null);
+            Alert.gameObject.SetActive(false);
+        }
         
         float time = 0.5f;
         int maxFrame = 16;
@@ -99,9 +109,6 @@ public class TitleManager : MonoBehaviour
     /// </summary>
     public void OnDBUpdate()
     {
-        StringBuilder sb = new StringBuilder();
-        sb.Append("DB : ");
-        sb.Append(string.Join("_", DB.DB_VERSION));
-        DB_BTN_TEXT.text = sb.ToString();
+        DB_BTN_TEXT.text = DB.DB_VERSION_TEXT;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using JetBrains.Annotations;
 using Script.Game.Player;
 using UnityEngine;
@@ -11,7 +12,7 @@ using UnityEngine;
 public class DB
 {
     private static DB instance;
-    
+
     public static DB Instance
     {
         get
@@ -23,10 +24,21 @@ public class DB
         }
     }
 
-    private Dictionary<string, string[]> data = new ();
-    
-    public static bool DEBUG_OPTION(string option) => DEBUG.Any((s) => s.ToLower() == option.ToLower());	//string
-    
+    private Dictionary<string, string[]> data = new();
+
+    public static bool DEBUG_OPTION(string option) => DEBUG.Any((s) => s.ToLower() == option.ToLower()); //string
+
+    public static string DB_VERSION_TEXT
+    {
+        get
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("DB : ");
+            sb.Append(string.Join("_", DB.DB_VERSION));
+            return sb.ToString();
+        }
+    }
+
     public static string[] DB_VERSION => Get("DB_VERSION");	//string
     public static string[] DEBUG => Get("DEBUG");	//string
     public static string[] PlayerSpeed => Get("PlayerSpeed");	//float
