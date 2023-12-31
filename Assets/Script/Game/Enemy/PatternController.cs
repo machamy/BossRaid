@@ -24,7 +24,9 @@ namespace Script.Game.Enemy
         private int phaseLv;
         [FormerlySerializedAs("OnPhaseUpdateEvent")] 
         public UnityEvent<int> PhaseUpdateEvent;
-    
+
+        public UnityEvent GameClearEvent;
+        public int ClearPhaseNum => Phases.Count;
         public int PhaseLv
         {
             get => phaseLv;
@@ -32,7 +34,16 @@ namespace Script.Game.Enemy
             {
                 Debug.Log("phase LV : " +value);
                 phaseLv = value;
-                PhaseUpdateEvent.Invoke(phaseLv);
+                
+                // 클리어 체크
+                if (phaseLv == ClearPhaseNum)
+                {
+                    GameClearEvent.Invoke();
+                }
+                else
+                {
+                    PhaseUpdateEvent.Invoke(phaseLv);
+                }
             }
         }
 

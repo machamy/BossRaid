@@ -27,7 +27,7 @@ public class ResultScreenManager : BaseInputManager, DBUser
     
 
     private bool isOnProgress;
-    private static readonly string[] GRADE_NAMES = new string[] { "F","D", "C", "B", "A" };
+    private static readonly string[] GRADE_NAMES = new string[] { "F","D", "C", "B", "A","P" };
     private void Awake()
     {
         isOnProgress = false;
@@ -92,11 +92,11 @@ public class ResultScreenManager : BaseInputManager, DBUser
         yield return new WaitForSeconds(1.0f);
         
         msg.gameObject.SetActive(true);
-        msgText.SetText($"{msgs[Math.Max(hpValue, msgs.Length-1)]}");
+        msgText.SetText($"{msgs[Math.Min(hpValue, msgs.Length-1)]}");
         yield return new WaitForSeconds(1.0f);
         
         grade.gameObject.SetActive(true);
-        gradeText.SetText($"{GRADE_NAMES[hpValue]}");
+        gradeText.SetText($"{GRADE_NAMES[Math.Min(hpValue, GRADE_NAMES.Length-1)]}");
         yield return new WaitForSeconds(0.5f);
         
         isOnProgress = false;

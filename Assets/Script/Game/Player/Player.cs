@@ -19,25 +19,22 @@ namespace Script.Game.Player
     {
         public int DEAFAULT_HP;
         public float INVICIBLE_TIME;
-        private int hp;
-        private int score;
+        [SerializeField] private int hp;
+        [SerializeField] private int score;
         private bool isAlive;
         private bool isInvincible;
 
         private Animator Animator;
-        [SerializeField]
-        private Animator barrierAnimator;
-        [SerializeField]
-        private Animator shieldAnimator;
-        [SerializeField]
-        private Animator swingAnimator;
-        
+        [SerializeField] private Animator barrierAnimator;
+        [SerializeField] private Animator shieldAnimator;
+        [SerializeField] private Animator swingAnimator;
+
         private Movement Movement;
         private bool isUsingSkill;
         private bool isBarriering;
         private bool isShielding;
         private bool isSwinging;
-    
+
 
         public bool IsDashing => Movement.isDashing;
 
@@ -50,7 +47,7 @@ namespace Script.Game.Player
                 Animator.SetBool("IsUsingSkill", value);
             }
         }
-        
+
         public bool IsBarriering
         {
             get => isBarriering;
@@ -60,7 +57,7 @@ namespace Script.Game.Player
                 barrierAnimator.SetBool("IsBarriering", value);
             }
         }
-        
+
         public bool IsShielding
         {
             get => isShielding;
@@ -70,7 +67,7 @@ namespace Script.Game.Player
                 shieldAnimator.SetBool("IsShielding", value);
             }
         }
-        
+
         public bool IsSwinging
         {
             get => isSwinging;
@@ -80,10 +77,11 @@ namespace Script.Game.Player
                 swingAnimator.SetBool("IsSwinging", value);
             }
         }
-        
+
         public bool IsAlive => isAlive;
 
         public bool IsMoving => Movement.isMoving;
+
         public bool CanMove
         {
             get => canMove;
@@ -114,20 +112,17 @@ namespace Script.Game.Player
                 }
             }
         }
-        
-        
+
+
         public UnityEvent<int> OnHPUpdateEvent { get; } = new UnityEvent<int>();
         public UnityEvent<int> OnScoreUpdateEvent { get; } = new UnityEvent<int>();
-        [Header("Skills")]
-        public SkillHolder[] SkillHolders;
-        [Header("Parry")]
-        public ParryingArea parryingAreaFront;
+        [Header("Skills")] public SkillHolder[] SkillHolders;
+        [Header("Parry")] public ParryingArea parryingAreaFront;
         public ParryingArea parryingAreaAll;
-        [Header("ETC")]
-        [SerializeField] private Professor Professor;
+        [Header("ETC")] [SerializeField] private Professor Professor;
 
         private SpriteRenderer _spriteRenderer;
-        
+
         public int HP
         {
             get => hp;
@@ -137,19 +132,15 @@ namespace Script.Game.Player
                     return;
                 if (value < 0)
                     return;
-                bool injured = (value < hp);
+                
+                
+                if (value < hp)
+                {
+                    OnHurt(value);
+                }
                 hp = value;
                 OnHPUpdateEvent.Invoke(value);
                 // 부상시
-                if (injured)
-                {
-                    if (value == 0)
-                    {
-                        OnDeath();
-                    }
-                    SoundManager.Instance.Play("Effect/Injured");
-                    StartCoroutine(InvincibleRoutine());
-                }
             }
         }
 
@@ -194,7 +185,7 @@ namespace Script.Game.Player
         void Update()
         {
             Animator.SetBool("IsMoving", IsMoving);
-            Animator.SetBool("IsDashing",IsDashing);
+            Animator.SetBool("IsDashing", IsDashing);
         }
 
         private void FixedUpdate()
@@ -202,7 +193,7 @@ namespace Script.Game.Player
             float border = 5f;
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, -border, border),
                 transform.position.y
-                ,transform.position.z);
+                , transform.position.z);
         }
 
 
@@ -218,12 +209,12 @@ namespace Script.Game.Player
         public void PlaySkillAnimation(string name, float time)
         {
             float speed = 1.0f / time;
-            Animator.SetFloat($"{name}Speed",speed);
+            Animator.SetFloat($"{name}Speed", speed);
             Animator.SetBool("IsUsingSkill", true);
             Animator.SetTrigger(name);
         }
-        
-        
+
+
         /// <summary>
         /// 지정된 type에 따른 투사체를 패링구역에서 패링.
         /// </summary>
@@ -242,13 +233,16 @@ namespace Script.Game.Player
                 Projectile.Projectile prjt = q.Dequeue();
                 if (prjt.Type != type)
                     continue;
-                Debug.Log(prjt.name + " "+ prjt.Type);
+                Debug.Log(prjt.name + " " + prjt.Type);
                 count++;
                 prjt.OnParring(this);
             }
+
             return count;
         }
+
         public IEnumerator InvincibleRoutine() => InvincibleRoutine(INVICIBLE_TIME);
+
         public IEnumerator InvincibleRoutine(float time)
         {
             Color original = _spriteRenderer.color;
@@ -260,33 +254,60 @@ namespace Script.Game.Player
             isInvincible = false;
             _spriteRenderer.color = original;
         }
-        
-        
+
+        /// <summary>
+        /// 체력 감소시
+        /// </summary>
+        internal void OnHurt(int hp)
+        {
+            if (hp == 0)
+            {
+                OnDeath();
+            }
+
+            SoundManager.Instance.Play("Effect/Injured");
+            StartCoroutine(InvincibleRoutine());
+        }
+
         /// <summary>
         /// 플레이어가 죽을시 실행되는 리스너
         /// </summary>
         private void OnDeath()
         {
             isAlive = false;
+            GoResult();
+        }
+
+
+        public void OnClear()
+        {
+            GoResult();
+        }
+
+
+        private void GoResult()
+        {
             PlayerPrefs.SetInt("result_hp", hp);
             PlayerPrefs.SetInt("result_score", score);
             SceneManager.LoadScene("Scenes/ResultScreen");
             SoundManager.Instance.Clear();
         }
 
-        /*
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            Debug.Log("??");
-            Debug.Log((other.transform.tag));
-            if (other.transform.tag == "Projectile")
-            {
 
-                Debug.Log("??");
-                Projectile prj = other.transform.GetComponent<Projectile>();
-                prj.OnHit(this);
-            }
-        }
-        */
     }
+
+    /*
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Debug.Log("??");
+        Debug.Log((other.transform.tag));
+        if (other.transform.tag == "Projectile")
+        {
+
+            Debug.Log("??");
+            Projectile prj = other.transform.GetComponent<Projectile>();
+            prj.OnHit(this);
+        }
+    }
+    */
 }
