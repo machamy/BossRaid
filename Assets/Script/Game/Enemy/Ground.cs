@@ -81,8 +81,8 @@ namespace Script.Game.Enemy
 
         public void TestInterval(Vector2 playerPos)
         {
-            Vector2 LeftPos = new Vector2(playerPos.x-Posinterval, transform.position.y);
-            Vector2 RightPos = new Vector2(playerPos.x+Posinterval, transform.position.y);
+            Vector2 LeftPos = new Vector2(playerPos.x-2.1f, transform.position.y);
+            Vector2 RightPos = new Vector2(playerPos.x+2.1f, transform.position.y);
             StartCoroutine(SpawnInterval(LeftPos));
             StartCoroutine(SpawnInterval(RightPos));
             StartCoroutine(SpawnInterval(playerPos, Quizdelay));
