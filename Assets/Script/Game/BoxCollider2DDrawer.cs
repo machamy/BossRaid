@@ -13,6 +13,8 @@ namespace Script.Game
         
         private void Start()
         {
+            if(DB.DEBUG == null || !DB.DEBUG_OPTION("showhitbox"))
+                return;
             LineRenderer lineRenderer = initLineRenderer();
             BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
             
