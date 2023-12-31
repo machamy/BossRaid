@@ -144,5 +144,10 @@ public class ResultScreenManager : BaseInputManager, DBUser
         msgs[i++] = DB.TextResultClearmid[0];
         msgs[i++] = DB.TextResultClearhigh[0];
         msgs[i++] = DB.TextResultClearPer[0];
+        
+        for (var i1 = 0; i1 < msgs.Length; i1++)
+        {
+            msgs[i1] = msgs[i1].Replace("<br>","\n");
+        }
     }
 }
