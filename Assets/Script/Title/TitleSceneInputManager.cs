@@ -1,15 +1,19 @@
 using System;
-using UnityEngine.Device;
+using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
+using Application = UnityEngine.Device.Application;
 
 namespace Script.Game
 {
     public class TitleSceneInputManager : BaseInputManager
     {
+        
+        
         private void Start()
         {
             base.Start();
+            
         }
 
         protected override void Update()

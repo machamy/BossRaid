@@ -17,19 +17,21 @@ public class TitleManager : MonoBehaviour
 {
     public string gameSceneName = "GameScreen";
     [FormerlySerializedAs("dbbtn_text")] public Text DB_BTN_TEXT;
-    [SerializeField]
-    private GameObject OptionUI;
+    [SerializeField] private GameObject UI;
     [SerializeField] private Image backgroundImg;
     [SerializeField] private Image fadeImg;
     [SerializeField] private Sprite[] backgroundSprite;
     [SerializeField] private AudioClip clickSound;
+    [FormerlySerializedAs("Option")] public GameObject OptionPrefeb;
+    public GameObject OptionUI;
     
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
         SoundManager.Instance.Play("BGM/Menu",SoundManager.SoundType.BGM);
-        OptionUI.SetActive(false);
+        var option = Instantiate<GameObject>(OptionPrefeb,parent:UI.transform);
+        OptionUI = option;
     }
 
     // Update is called once per frame
