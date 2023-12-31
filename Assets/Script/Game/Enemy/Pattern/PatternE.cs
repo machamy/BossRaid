@@ -9,7 +9,7 @@ namespace Script.Game.Enemy
     public class PatternE : Pattern
     {
         private Ground gr;
-        private float Startx = 3.0f;
+        private float Startx = 2.5f;
         public float Posinterval;
         
         public PatternE() : base(5,2)
@@ -24,7 +24,7 @@ namespace Script.Game.Enemy
             {
                 pf.tpRight();
                 yield return pf.teleport_time;
-                Vector2 newPos = new Vector2(x, 0.5f);
+                Vector2 newPos = new Vector2(x, gr.transform.position.y);
                 gr.연속퀴즈(newPos);
             }
             
