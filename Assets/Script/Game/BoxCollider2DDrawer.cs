@@ -1,4 +1,5 @@
 ﻿using System;
+using Script.Global;
 using UnityEngine;
 
 namespace Script.Game
@@ -13,7 +14,7 @@ namespace Script.Game
         
         private void Start()
         {
-            if(DB.DEBUG == null || !DB.DEBUG_OPTION("showhitbox"))
+            if (!MyDebug.Instance.getBool("showhitbox"))  
                 return;
             LineRenderer lineRenderer = initLineRenderer();
             BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
