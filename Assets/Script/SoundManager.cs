@@ -167,7 +167,7 @@ public class SoundManager
 
     public void ChangeVolumeEffect(float val)
     {
-        mixer.SetFloat("BGM", Mathf.Log10(val)*20);
+        mixer.SetFloat("Effect", Mathf.Log10(val)*20);
     }
     
     public void ChangeSrcVolumeBGM(float val)
