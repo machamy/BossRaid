@@ -92,7 +92,7 @@ public class ResultScreenManager : BaseInputManager, DBUser
         yield return new WaitForSeconds(1.0f);
         
         msg.gameObject.SetActive(true);
-        msgText.SetText($"{msgs[hpValue]}");
+        msgText.SetText($"{msgs[Math.Max(hpValue, msgs.Length-1)]}");
         yield return new WaitForSeconds(1.0f);
         
         grade.gameObject.SetActive(true);
@@ -131,19 +131,22 @@ public class ResultScreenManager : BaseInputManager, DBUser
         "\"그런 학점으로 괜찮은가?\"",
         "교수여, 저장된 과제는 충분한가?",
         "\"파이어 학점이 되어줘\"",
-        "이제부터는, 내가 하늘에 서겠다"} ;
+        "이제부터는, 내가 하늘에 서겠다",
+        "버그!"
+    } ;
     public void ApplyDBdata()
     {
         
         if (DB.TextResultClearhigh == null)
             return;
         msgs = new string[6];
-        int i = 0;
-        msgs[i++] = DB.TextResultFailLowScore[0];
-        msgs[i++] = DB.TextResultClearlow[0];
-        msgs[i++] = DB.TextResultClearmid[0];
-        msgs[i++] = DB.TextResultClearhigh[0];
-        msgs[i++] = DB.TextResultClearPer[0];
+
+        msgs[0] = DB.TextResultFailLowScore[0];
+        msgs[1] = DB.TextResultClearlow[0];
+        msgs[2] = DB.TextResultClearmid[0];
+        msgs[3] = DB.TextResultClearhigh[0];
+        msgs[4] = DB.TextResultClearPer[0];
+        msgs[5] = "버그!";
         
         for (var i1 = 0; i1 < msgs.Length; i1++)
         {
