@@ -24,7 +24,7 @@ public class GSpreadSheetLoader : MonoBehaviour
     {
         data = new Dictionary<string, string[]>();
         key = origin_key.Split("edit")[0];
-        StartDownload();
+        
     }
 
     public void StartDownload()

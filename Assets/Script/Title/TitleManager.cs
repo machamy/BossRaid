@@ -22,6 +22,7 @@ public class TitleManager : MonoBehaviour
     [SerializeField] private Image fadeImg;
     [SerializeField] private Sprite[] backgroundSprite;
     [SerializeField] private AudioClip clickSound;
+    [SerializeField] private GSpreadSheetLoader _sheetLoader;
     [FormerlySerializedAs("Option")] public GameObject OptionPrefeb;
     public GameObject OptionUI;
     
@@ -32,6 +33,9 @@ public class TitleManager : MonoBehaviour
         SoundManager.Instance.Play("BGM/Menu",SoundManager.SoundType.BGM);
         var option = Instantiate(OptionPrefeb,parent:UI.transform);
         OptionUI = option;
+        
+        if(DB.DB_VERSION == null)
+            _sheetLoader.StartDownload();
     }
 
     // Update is called once per frame
