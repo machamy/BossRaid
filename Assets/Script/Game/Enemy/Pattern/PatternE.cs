@@ -26,6 +26,7 @@ namespace Script.Game.Enemy
                 yield return pf.teleport_time;
                 Vector2 newPos = new Vector2(x, gr.transform.position.y);
                 gr.연속퀴즈(newPos);
+                yield return 0.4f;
             }
             
         }
