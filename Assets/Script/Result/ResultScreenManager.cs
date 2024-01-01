@@ -36,6 +36,7 @@ public class ResultScreenManager : BaseInputManager, DBUser
     // Start is called before the first frame update
     void Start()
     {
+            base.Start();
         score = UIObject.transform.Find("Score");
         msg = UIObject.transform.Find("Msg");
         grade = UIObject.transform.Find("Grade");

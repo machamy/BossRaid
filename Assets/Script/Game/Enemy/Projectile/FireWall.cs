@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Script.Game.Enemy.Projectile;
 using Script.Global;
-using UnityEditor.TextCore.Text;
 using UnityEngine;
 using UnityEngine.Serialization;
 
