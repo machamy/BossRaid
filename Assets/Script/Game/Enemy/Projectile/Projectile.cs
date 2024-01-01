@@ -13,8 +13,13 @@ namespace Script.Game.Projectile
     {
         public HashSet<Projectile> Group { get; set; }
 
+        private void Awake()
+        {
+            isParryable = true;
+        }
+
         /// <summary>
-        /// 생성시 실행.
+        /// 생성시 실행. 수동실행필요
         /// </summary>
         public override void OnSummon()
         {
