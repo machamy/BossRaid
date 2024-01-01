@@ -15,8 +15,8 @@ namespace Script.Game.Player
         /// <summary>
         /// queue 로 관리
         /// </summary>
-        private LinkedList<Projectile.Projectile> _inRangeList;
-        private HashSet<Projectile.Projectile> _inRangeSet;
+        private LinkedList<BaseProjectile> _inRangeList;
+        private HashSet<BaseProjectile> _inRangeSet;
         public bool Parryable
         {
             get => _inRangeList.Any();
@@ -29,8 +29,8 @@ namespace Script.Game.Player
         /// </summary>
         /// <param name="type">뽑아낼 투사체 type</param>
         /// <returns>type에 해당되는 모든 투사체 Set</returns>
-        public Queue<Projectile.Projectile> PopAll(PrjtType type){
-            Queue<Projectile.Projectile> queue = new Queue<Projectile.Projectile>();
+        public Queue<BaseProjectile> PopAll(PrjtType type){
+            Queue<BaseProjectile> queue = new Queue<BaseProjectile>();
             // 시간복잡도 최적화를 위해 노드 접근
             var node = _inRangeList.First;
             while (node is not null)
@@ -52,8 +52,8 @@ namespace Script.Game.Player
 
         private void Awake()
         {
-            _inRangeList = new LinkedList<Projectile.Projectile>();
-            _inRangeSet = new HashSet<Projectile.Projectile>();
+            _inRangeList = new LinkedList<BaseProjectile>();
+            _inRangeSet = new HashSet<BaseProjectile>();
         }
 
         private void Start()
@@ -63,7 +63,7 @@ namespace Script.Game.Player
         
 
         [Obsolete]
-        public Projectile.Projectile GetFirst()
+        public BaseProjectile GetFirst()
         {
             return _inRangeList.First();
         }
@@ -75,7 +75,7 @@ namespace Script.Game.Player
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.transform.CompareTag("Projectile")) return;
-            Projectile.Projectile prjt = other.GetComponent<Projectile.Projectile>();
+            BaseProjectile prjt = other.GetComponent<BaseProjectile>();
             Add(prjt);
         }
 
@@ -86,7 +86,7 @@ namespace Script.Game.Player
         private void OnTriggerExit2D(Collider2D other)
         {
             if(!other.transform.CompareTag("Projectile")) return;
-            Projectile.Projectile prjt = other.GetComponent<Projectile.Projectile>();
+            BaseProjectile prjt = other.GetComponent<BaseProjectile>();
             Remove(prjt);   
         }
         
@@ -95,7 +95,7 @@ namespace Script.Game.Player
         /// </summary>
         /// <param name="prjt"></param>
         /// <returns></returns>
-        protected bool Add(Projectile.Projectile prjt)
+        protected bool Add(BaseProjectile prjt)
         {
             if (_inRangeSet.Contains(prjt))
                 return false;
@@ -109,7 +109,7 @@ namespace Script.Game.Player
         /// </summary>
         /// <param name="prjt"></param>
         /// <returns></returns>
-        protected bool Remove(Projectile.Projectile prjt)
+        protected bool Remove(BaseProjectile prjt)
         {
             if (!_inRangeSet.Contains(prjt))
                 return false;

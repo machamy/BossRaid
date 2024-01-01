@@ -15,6 +15,8 @@ namespace Script.Game.Enemy.Projectile
         public float speed;
         public Vector2 facing;
         public Vector2 target;
+        protected bool isParryable;
+        public bool IsParryable => isParryable;
         [SerializeField] private PrjtType type;
         [SerializeField] protected AudioClip sound;
 
@@ -31,6 +33,7 @@ namespace Script.Game.Enemy.Projectile
 
         public abstract void OnHit(Player.Player p);
 
+        public abstract void OnParring(Player.Player p);
         public abstract void Remove();
     }
 }

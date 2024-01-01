@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Script.Game.Enemy.Projectile;
@@ -59,6 +60,11 @@ namespace Script.Game.Enemy
             }
         }
 
+        public void Awake()
+        {
+            isParryable = false;
+        }
+
         public void Start()
         {
             Debug.Log(previewSpeed);
@@ -73,7 +79,12 @@ namespace Script.Game.Enemy
         }
 
 
-        // FireEnd 애니메이션 종료시 자동 실행
+        
+        public override void OnParring(Player.Player p)
+        {
+            
+        }
+        /// FireEnd 애니메이션 종료시 자동 실행
         public override void Remove()
         {
             Destroy(gameObject);

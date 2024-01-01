@@ -47,7 +47,7 @@ namespace Script.Game.Projectile
         /// 기본적으로 Destory까지 실행됨
         /// </summary>
         /// <param name="p"></param>
-        public virtual void OnParring(Player.Player p)
+        public override void OnParring(Player.Player p)
         {
             p.Score += parringScore;
             if(parringScore > 0 && Group != null)

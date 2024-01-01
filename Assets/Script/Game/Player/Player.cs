@@ -231,8 +231,8 @@ namespace Script.Game.Player
             int count = 0;
             while (q.Any())
             {
-                Projectile.Projectile prjt = q.Dequeue();
-                if (prjt.Type != type)
+                BaseProjectile prjt = q.Dequeue();
+                if (prjt.Type != type || !prjt.IsParryable)
                     continue;
                 Debug.Log(prjt.name + " " + prjt.Type);
                 count++;

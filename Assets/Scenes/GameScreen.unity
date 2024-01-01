@@ -4623,7 +4623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e4e0a788d447304aa5b49001e4d4096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEAFAULT_HP: 444444
+  DEAFAULT_HP: 4
   INVICIBLE_TIME: 0
   hp: 0
   score: 0
