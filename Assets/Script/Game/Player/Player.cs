@@ -23,8 +23,9 @@ namespace Script.Game.Player
         [SerializeField] private int hp;
         [SerializeField] private int score;
         private bool isAlive;
-        public bool IsInvincible;
+        
         private bool isInvincible;
+        private float currentInvicibleTime;
 
         private Animator Animator;
         [SerializeField] private Animator barrierAnimator;
@@ -80,6 +81,16 @@ namespace Script.Game.Player
             }
         }
 
+        public bool IsInvincible
+        {
+            get => isInvincible;
+            set
+            {
+                isInvincible = value;
+                Animator.SetBool("IsInvincible" , value);
+            }
+        }
+
         public bool IsAlive => isAlive;
 
         public bool IsMoving => Movement.isMoving;
@@ -130,7 +141,7 @@ namespace Script.Game.Player
             get => hp;
             set
             {
-                if (isInvincible)
+                if (IsInvincible)
                     return;
                 if (value < 0)
                     return;
@@ -188,6 +199,14 @@ namespace Script.Game.Player
         {
             Animator.SetBool("IsMoving", IsMoving);
             Animator.SetBool("IsDashing", IsDashing);
+            if (currentInvicibleTime > 0)
+            {
+                currentInvicibleTime -= Time.deltaTime;
+            }
+            else
+            {
+                IsInvincible = false;
+            }
         }
 
         private void FixedUpdate()
@@ -243,19 +262,19 @@ namespace Script.Game.Player
             return count;
         }
 
-        public IEnumerator InvincibleRoutine() => InvincibleRoutine(INVICIBLE_TIME);
+        // public IEnumerator InvincibleRoutine() => InvincibleRoutine(INVICIBLE_TIME);
 
-        public IEnumerator InvincibleRoutine(float time)
-        {
-            Color original = _spriteRenderer.color;
-            Color tmp = _spriteRenderer.color;
-            tmp.a = 0.5f; // 테스트용 색 변경
-            _spriteRenderer.color = tmp;
-            isInvincible = true;
-            yield return new WaitForSeconds(time);
-            isInvincible = false;
-            _spriteRenderer.color = original;
-        }
+        // public IEnumerator InvincibleRoutine(float time)
+        // {
+        //     // Color original = _spriteRenderer.color;
+        //     // Color tmp = _spriteRenderer.color;
+        //     // tmp.a = 0.5f; // 테스트용 색 변경
+        //     // _spriteRenderer.color = tmp;
+        //     IsInvincible = true;
+        //     yield return new WaitForSeconds(time);
+        //     IsInvincible = false;
+        //     // _spriteRenderer.color = original;
+        // }
 
         /// <summary>
         /// 체력 감소시
@@ -268,7 +287,14 @@ namespace Script.Game.Player
             }
 
             SoundManager.Instance.Play("Effect/Injured");
-            StartCoroutine(InvincibleRoutine());
+            IsInvincible = true;
+        }
+
+        public void MakeInvinvinvible() => MakeInvinvincible(INVICIBLE_TIME);
+        public void MakeInvinvincible(float time)
+        {
+            IsInvincible = true;
+            currentInvicibleTime = time;
         }
 
         /// <summary>

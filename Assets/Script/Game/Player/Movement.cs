@@ -76,7 +76,7 @@ namespace Script.Game.Player
         {
             float distance = delta * dashDistance;
             StartCoroutine(DashRoutine(distance, dashTime));
-            StartCoroutine(p.InvincibleRoutine(dashTime));
+            p.MakeInvinvincible(dashTime);
         }
 
         public IEnumerator DashRoutine(float distance, float time)
