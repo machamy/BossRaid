@@ -17,7 +17,7 @@ namespace Script.Game.Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!p.IsAlive)
+            if (!p.IsAlive || p.IsInvincible)
                 return;
             if (other.transform.CompareTag("Projectile"))
             {
@@ -27,7 +27,7 @@ namespace Script.Game.Player
         }
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (!p.IsAlive)
+            if (!p.IsAlive || p.IsInvincible)
                 return;
             if (other.transform.CompareTag("Projectile"))
             {

@@ -23,6 +23,7 @@ namespace Script.Game.Player
         [SerializeField] private int hp;
         [SerializeField] private int score;
         private bool isAlive;
+        public bool IsInvincible;
         private bool isInvincible;
 
         private Animator Animator;
