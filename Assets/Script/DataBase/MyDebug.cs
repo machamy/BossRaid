@@ -25,6 +25,8 @@ namespace Script.Global
 
         public void init(string[] rawData)
         {
+            if (rawData == null)
+                return;
             foreach (var raw in rawData)
             {
                 if(raw.Length < 2)

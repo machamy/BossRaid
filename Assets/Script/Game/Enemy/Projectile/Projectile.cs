@@ -1,34 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Script.Game.Enemy.Projectile;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Script.Game.Projectile
 {
-    public enum PrjtType
-    {
-        Practice, Team, Attend
-    }
 
-    public class Projectile : MonoBehaviour
+
+    public class Projectile : BaseProjectile
     {
-        public float speed;
-        public Vector2 facing;
-        public Vector2 target;
-        [SerializeField] private PrjtType type;
-        [SerializeField] private AudioClip sound;
         public HashSet<Projectile> Group { get; set; }
-
-        public PrjtType Type => type;
-
-        public int damage;
-        public int parringScore;
 
         /// <summary>
         /// 생성시 실행.
         /// </summary>
-        public virtual void OnSummon()
+        public override void OnSummon()
         {
             SoundManager.Instance.Play(sound);
         }
@@ -38,7 +26,7 @@ namespace Script.Game.Projectile
         /// 피격 성공시 실행
         /// </summary>
         /// <param name="p"></param>
-        public virtual void OnHit(Player.Player p)
+        public override void OnHit(Player.Player p)
         {
             p.HP -= damage;
             if(damage > 0 && Group != null)
@@ -48,6 +36,12 @@ namespace Script.Game.Projectile
                 }
             Remove();
         }
+        
+        public override void Remove()
+        {
+            Destroy(gameObject);
+        }
+        
         /// <summary>
         /// 패링 성공시 실행
         /// 기본적으로 Destory까지 실행됨
@@ -100,10 +94,7 @@ namespace Script.Game.Projectile
                 Remove();
         }
 
-        private void Remove()
-        {
-            Destroy(gameObject);
-        }
+
         
         
     }

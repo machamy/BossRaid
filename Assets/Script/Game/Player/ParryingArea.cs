@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Script.Game.Enemy.Projectile;
 using UnityEngine;
 
 namespace Script.Game.Player
@@ -28,7 +29,7 @@ namespace Script.Game.Player
         /// </summary>
         /// <param name="type">뽑아낼 투사체 type</param>
         /// <returns>type에 해당되는 모든 투사체 Set</returns>
-        public Queue<Projectile.Projectile> PopAll(Projectile.PrjtType type){
+        public Queue<Projectile.Projectile> PopAll(PrjtType type){
             Queue<Projectile.Projectile> queue = new Queue<Projectile.Projectile>();
             // 시간복잡도 최적화를 위해 노드 접근
             var node = _inRangeList.First;

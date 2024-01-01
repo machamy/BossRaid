@@ -1,105 +1,117 @@
 using System.Collections;
 using System.Collections.Generic;
+using Script.Game.Enemy.Projectile;
 using Script.Global;
+using UnityEditor.TextCore.Text;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Script.Game.Enemy
 {
-    public class FireWall : MonoBehaviour, DBUser
+    public class FireWall : BaseProjectile
     {
-        public float speed = 15f;
-        public float lifetime;
-        public int damage;
-        private bool IsMove = true;
-        private bool IsDamage = false;
-        [SerializeField] private AudioClip sound;
-        private Animator Animator;
-        private bool isFire;
 
+        /// <summary>
+        /// 지속시간
+        /// </summary>
+        public float lifetime;
+        private bool isFire;
+        [FormerlySerializedAs("previewtime")] public float warnTime;
+        public float previewSpeed;
+        [SerializeField]
+        private Animator Animator;
+        private bool isDamaged;
+
+        public bool IsDamaged
+        {
+            get => isDamaged;
+            set => isDamaged = value;
+        }
+    
+        
         public bool IsFire
         {
             get => isFire;
             set
             {
                 isFire = value;
+                
                 Animator.SetBool("IsFire", value);
             }
         }
 
-        public virtual void OnSummon()
+        public bool IsPreview
         {
-            if(sound != null)
-                SoundManager.Instance.Play(sound);
-        }
-
-        private void OnTriggerEnter2D(Collider2D one)
-        {
-            if (one.CompareTag("Player"))
+            get => IsPreview;
+            set
             {
-                IsDamage = true;
-                Player.Player player = one.GetComponent<Player.Player>();
-                if(IsDamage)
-                {
-                    OnHit(player);
-                    IsDamage = false;
-                }
+                Animator.SetBool("IsPreview", value);
             }
         }
 
-        public virtual void OnHit(Player.Player p)
+        public void Start()
         {
-            p.HP -= damage;
+            Animator = GetComponent<Animator>();
+            Debug.Log(Animator);
+            StartCoroutine(WaitPreview(warnTime));
         }
 
-        //좌표 인자로 받아서 update
-        public void UpdateFire()
+
+        public override void OnSummon()
         {
-            if (IsMove)
-            {
-                transform.Translate(Vector2.up * speed * Time.fixedDeltaTime);
-                if (transform.position.y >= 0.5f)
-                {
-                    IsMove = false;
-                    StartCoroutine(RemoveDelay(1.0f));
-                }
-            }
+
         }
 
-        private IEnumerator RemoveDelay(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            isFire = false;
-            Remove();
-        }
 
-        private void Remove()
+        // FireEnd 애니메이션 종료시 자동 실행
+        public override void Remove()
         {
             Destroy(gameObject);
         }
 
-
-        void Start()
+        public override void OnHit(Player.Player p)
         {
-            ApplyDBdata();
-            Animator = GetComponent<Animator>();
-            isFire = true;
+            if(!IsFire || IsDamaged)
+                return;
+            p.HP -= damage;
+            IsDamaged = true;
         }
 
-        public void ApplyDBdata()
-        {
-            if (DB.FireWall != null)
-            {
-                lifetime = float.Parse(DB.FireWall[0]);
-                damage = int.Parse(DB.FireWall[1]);
-            }
+        // //좌표 인자로 받아서 update
+        // public void UpdateFire()
+        // {
+        //     if (IsMove)
+        //     {
+        //         transform.Translate(Vector2.up * speed * Time.fixedDeltaTime);
+        //         if (transform.position.y >= 0.5f)
+        //         {
+        //             IsMove = false;
+        //             StartCoroutine(RemoveDelay(1.0f));
+        //         }
+        //     }
+        // }
 
+        /// <summary>
+        /// StartFire 종료시 실행
+        /// </summary>
+        public void OnFire()
+        {
+            if(sound != null)
+                SoundManager.Instance.Play(sound);
+            IsFire = true;
+            StartCoroutine(DelayRemove(lifetime));
         }
 
-        // Update is called once per frame
-        void FixedUpdate()
+        private IEnumerator WaitPreview(float time)
         {
-            StartCoroutine(RemoveDelay(lifetime));
-            //UpdateFire();
+            yield return new WaitForSeconds(warnTime);
+            IsPreview = false;
+        }
+        
+        private IEnumerator DelayRemove(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            IsFire = false;
         }
     }
 }

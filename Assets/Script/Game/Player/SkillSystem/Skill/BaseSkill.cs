@@ -1,4 +1,5 @@
 ﻿using System;
+using Script.Game.Enemy.Projectile;
 using Script.Game.Projectile;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,7 +14,7 @@ namespace Script.Game.Player
         [SerializeField] private float duration;
         [SerializeField] private bool isDirectional;
         [SerializeField] private string effectAnimation;
-        [SerializeField] private Projectile.PrjtType type;
+        [SerializeField] private PrjtType type;
         [SerializeField] private bool canActiveMove;
         [SerializeField] private AudioClip successSound;
         

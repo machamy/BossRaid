@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Script.Game;
 using Script.Game.Enemy;
+using Script.Game.Enemy.Projectile;
 using Script.Game.Player;
 using Script.Game.Projectile;
 using Script.Global;
@@ -64,18 +65,7 @@ public class Professor : MonoBehaviour, DBUser
 
     public void ApplyDBdata()
     {
-        var objs = new [] { attend, practice, team };
-        var dbs = new [] { DB.AttendProjectile, DB.PracticeProjectile, DB.TeamProjectile };
-        for (int i = 0; i< 3;i ++)
-        {
-            var prjt = objs[i].GetComponent<Projectile>();
-            var datas = dbs[i];
-            if(datas == null)
-                continue;
-            prjt.speed = float.Parse(datas[0]);
-            prjt.parringScore = int.Parse(datas[1]);
-            prjt.damage = int.Parse(datas[2]);
-        }
+
     }
 
     public float teleport_time = 0.4f;

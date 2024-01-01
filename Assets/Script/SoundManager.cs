@@ -93,7 +93,7 @@ public class SoundManager
     {
         if (audioClip == null)
             return;
-
+        Debug.Log(audioClip);
         if (type == SoundType.BGM) // BGM 배경음악 재생
         {
             AudioSource audioSource = _bgmSource;

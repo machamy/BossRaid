@@ -10,10 +10,10 @@ namespace Script.Game.Enemy
     {
         [SerializeField]
         public GameObject fire;
-        public GameObject firePreview;
-        public float previewTime;
+        // public GameObject firePreview;
+        // public float previewTime;
         public float Posinterval;
-        public float Posdelay;
+        // public float Posdelay;
         public float Quizdelay;  //좌우 공격 시 딜레이
         public GameObject player;
 
@@ -62,16 +62,17 @@ namespace Script.Game.Enemy
         //Position 좌표로 받아서 불기둥 스폰
         public IEnumerator SpawnByPosition(Vector2 position, GameObject prefeb)
         {
-            // 미리보기용 공격 범위 표시
-            showPreview(position);
+            // // 미리보기용 공격 범위 표시
+            // showPreview(position);
 
             // 딜레이 후 실제 공격 발동
-            yield return StartCoroutine(realAttack(position, prefeb));
+            realAttack(position, prefeb);
+            yield return null;
         }
 
-        IEnumerator realAttack(Vector2 pos, GameObject prefeb)
+        private void realAttack(Vector2 pos, GameObject prefeb)
         {
-            yield return new WaitForSeconds(previewTime);
+            // yield return new WaitForSeconds(previewTime);
 
             GameObject fire = Instantiate(prefeb);
             FireWall firewall = fire.GetComponent<FireWall>();
@@ -93,12 +94,12 @@ namespace Script.Game.Enemy
             yield return new WaitForSeconds(delay);
             StartCoroutine(SpawnByPosition(position, fire));
         }
-
-        public void showPreview(Vector2 position)
-        {
-            Instantiate(firePreview, position, Quaternion.identity);
-            firePreview.transform.position = position;
-        }
+        //
+        // public void showPreview(Vector2 position)
+        // {
+        //     Instantiate(firePreview, position, Quaternion.identity);
+        //     firePreview.transform.position = position;
+        // }
 
         void Start()
         {
@@ -107,8 +108,8 @@ namespace Script.Game.Enemy
 
         public void ApplyDBdata()
         {
-            if(DB.FireWallAttack != null)
-                previewTime = float.Parse(DB.FireWallAttack[0]);
+            // if(DB.FireWallAttack != null)
+            //     previewTime = float.Parse(DB.FireWallAttack[0]);
             if(DB.FireWallPattern != null)
             {
                 Posinterval = float.Parse(DB.FireWallPattern[0]);

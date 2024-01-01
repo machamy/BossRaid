@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using Script.Game.Enemy.Projectile;
 using Script.Game.Player;
 using Script.Game.Projectile;
 using Script.Global;
@@ -221,7 +222,7 @@ namespace Script.Game.Player
         /// <param name="type">패링할 타입</param>
         /// <param name="isDirectional">패링구역 선택. true => front</param>
         /// <returns></returns>
-        public int Parry(Projectile.PrjtType type, bool isDirectional = false)
+        public int Parry(PrjtType type, bool isDirectional = false)
         {
             if (!IsAlive) return 0;
             ParryingArea area = isDirectional ? parryingAreaFront : parryingAreaAll;

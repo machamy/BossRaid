@@ -1,4 +1,5 @@
 ﻿using System;
+using Script.Game.Enemy.Projectile;
 using UnityEngine;
 
 namespace Script.Game.Player
@@ -20,7 +21,17 @@ namespace Script.Game.Player
                 return;
             if (other.transform.CompareTag("Projectile"))
             {
-                Projectile.Projectile prj = other.transform.GetComponent<Projectile.Projectile>();
+               BaseProjectile prj = other.transform.GetComponent<BaseProjectile>();
+               prj.OnHit(p);
+            }
+        }
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (!p.IsAlive)
+                return;
+            if (other.transform.CompareTag("Projectile"))
+            {
+                BaseProjectile prj = other.transform.GetComponent<BaseProjectile>();
                 prj.OnHit(p);
             }
         }
