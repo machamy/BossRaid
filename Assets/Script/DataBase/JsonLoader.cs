@@ -24,6 +24,7 @@ namespace Script.Global
             SaveData saveData = new SaveData();
             saveData.DBData = DB.Instance.Data;
             string json = JsonUtility.ToJson(saveData, true);
+            File.WriteAllText(path,json);
         }
 
         public void LoadJson()
