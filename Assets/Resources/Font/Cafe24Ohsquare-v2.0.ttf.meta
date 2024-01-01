@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e7c86cc75be3165419526e3a1fa26e6a
+guid: 7188b6d7869d7e84eb2fcbc9de097aba
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - NanumGothicOTF
+  - Cafe24 Ohsquare
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
