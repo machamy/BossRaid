@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Script;
 using UnityEngine;
 using UnityEngine.Audio;
 using Object = UnityEngine.Object;
@@ -178,10 +179,18 @@ public class SoundManager
     public bool optVibration;
     public void DoVibration()
     {
-    #if UNITY_ANDROID
-            if(optVibration)
-                Handheld.Vibrate();
-    #endif
+    
+        if (optVibration)
+        {
+        #if UNITY_ANDROID
+            Vibration.Vibrate(150);
+            
+        #endif
+            #if UNITY_EDITOR
+            Debug.Log("Vibration!");
+#endif
+        }
+    
     }
     
     /// <summary>

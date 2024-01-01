@@ -38,7 +38,7 @@ namespace Script.Game
         {
             volume_bgm = PlayerPrefs.GetFloat("volume_bgm",1.0f);
             volume_effect = PlayerPrefs.GetFloat("volume_effect",1.0f);
-            optVibration = 1 == PlayerPrefs.GetInt("optVibe", 1);
+            SoundManager.Instance.optVibration = optVibration = 1 == PlayerPrefs.GetInt("optVibration", 1);
             initialized = true;
             // SoundManager.Instance.ChangeVolumeBGM(volume_bgm);
             // SoundManager.Instance.ChangeVolumeEffect(volume_effect);
@@ -67,8 +67,10 @@ namespace Script.Game
         {
             PlayerPrefs.SetFloat("volume_bgm",volume_bgm);
             PlayerPrefs.SetFloat("volume_effect",volume_effect);
+            PlayerPrefs.SetInt("optVibration",  optVibration ? 1 : 0);
+            
             transform.parent.gameObject.SetActive(false);
-            Debug.Log(ReturnObject);
+
             if (ReturnObject)
                 ReturnObject.SetActive(true);
 

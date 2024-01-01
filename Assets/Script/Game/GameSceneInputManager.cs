@@ -25,7 +25,7 @@ namespace Script.Game
             OptionUI = Instantiate(OptionUI,PauseUI.transform);
             var manager = OptionUI.GetComponentInChildren<OptionManager>();
             //manager.ReturnObject = PauseMenu;
-            Debug.Log(manager.ReturnObject);
+            // Debug.Log(manager.ReturnObject);
         }
 
         protected override void Update()
