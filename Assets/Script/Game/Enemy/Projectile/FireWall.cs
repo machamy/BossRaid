@@ -17,7 +17,7 @@ namespace Script.Game.Enemy
         public float lifetime;
         private bool isFire;
         [FormerlySerializedAs("previewtime")] public float warnTime;
-        public float previewSpeed;
+        [SerializeField] private float previewSpeed;
         [SerializeField]
         private Animator Animator;
         private bool isDamaged;
@@ -49,10 +49,21 @@ namespace Script.Game.Enemy
             }
         }
 
+        public float PreviewSpeed
+        {
+            get => previewSpeed;
+            set
+            {
+                previewSpeed = value;
+                Animator.SetFloat("PreviewSpeed", value);
+
+            }
+        }
+
         public void Start()
         {
-            Animator = GetComponent<Animator>();
-            Debug.Log(Animator);
+            Debug.Log(previewSpeed);
+            Animator.SetFloat("PreviewSpeed", previewSpeed);
             StartCoroutine(WaitPreview(warnTime));
         }
 

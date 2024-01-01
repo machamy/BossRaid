@@ -6,8 +6,11 @@ namespace Script.Game.Enemy.Projectile
     public class ProjecitleDBAppleyer : MonoBehaviour, DBUser
     {
         public GameObject attend, practice, team, fire;
-        
-        
+
+        public void Start()
+        {
+            ApplyDBdata();
+        }
         public void ApplyDBdata()
         {
             GameObject[] prefebs = new [] { attend, practice, team };
@@ -33,6 +36,7 @@ namespace Script.Game.Enemy.Projectile
             if (DB.FireWallAttack != null)
             {
                 fire.warnTime = float.Parse(DB.FireWallAttack[0]);
+                fire.PreviewSpeed = float.Parse(DB.FireWallAttack[1]);
             }
             
         }
