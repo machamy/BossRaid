@@ -182,8 +182,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: A
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cc0a35f3b772014498d83a152e3d8e91, type: 2}
-  m_sharedMaterial: {fileID: -8822314586629326066, guid: cc0a35f3b772014498d83a152e3d8e91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f5dd91d4c73a99f41a8a613bc0297b59, type: 2}
+  m_sharedMaterial: {fileID: -1193240505959075614, guid: f5dd91d4c73a99f41a8a613bc0297b59, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -316,8 +316,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0000000000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cc0a35f3b772014498d83a152e3d8e91, type: 2}
-  m_sharedMaterial: {fileID: -8822314586629326066, guid: cc0a35f3b772014498d83a152e3d8e91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a1858648e269250449354857df06bd03, type: 2}
+  m_sharedMaterial: {fileID: 8093165995665297823, guid: a1858648e269250449354857df06bd03, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -494,7 +494,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -45.09993}
-  m_SizeDelta: {x: 221.333, y: 213.381}
+  m_SizeDelta: {x: 167, y: 161}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &888702709
 MonoBehaviour:
@@ -657,7 +657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 2340, y: 1080}
   m_ScreenMatchMode: 0
@@ -939,8 +939,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC624\uB298 \uD558\uB8E8\uB3C4 \uD30C\uC774\uD305!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cc0a35f3b772014498d83a152e3d8e91, type: 2}
-  m_sharedMaterial: {fileID: -8822314586629326066, guid: cc0a35f3b772014498d83a152e3d8e91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 00fcf08d9da197c45b1e8cbbc01be256, type: 2}
+  m_sharedMaterial: {fileID: -6343729735715129936, guid: 00fcf08d9da197c45b1e8cbbc01be256, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1206,7 +1206,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 838.943, y: 261.093}
+  m_SizeDelta: {x: 633, y: 197}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2014540756
 MonoBehaviour:

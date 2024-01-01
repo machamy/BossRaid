@@ -174,7 +174,15 @@ public class SoundManager
     {
         _bgmSource.volume = val;
     }
-    
+
+    public bool optVibration;
+    public void DoVibration()
+    {
+    #if UNITY_ANDROID
+            if(optVibration)
+                Handheld.Vibrate();
+    #endif
+    }
     
     /// <summary>
     /// effect 리스트를 돌며 볼륨 변경

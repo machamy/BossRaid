@@ -38,7 +38,7 @@ namespace Script.Game.Enemy
             {
                 return 0;
             }
-
+                
             int forcePattern = MyDebug.Instance.getInt("forcePattern");
             if (forcePattern != -1)
                 return forcePattern;

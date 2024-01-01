@@ -287,6 +287,7 @@ namespace Script.Game.Player
             }
 
             SoundManager.Instance.Play("Effect/Injured");
+            SoundManager.Instance.DoVibration();
             IsInvincible = true;
         }
 

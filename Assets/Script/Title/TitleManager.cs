@@ -74,17 +74,22 @@ public class TitleManager : MonoBehaviour
     {
         backgroundImg.sprite = backgroundSprite[1];
         fadeImg.gameObject.SetActive(true);
+        float time = 0.5f;
+        int maxFrame = 16;
+        int frame = 1;
         
         if (DB.DB_VERSION == null)
         {
             Alert.gameObject.SetActive(true);
+            frame = maxFrame / 2;
+            Color c = fadeImg.color;
+            c.a = (float)frame / maxFrame;
+            fadeImg.color = c;
             yield return new WaitUntil(() => DB.DB_VERSION != null);
             Alert.gameObject.SetActive(false);
         }
         
-        float time = 0.5f;
-        int maxFrame = 16;
-        int frame = 1;
+
         while (frame <= maxFrame)
         {
             Color c = fadeImg.color;

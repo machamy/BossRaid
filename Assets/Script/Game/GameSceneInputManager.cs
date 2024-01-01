@@ -1,13 +1,18 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Script.Game
 {
     public class GameSceneInputManager : BaseInputManager
     {
+        [SerializeField] public GameObject UI;
+        [SerializeField] public GameObject PauseUI;
         [SerializeField] public GameObject PauseMenu;
-        [SerializeField] public GameObject HelpPanel;
-
+        [SerializeField] public GameObject OptionUI;
+  
+        
         public string gameSceneName = "GameScreen";
         
         public bool IsPause { get; private set; } = false;
@@ -17,6 +22,10 @@ namespace Script.Game
         private void Start()
         {
             base.Start();
+            OptionUI = Instantiate(OptionUI,PauseUI.transform);
+            var manager = OptionUI.GetComponentInChildren<OptionManager>();
+            //manager.ReturnObject = PauseMenu;
+            Debug.Log(manager.ReturnObject);
         }
 
         protected override void Update()
@@ -48,14 +57,16 @@ namespace Script.Game
 
         public void ToPause()
         {
-            PauseMenu.SetActive(true);
+            if (IsPause)
+                return;
+            PauseUI.SetActive(true);
             Time.timeScale = 0f; 
             IsPause = true;
         }
 
         public void Resume()
         {
-            PauseMenu.SetActive(false);
+            PauseUI.SetActive(false);
             Time.timeScale = 1f; 
             IsPause = false;
         }
@@ -66,17 +77,11 @@ namespace Script.Game
             SceneManager.LoadScene(gameSceneName);
         }
 
-        public void HelpIn()
+        public void OptionIn()
         {
             //UI 띄우기
-            PauseMenu.SetActive(false);
-            HelpPanel.SetActive(true);
-        }
-
-        public void HelpOut()
-        {
-            PauseMenu.SetActive(true);
-            HelpPanel.SetActive(false);
+            //PauseMenu.SetActive(false);
+            OptionUI.SetActive(true);
         }
 
         public void Tomain()
