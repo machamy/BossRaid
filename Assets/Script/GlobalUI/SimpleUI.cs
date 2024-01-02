@@ -1,36 +1,30 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+    
+
 namespace Script.Game.UI
 {
-    
-    public class SimpleUI: MonoBehaviour
+    public class SimpleUI: BaseUI, IPointerDownHandler, IPointerUpHandler 
     {
-        public GameObject ReturnObject;
-        public bool isChild;
-        
-        public virtual void OnBeforeExit()
+
+
+        public void OnTouch()
+        {
+            ClickExit();
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            OnTouch();
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
         {
             
-        }
-        
-        /// <summary>
-        /// X 버튼과 연동 필요
-        /// </summary>
-        public void ClickExit()
-        {
-            OnBeforeExit();
-            if(isChild)
-                transform.parent.gameObject.SetActive(false);
-            else
-            {
-                transform.gameObject.SetActive(false);
-            }
-
-            if (ReturnObject)
-                ReturnObject.SetActive(true);
         }
     }
 }

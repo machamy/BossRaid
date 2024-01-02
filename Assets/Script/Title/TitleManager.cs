@@ -109,14 +109,18 @@ public class TitleManager : MonoBehaviour
         StartCoroutine(StartRoutine());
     }
 
+    public GameObject Howto;
+
     public void ClickHowto()
     {
         SoundManager.Instance.Play(clickSound);
+        Howto.SetActive(true);
     }
-
+    public GameObject Credit;
     public void ClickCredit()
     {
         SoundManager.Instance.Play(clickSound);
+        Credit.SetActive(true);
     }
 
     public void ClickOption()

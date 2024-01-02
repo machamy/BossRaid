@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Script.Game.UI
 {
-    public class OptionManager : SimpleUI
+    public class OptionManager : BaseUI
     {
         private bool initialized = false;
         

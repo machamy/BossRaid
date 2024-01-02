@@ -7,15 +7,15 @@ using UnityEngine.Serialization;
 
 namespace Script.Game
 {
-    public class IngameMenuManager : SimpleUI
+    public class IngameMenuManager : BaseUI
     {
         [SerializeField] public GameObject UI;
         [SerializeField] public GameObject PauseUI;
         [SerializeField] public GameObject PauseMenu;
         [SerializeField] public GameObject OptionUI;
 
-        private Stack<SimpleUI> uiStack = new Stack<SimpleUI>();
-        public SimpleUI CurrentUI
+        private Stack<BaseUI> uiStack = new Stack<BaseUI>();
+        public BaseUI CurrentUI
         {
             get => uiStack.Peek();
             set => uiStack.Push(value);
