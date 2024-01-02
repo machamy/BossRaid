@@ -24,7 +24,7 @@ namespace Script.Game
         {
             base.Start();
             OptionUI = Instantiate(OptionUI,PauseUI.transform);
-            var manager = OptionUI.GetComponentInChildren<OptionManager>();
+            var manager = OptionUI.GetComponentInChildren<UI.OptionManager>();
             //manager.ReturnObject = PauseMenu;
             // Debug.Log(manager.ReturnObject);
         }
