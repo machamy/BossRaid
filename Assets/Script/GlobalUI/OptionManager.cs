@@ -62,17 +62,13 @@ namespace Script.Game.UI
             VibrationToggle.sprite = optVibration ? OnSprite : OffSprite;
         }
 
-        public void ClickExit()
+        public override void OnBeforeExit()
         {
+            base.OnBeforeExit();
             PlayerPrefs.SetFloat("volume_bgm",volume_bgm);
             PlayerPrefs.SetFloat("volume_effect",volume_effect);
             PlayerPrefs.SetInt("optVibration",  optVibration ? 1 : 0);
-            
-            transform.parent.gameObject.SetActive(false);
-
-            if (ReturnObject)
-                ReturnObject.SetActive(true);
-
         }
+        
     }
 }
