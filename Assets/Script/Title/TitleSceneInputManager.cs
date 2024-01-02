@@ -26,9 +26,15 @@ namespace Script.Game
             
         }
 
+        private float previousTime = -1f;
         protected override void OnEscape()
         {
-            Application.Quit();
+            if (Math.Abs(Time.time - previousTime) < 0.4)
+            {
+                Application.Quit();
+            }
+
+            previousTime = Time.time;
         }
 
         protected override void OnMenu()
