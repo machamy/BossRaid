@@ -28,7 +28,7 @@ public class ResultScreenManager : BaseInputManager, DBUser
     
 
     private bool isOnProgress;
-    private static readonly string[] GRADE_NAMES = new string[] { "F","D", "C", "B", "A","P" };
+
     private void Awake()
     {
         isOnProgress = false;
@@ -129,7 +129,7 @@ public class ResultScreenManager : BaseInputManager, DBUser
     {
         
     }
-
+    private string[] GRADE_NAMES = new string[] { "X", "F", "D", "C", "B", "A", "P" };
     private string[] msgs = {"버그! 0",
         "작별이다 학생,\n F가 없는 시대에 태어났을 뿐인 \"범부\"여",
         "\"그런 학점으로 괜찮은가?\"",
@@ -148,7 +148,11 @@ public class ResultScreenManager : BaseInputManager, DBUser
         msgs[3] = DB.TextResultClearmid[0];
         msgs[4] = DB.TextResultClearhigh[0];
         msgs[5] = DB.TextResultClearPer[0];
-
+        GRADE_NAMES[1] = DB.TextResultFailLowScore[1];
+        GRADE_NAMES[2] = DB.TextResultClearlow[1];
+        GRADE_NAMES[3] = DB.TextResultClearmid[1];
+        GRADE_NAMES[4] = DB.TextResultClearhigh[1];
+        GRADE_NAMES[5] = DB.TextResultClearPer[1];
         for (var i1 = 0; i1 < msgs.Length; i1++)
         {
             msgs[i1] = msgs[i1].Replace("<br>","\n");
