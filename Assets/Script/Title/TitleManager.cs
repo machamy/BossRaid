@@ -70,37 +70,47 @@ public class TitleManager : MonoBehaviour
         
     }
 
+    private float fadeTime = 0.5f;
+    private int fadeMaxFrame = 16;
+    private int fadeCurrentFrame = 1;
+    
     IEnumerator StartRoutine()
     {
         backgroundImg.sprite = backgroundSprite[1];
         fadeImg.gameObject.SetActive(true);
-        float time = 0.5f;
-        int maxFrame = 16;
-        int frame = 1;
+        fadeCurrentFrame = 1;
         
         if (DB.DB_VERSION == null)
         {
-            Alert.gameObject.SetActive(true);
-            frame = maxFrame / 2;
-            Color c = fadeImg.color;
-            c.a = (float)frame / maxFrame;
-            fadeImg.color = c;
-            yield return new WaitUntil(() => DB.DB_VERSION != null);
-            Alert.gameObject.SetActive(false);
+            yield return StartCoroutine(ShowDBLoadingRoutine());
         }
-        
-
-        while (frame <= maxFrame)
+        while (fadeCurrentFrame <= fadeMaxFrame)
         {
             Color c = fadeImg.color;
-            c.a = (float)frame / maxFrame;
+            c.a = (float)fadeCurrentFrame / fadeMaxFrame;
             fadeImg.color = c;
-            frame++;
-            yield return new WaitForSeconds(time/maxFrame);
+            fadeCurrentFrame++;
+            yield return new WaitForSeconds(fadeTime/fadeMaxFrame);
         }
         //backgroundImg.sprite = backgroundSprite[0];
         SceneManager.LoadScene(gameSceneName);
         SoundManager.Instance.Clear();
+    }
+
+    public void ShowDBLoading()
+    {
+        StartCoroutine(ShowDBLoadingRoutine());
+    }
+    
+    IEnumerator ShowDBLoadingRoutine()
+    {
+        Alert.gameObject.SetActive(true);
+        fadeCurrentFrame = fadeMaxFrame / 2;
+        Color c = fadeImg.color;
+        c.a = (float)fadeCurrentFrame / fadeMaxFrame;
+        fadeImg.color = c;
+        yield return new WaitUntil(() => DB.DB_VERSION != null);
+        Alert.gameObject.SetActive(false);
     }
     
     public void ClickStart()
