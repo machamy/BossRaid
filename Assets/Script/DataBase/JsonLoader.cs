@@ -5,40 +5,60 @@ using UnityEngine;
 
 namespace Script.Global
 {
-    [System.Serializable]
-    public class SaveData
+    [Serializable]
+    public class DictionaryPair<U, V>
     {
-        public Dictionary<string, string[]> DBData = new Dictionary<string, string[]>();
+        public U key;
+        public V value;
+    }
+    
+    [Serializable]
+    public class DictionaryPairList<U,V>
+    {
+        public List<DictionaryPair<U,V>> data;
     }
     public class JsonLoader : MonoBehaviour
     {
         private string path;
 
-        private void Start()
+        private void Awake()
         {
             path = Path.Combine(Application.persistentDataPath, "database");
         }
 
         public void SaveJson()
         {
-            SaveData saveData = new SaveData();
-            saveData.DBData = DB.Instance.Data;
+            DictionaryPairList<string,string[]> saveData = new DictionaryPairList<string, string[]>();
+            saveData.data = new List<DictionaryPair<string, string[]>>();
+            foreach (var keyValuePair in  DB.Instance.Data)
+            {
+                var pair = new DictionaryPair<string, string[]>();
+                pair.key = keyValuePair.Key;
+                pair.value = keyValuePair.Value;
+                saveData.data.Add(pair);
+            }
             string json = JsonUtility.ToJson(saveData, true);
             File.WriteAllText(path,json);
         }
 
         public void LoadJson()
         {
-            SaveData saveData = new SaveData();
+            DictionaryPairList<string,string[]> saveData = new DictionaryPairList<string, string[]>();
             if (!File.Exists(path))
             {
                 //데이터 없을경우
+                DB.Instance.SetData("DB_VERSION",null);
+                Debug.Log($"No File :{path}");
             }
             else
             {
                 string rawJson = File.ReadAllText(path);
-                saveData = JsonUtility.FromJson<SaveData>(rawJson);
-                DB.Instance.SetData(saveData.DBData);
+                saveData = JsonUtility.FromJson<DictionaryPairList<string,string[]>>(rawJson);
+                foreach (var pair in saveData.data)
+                {
+                    DB.Instance.SetData(pair.key,pair.value);
+                }
+                DB.Instance.SetData("DB_VERSION",new []{DB.DB_VERSION_TEXT + " (Saved Data)"});
                 DB.Instance.OnDBUpdateEvent.Invoke();
             }
         }

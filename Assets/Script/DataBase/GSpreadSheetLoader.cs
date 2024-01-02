@@ -41,7 +41,7 @@ public class GSpreadSheetLoader : MonoBehaviour
     {
         string url = $"{address}export?format=tsv&range={range}&gid={gid}";
 
-        //Debug.Log("[GSpreadSheetLoader::UpdateData] url : "+url);
+        Debug.Log("[GSpreadSheetLoader::UpdateData] connecting DB...");
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
             yield return www.SendWebRequest();
