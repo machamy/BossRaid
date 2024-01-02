@@ -87,6 +87,10 @@ namespace Script.Game.Player
             float distance = delta * dashDistance;
             StartCoroutine(DashRoutine(distance, dashTime));
             p.MakeInvinvincible(dashTime);
+            // Debug.Log(dashTime);
+            // Debug.Log(dashCoolTime);
+            // Debug.Log(dashDistance);
+            // Debug.Log(dashFrameAmount);
         }
         [SerializeField]
         private int dashFrameAmount;
