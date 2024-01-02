@@ -136,7 +136,7 @@ public class ResultScreenManager : BaseInputManager, DBUser
         "교수여, 저장된 과제는 충분한가?",
         "\"파이어 학점이 되어줘\"",
         "이제부터는, 내가 하늘에 서겠다",
-        "버그! 1"
+        "버그! 6"
     } ;
     public void ApplyDBdata()
     {
@@ -148,11 +148,11 @@ public class ResultScreenManager : BaseInputManager, DBUser
         msgs[3] = DB.TextResultClearmid[0];
         msgs[4] = DB.TextResultClearhigh[0];
         msgs[5] = DB.TextResultClearPer[0];
-        GRADE_NAMES[1] = DB.TextResultFailLowScore[1];
-        GRADE_NAMES[2] = DB.TextResultClearlow[1];
-        GRADE_NAMES[3] = DB.TextResultClearmid[1];
-        GRADE_NAMES[4] = DB.TextResultClearhigh[1];
-        GRADE_NAMES[5] = DB.TextResultClearPer[1];
+        GRADE_NAMES[1] = DB.TextResultFailLowScore[3];
+        GRADE_NAMES[2] = DB.TextResultClearlow[3];
+        GRADE_NAMES[3] = DB.TextResultClearmid[3];
+        GRADE_NAMES[4] = DB.TextResultClearhigh[3];
+        GRADE_NAMES[5] = DB.TextResultClearPer[3];
         for (var i1 = 0; i1 < msgs.Length; i1++)
         {
             msgs[i1] = msgs[i1].Replace("<br>","\n");
