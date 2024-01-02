@@ -16,6 +16,7 @@ public class ResultScreenManager : BaseInputManager, DBUser
 
     private int hpValue;
     private int scoreValue;
+    private int phaseValue;
     
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI msgText;
@@ -62,6 +63,7 @@ public class ResultScreenManager : BaseInputManager, DBUser
         else
         {
             hpValue = PlayerPrefs.GetInt("result_hp");
+            phaseValue = PlayerPrefs.GetInt("phase_value");
             scoreValue = PlayerPrefs.GetInt("result_score");
         }
         
@@ -93,11 +95,11 @@ public class ResultScreenManager : BaseInputManager, DBUser
         yield return new WaitForSeconds(1.0f);
         
         msg.gameObject.SetActive(true);
-        msgText.SetText($"{msgs[Math.Min(hpValue, msgs.Length-1)]}");
+        msgText.SetText($"{msgs[Math.Min(phaseValue, msgs.Length-1)]}");
         yield return new WaitForSeconds(1.0f);
         
         grade.gameObject.SetActive(true);
-        gradeText.SetText($"{GRADE_NAMES[Math.Min(hpValue, GRADE_NAMES.Length-1)]}");
+        gradeText.SetText($"{GRADE_NAMES[Math.Min(phaseValue, GRADE_NAMES.Length-1)]}");
         yield return new WaitForSeconds(0.5f);
         
         isOnProgress = false;
@@ -128,27 +130,25 @@ public class ResultScreenManager : BaseInputManager, DBUser
         
     }
 
-    private string[] msgs = {"작별이다 학생,\n F가 없는 시대에 태어났을 뿐인 \"범부\"여",
+    private string[] msgs = {"버그! 0",
+        "작별이다 학생,\n F가 없는 시대에 태어났을 뿐인 \"범부\"여",
         "\"그런 학점으로 괜찮은가?\"",
         "교수여, 저장된 과제는 충분한가?",
         "\"파이어 학점이 되어줘\"",
         "이제부터는, 내가 하늘에 서겠다",
-        "버그!"
+        "버그! 1"
     } ;
     public void ApplyDBdata()
     {
         
         if (DB.TextResultClearhigh == null)
             return;
-        msgs = new string[6];
+        msgs[1] = DB.TextResultFailLowScore[0];
+        msgs[2] = DB.TextResultClearlow[0];
+        msgs[3] = DB.TextResultClearmid[0];
+        msgs[4] = DB.TextResultClearhigh[0];
+        msgs[5] = DB.TextResultClearPer[0];
 
-        msgs[0] = DB.TextResultFailLowScore[0];
-        msgs[1] = DB.TextResultClearlow[0];
-        msgs[2] = DB.TextResultClearmid[0];
-        msgs[3] = DB.TextResultClearhigh[0];
-        msgs[4] = DB.TextResultClearPer[0];
-        msgs[5] = "버그!";
-        
         for (var i1 = 0; i1 < msgs.Length; i1++)
         {
             msgs[i1] = msgs[i1].Replace("<br>","\n");

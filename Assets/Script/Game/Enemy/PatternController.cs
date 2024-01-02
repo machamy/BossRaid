@@ -34,7 +34,7 @@ namespace Script.Game.Enemy
             {
                 Debug.Log("phase LV : " +value);
                 phaseLv = value;
-                
+                PlayerPrefs.SetInt("phase_value",value);
                 // 클리어 체크
                 if (phaseLv == ClearPhaseNum)
                 {
