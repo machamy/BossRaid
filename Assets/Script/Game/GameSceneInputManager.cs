@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 
 namespace Script.Game
 {
+    // TODO : 대부분 요소를 UIManager로 옮겨야함... 하지만 게임 크기 커지지 않는 이상 그냥 둘 예정.
     public class GameSceneInputManager : BaseInputManager
     {
         [SerializeField] public GameObject UI;

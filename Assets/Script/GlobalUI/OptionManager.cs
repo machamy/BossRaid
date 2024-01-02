@@ -4,9 +4,9 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Script.Game
+namespace Script.Game.UI
 {
-    public class OptionManager : MonoBehaviour
+    public class OptionManager : SimpleUI
     {
         private bool initialized = false;
         
@@ -20,7 +20,6 @@ namespace Script.Game
         [SerializeField] private Sprite OnSprite;
         [SerializeField] private Sprite OffSprite;
 
-        public GameObject ReturnObject;
         
         private float volume_bgm;
         private float volume_effect;
