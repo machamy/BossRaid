@@ -49,7 +49,7 @@ public class DB
     public static string[] PlayerHP => Get("PlayerHP");	//int
     public static string[] PlayerInvicbleTime => Get("PlayerInvicbleTime");	//float
     public static string[] PlayerDashAmount => Get("PlayerDashAmount");	//float
-    public static string[] PlayerDashSpeed => Get("PlayerDashSpeed");	//float
+    public static string[] PlayerDashTime => Get("PlayerDashTime");	//float
     public static string[] HeyYoung => Get("HeyYoung");	//float float bool string bool
     public static string[] IPad => Get("IPad");	//float float bool string bool
     public static string[] Laptop => Get("Laptop");	//float float bool string bool

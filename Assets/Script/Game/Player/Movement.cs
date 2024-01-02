@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Runtime.InteropServices.ComTypes;
+using Script.Global;
 using UnityEngine;
 
 namespace Script.Game.Player
@@ -9,13 +11,14 @@ namespace Script.Game.Player
     /// 그 취합된 벡터를 기반으로 오브젝트 이동
     /// TODO: 방식이 좀 복잡해서 그냥 Player와 합쳐도 무방할듯
     /// </summary>
-    public class Movement : MonoBehaviour
+    public class Movement : MonoBehaviour, DBUser
     {
         private Rigidbody2D body;
         private Player p;
         public float defaultSpeed;
         public float dashDistance;
         public float dashTime;
+        public float dashCoolTime;
         
         public bool isMoving;
         
@@ -28,12 +31,16 @@ namespace Script.Game.Player
             body = transform.GetComponent<Rigidbody2D>();
             p = GetComponent<Player>();
             previousVelocity = currentVelocity = Vector3.zero;
+            ApplyDBdata();
         }
 
         // Update is called once per frame
         protected virtual void Update()
         {
-
+            if (currentDashCooltime > 0)
+            {
+                currentDashCooltime -= Time.deltaTime;
+            }
         }
 
         
@@ -71,9 +78,12 @@ namespace Script.Game.Player
             currentVelocity += new Vector3(delta * defaultSpeed, 0);
         }
 
+        internal float currentDashCooltime = 0;
         internal bool isDashing = false;
         public void Dash(float delta)
         {
+            if (currentDashCooltime > 0)
+                return;
             float distance = delta * dashDistance;
             StartCoroutine(DashRoutine(distance, dashTime));
             p.MakeInvinvincible(dashTime);
@@ -89,7 +99,19 @@ namespace Script.Game.Player
                 yield return new WaitForSeconds((float)time / num);
             }
 
+            currentDashCooltime = dashCoolTime;
             isDashing = false;
+        }
+
+        public void ApplyDBdata()
+        {
+            if (DB.PlayerDashAmount != null)
+                dashDistance = float.Parse(DB.PlayerDashAmount[0]);
+            if (DB.PlayerDashTime != null)
+            {
+                dashTime = float.Parse(DB.PlayerDashTime[0]);
+                dashCoolTime = float.Parse(DB.PlayerDashTime[1]);
+            }
         }
     }
 }
