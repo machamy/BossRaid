@@ -140,11 +140,11 @@ public class ResultScreenManager : BaseInputManager, DBUser
     } ;
     public void ApplyDBdata()
     {
-        if (DB.TextResultMsg == null)
+        if (DB.TextResultMsg != null)
         {
             msgs = (string[])DB.TextResultMsg.Clone();
         }
-        if (DB.TextResultScore == null)
+        if (DB.TextResultScore != null)
         {
             msgs = (string[])DB.TextResultScore.Clone();
         }
