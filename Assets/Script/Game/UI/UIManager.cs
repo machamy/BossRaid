@@ -20,15 +20,17 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject UIObject;
 
-    private TextMeshProUGUI hpText;
+    // private TextMeshProUGUI hpText;
+    [SerializeField]
     private Image BarHP;
+    [SerializeField]
     private TextMeshProUGUI scoreText;
     public const int ZERO_NUM = 10;
     void Start()
     {
-        scoreText = UIObject.transform.Find("TxtScore").GetComponent<TextMeshProUGUI>();
-        hpText = UIObject.transform.Find("TxtHP").GetComponent<TextMeshProUGUI>();
-        BarHP = UIObject.transform.Find("BarHP").GetComponent<Image>();
+        //scoreText = UIObject.transform.Find("TxtScore").GetComponent<TextMeshProUGUI>();
+        // hpText = UIObject.transform.Find("TxtHP").GetComponent<TextMeshProUGUI>();
+       // BarHP = UIObject.transform.Find("BarHP").GetComponent<Image>();
         Player p = GameObject.Find("Player").GetComponent<Player>();
         p.OnHPUpdateEvent.AddListener((i) => UpdateHP(i));
         p.OnScoreUpdateEvent.AddListener((i) => UpdateScore(i));
