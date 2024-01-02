@@ -58,7 +58,8 @@ namespace Script.Global
                 {
                     DB.Instance.SetData(pair.key,pair.value);
                 }
-                DB.Instance.SetData("DB_VERSION",new []{DB.DB_VERSION_TEXT + " (Saved Data)"});
+                DB.Instance.SetData("DB_VERSION",new []{string.Join("_", DB.DB_VERSION) + " (Saved Data)"});
+                Debug.Log(DB.DB_VERSION_TEXT);
                 DB.Instance.OnDBUpdateEvent.Invoke();
             }
         }
