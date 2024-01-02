@@ -49,7 +49,7 @@ public class ResultScreenManager : BaseInputManager, DBUser
         scoreText.SetText("dummy");
         msgText.SetText("dummy");
         gradeText.SetText("dummy");
-        Debug.Log(scoreText.text);
+        // Debug.Log(scoreText.text);
         score.gameObject.SetActive(false);
         msg.gameObject.SetActive(false);
         grade.gameObject.SetActive(false);

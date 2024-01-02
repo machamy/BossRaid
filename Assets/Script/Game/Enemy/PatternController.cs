@@ -32,7 +32,7 @@ namespace Script.Game.Enemy
             get => phaseLv;
             set
             {
-                Debug.Log("phase LV : " +value);
+                // Debug.Log("phase LV : " +value);
                 phaseLv = value;
                 PlayerPrefs.SetInt("phase_value",value);
                 // 클리어 체크
@@ -125,7 +125,7 @@ namespace Script.Game.Enemy
                 if(Time.timeScale>0f)
                 {
                     Pattern pattern = Patterns[currentPhase.GetNextPatternNum()];
-                    Debug.Log("[PatternController::Routine] Sellected Pattern : " + pattern.GetType());
+                    // Debug.Log("[PatternController::Routine] Sellected Pattern : " + pattern.GetType());
                     // 패턴 이름 출력
                     if(pattern.ID > 0)
                         pf.Display.displayPattern(pattern.ID);
@@ -152,7 +152,7 @@ namespace Script.Game.Enemy
             if (score >= Phases[PhaseLv].maxScore)
             {
                 PhaseLv += 1;
-                Debug.Log("[PatternController::OnScoreUpdate] Phase lv up!!("+score+") : " + PhaseLv);
+                // Debug.Log("[PatternController::OnScoreUpdate] Phase lv up!!("+score+") : " + PhaseLv);
             }
         }
 

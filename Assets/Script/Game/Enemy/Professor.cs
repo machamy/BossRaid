@@ -54,7 +54,7 @@ public class Professor : MonoBehaviour, DBUser
     {
         renderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        Debug.Log(PatternController);
+        // Debug.Log(PatternController);
         player.OnScoreUpdateEvent.AddListener(PatternController.OnScoreUpdate);
         ApplyDBdata();
         //StartCoroutine(FadeOut());
@@ -191,7 +191,7 @@ public class Professor : MonoBehaviour, DBUser
     internal void Shoot과제() => Shoot과제(Facing.Vector());
     internal void Shoot과제(Vector2 dir)
     {
-        Debug.Log("[Professor::과제]");
+        // Debug.Log("[Professor::과제]");
         ShootDirByPrefab(dir, practice);
     }
     /// <summary>
@@ -200,7 +200,7 @@ public class Professor : MonoBehaviour, DBUser
     internal void Shoot팀플() => Shoot팀플(Facing.Vector());
     internal void Shoot팀플(Vector2 dir)
     {
-        Debug.Log("[Professor::팀플]");
+        // Debug.Log("[Professor::팀플]");
         ShootDirByPrefab(dir, team);
     }
 
@@ -214,7 +214,7 @@ public class Professor : MonoBehaviour, DBUser
     
     internal void Shoot출첵(Vector2 startPoint, Vector2 endPoint,int num = 3)
     {
-        Debug.Log("[Professor::출첵]");
+        // Debug.Log("[Professor::출첵]");
 
         // 투사체 그룹 집합
         HashSet<Projectile> group = new HashSet<Projectile>();
@@ -246,7 +246,7 @@ public class Professor : MonoBehaviour, DBUser
         yield return currentDir;
         for (int i = 1; i < num; i++)
         {
-            Debug.Log("[Professor::ShootArc] currentDir : "+currentDir);
+            // Debug.Log("[Professor::ShootArc] currentDir : "+currentDir);
             currentDir = Quaternion.AngleAxis(degreeRange / num, Vector3.forward) * currentDir;
             yield return currentDir;
         }
@@ -315,7 +315,7 @@ public class Professor : MonoBehaviour, DBUser
                 break;
             default:
                 // 예외 처리
-                Debug.LogError("Unhandled PrjtType: " + type);
+                // Debug.LogError("Unhandled PrjtType: " + type);
                 return;
         }
         
@@ -342,7 +342,7 @@ public class Professor : MonoBehaviour, DBUser
 
     internal Projectile ShootDir(Projectile prjt, Vector2 dir)
     {
-        Debug.Log("[Professor::ShootDir] dir : " + dir);
+        // Debug.Log("[Professor::ShootDir] dir : " + dir);
         prjt.transform.position = shootPos.transform.position;
         prjt.UpdateDirection(dir);
         prjt.OnSummon();

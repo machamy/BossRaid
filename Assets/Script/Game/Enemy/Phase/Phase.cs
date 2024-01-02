@@ -44,7 +44,7 @@ namespace Script.Game.Enemy
                 return forcePattern;
 
             int random_value = Random.Range(0, sumOfProbability);
-            Debug.Log($"[Phase::GetNextPatternNum] val = {random_value}");
+            // Debug.Log($"[Phase::GetNextPatternNum] val = {random_value}");
             for(int i = 0; i < ProbablityList.Count; i++)
             {
                 int next_probablities = ProbablityList[i];
