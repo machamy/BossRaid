@@ -45,9 +45,9 @@ namespace Script.Game.Player
         /// 선딜레이 시작시 실행.
         /// </summary>
         /// <param name="p"></param>
-        public virtual void OnStartProcess(Player p)
+        public virtual void OnUse(Player p)
         {
-        
+            p.IsUsingSkill = true;
         }
         /// <summary>
         /// 발동(선딜종료)시 실행

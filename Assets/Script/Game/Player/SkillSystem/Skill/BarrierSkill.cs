@@ -7,9 +7,9 @@ namespace Script.Game.Player
     public class BarrierSkill : BaseSkill
     {
         
-        public override void OnStartProcess(Player p)
+        public override void OnUse(Player p)
         {
-            base.OnStartProcess(p);
+            base.OnUse(p);
             SoundManager.Instance.Play("Effect/Barrier");
         }
 
