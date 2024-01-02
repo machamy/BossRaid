@@ -88,10 +88,11 @@ namespace Script.Game.Player
             StartCoroutine(DashRoutine(distance, dashTime));
             p.MakeInvinvincible(dashTime);
         }
-
+        [SerializeField]
+        private int dashFrameAmount;
         public IEnumerator DashRoutine(float distance, float time)
         {
-            int num = 10;
+            int num = dashFrameAmount;
             isDashing = true;
             for (int i = 0; i < num; i++)
             {
@@ -106,7 +107,10 @@ namespace Script.Game.Player
         public void ApplyDBdata()
         {
             if (DB.PlayerDashAmount != null)
+            {
                 dashDistance = float.Parse(DB.PlayerDashAmount[0]);
+                dashFrameAmount = int.Parse(DB.PlayerDashAmount[1]);
+            }
             if (DB.PlayerDashTime != null)
             {
                 dashTime = float.Parse(DB.PlayerDashTime[0]);

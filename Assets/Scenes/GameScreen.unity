@@ -3929,12 +3929,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSpeed: 0.2
-  dashDistance: 1.5
-  dashTime: 0.3
-  dashCoolTime: 0.5
+  dashDistance: 3
+  dashTime: 0.5
+  dashCoolTime: 0.2
   isMoving: 0
   currentVelocity: {x: 0, y: 0, z: 0}
   previousVelocity: {x: 0, y: 0, z: 0}
+  dashFrameAmount: 32
 --- !u!114 &1799270154
 MonoBehaviour:
   m_ObjectHideFlags: 0
