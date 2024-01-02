@@ -140,19 +140,26 @@ public class ResultScreenManager : BaseInputManager, DBUser
     } ;
     public void ApplyDBdata()
     {
-        
-        if (DB.TextResultClearhigh == null)
-            return;
-        msgs[1] = DB.TextResultFailLowScore[0];
-        msgs[2] = DB.TextResultClearlow[0];
-        msgs[3] = DB.TextResultClearmid[0];
-        msgs[4] = DB.TextResultClearhigh[0];
-        msgs[5] = DB.TextResultClearPer[0];
-        GRADE_NAMES[1] = DB.TextResultFailLowScore[3];
-        GRADE_NAMES[2] = DB.TextResultClearlow[3];
-        GRADE_NAMES[3] = DB.TextResultClearmid[3];
-        GRADE_NAMES[4] = DB.TextResultClearhigh[3];
-        GRADE_NAMES[5] = DB.TextResultClearPer[3];
+        if (DB.TextResultMsg == null)
+        {
+            msgs = (string[])DB.TextResultMsg.Clone();
+        }
+        if (DB.TextResultScore == null)
+        {
+            msgs = (string[])DB.TextResultMsg.Clone();
+        }
+        // if (DB.TextResultClearhigh == null)
+        //     return;
+        // msgs[1] = DB.TextResultFailLowScore[0];
+        // msgs[2] = DB.TextResultClearlow[0];
+        // msgs[3] = DB.TextResultClearmid[0];
+        // msgs[4] = DB.TextResultClearhigh[0];
+        // msgs[5] = DB.TextResultClearPer[0];
+        // GRADE_NAMES[1] = DB.TextResultFailLowScore[3];
+        // GRADE_NAMES[2] = DB.TextResultClearlow[3];
+        // GRADE_NAMES[3] = DB.TextResultClearmid[3];
+        // GRADE_NAMES[4] = DB.TextResultClearhigh[3];
+        // GRADE_NAMES[5] = DB.TextResultClearPer[3];
         for (var i1 = 0; i1 < msgs.Length; i1++)
         {
             msgs[i1] = msgs[i1].Replace("<br>","\n");

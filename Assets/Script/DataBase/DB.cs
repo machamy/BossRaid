@@ -70,14 +70,15 @@ public class DB
     public static string[] Phase5Probability => Get("Phase5Probability");	//int
     public static string[] PhaseScores => Get("PhaseScores");	//int (소수는버림처리)
     public static string[] PhaseFrequencies => Get("PhaseFrequencies");	//float
-    public static string[] TextResultFailLowScore => Get("TextResultFailLowScore");	//string
-    public static string[] TextResultClearlow => Get("TextResultClearlow");	//string
-    public static string[] TextResultClearmid => Get("TextResultClearmid");	//string
-    public static string[] TextResultClearhigh => Get("TextResultClearhigh");	//string
-    public static string[] TextResultClearPer => Get("TextResultClearPer");	//string
-    public static string[] FireWall => Get("FireWall"); //float int
-    public static string[] FireWallAttack => Get("FireWallAttack"); //float
-    public static string[] FireWallPattern => Get("FireWallPattern"); //float float
+
+    public static string[] TextResultMsg => Get("TextResultMsg");	//string
+    public static string[] TextResultScore => Get("TextResultScore");	//string
+    public static string[] Dummy10 => Get("Dummy10");	//string
+    public static string[] Dummy11 => Get("Dummy11");	//string
+    public static string[] Dummy12 => Get("Dummy12");	//string
+    public static string[] FireWall => Get("FireWall");	//float int
+    public static string[] FireWallAttack => Get("FireWallAttack");	//float
+    public static string[] FireWallPattern => Get("FireWallPattern");	//float
 
 
     public void SetData(string key, string[] value)
