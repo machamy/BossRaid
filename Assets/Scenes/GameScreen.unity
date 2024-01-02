@@ -1178,7 +1178,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -35.888184, y: 4.486084}
+  m_AnchoredPosition: {x: -35.888306, y: 4.486084}
   m_SizeDelta: {x: -1363.754, y: -263.9286}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &639916347
@@ -1395,6 +1395,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIObject: {fileID: 1550744423}
+  BarHP: {fileID: 1739347067}
+  scoreText: {fileID: 1870218282}
 --- !u!1 &789519430
 GameObject:
   m_ObjectHideFlags: 0
@@ -3929,6 +3931,7 @@ MonoBehaviour:
   defaultSpeed: 0.2
   dashDistance: 1.5
   dashTime: 0.3
+  dashCoolTime: 0.5
   isMoving: 0
   currentVelocity: {x: 0, y: 0, z: 0}
   previousVelocity: {x: 0, y: 0, z: 0}

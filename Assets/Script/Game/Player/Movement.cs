@@ -82,7 +82,7 @@ namespace Script.Game.Player
         internal bool isDashing = false;
         public void Dash(float delta)
         {
-            if (currentDashCooltime > 0)
+            if (isDashing || currentDashCooltime > 0)
                 return;
             float distance = delta * dashDistance;
             StartCoroutine(DashRoutine(distance, dashTime));
