@@ -43,6 +43,8 @@ namespace Script.Game
         {
             if (CurrentUI != null)
             {
+                while (!uiStack.Peek().isActiveAndEnabled)
+                    uiStack.Pop();
                 uiStack.Pop().ClickExit();
             }
             else
