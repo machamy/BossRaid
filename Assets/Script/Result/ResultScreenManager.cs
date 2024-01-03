@@ -146,7 +146,7 @@ public class ResultScreenManager : BaseInputManager, DBUser
         }
         if (DB.TextResultScore != null)
         {
-            msgs = (string[])DB.TextResultScore.Clone();
+            GRADE_NAMES = (string[])DB.TextResultScore.Clone();
         }
         // if (DB.TextResultClearhigh == null)
         //     return;
